@@ -1,5 +1,8 @@
+import os
+
 from bs4 import BeautifulSoup
 import requests
+import datetime
 import re
 from pprint import pprint as pprint
 
@@ -14,18 +17,71 @@ KEYS = []
 
 
 def main():
+    urls = [
+        "https://www.property24.com/for-sale/rondebosch/cape-town/western-cape/8682",
+        "https://www.property24.com/for-sale/mowbray/cape-town/western-cape/8677",
+        "https://www.property24.com/for-sale/claremont/cape-town/western-cape/11741",
+        "https://www.property24.com/for-sale/newlands/cape-town/western-cape/8679"
+    ]
+    download_html(urls)
+    pass
     houses = get_property24_houses(URL)
+    houses.sort(key=lambda x: x["price"])
     print(KEYS)
 
-    x_keys = ["bedrooms", "bathrooms"]
+    x_keys = [
+        "bedrooms",
+        "bathrooms",
+        "garages",
+        "erf size"
+        # "floor size",
+    ]
     y_key = "price"
 
-    fig, axes = plt.subplots(ncols=1, nrows=2, figsize=(8, 12))
-    plot_xy(x_keys[0], y_key, houses, axes[0])
-    plot_xy(x_keys[1], y_key, houses, axes[1])
+    fig, ax = plt.subplots(figsize=(8, 8))
 
+    for x_key in x_keys:
+        plot_xy(x_key, y_key, houses, ax)
+    ax.set_title(f'{y_key} vs ({" & ".join([x_key for x_key in x_keys])}) in Rondebosch',
+                 fontsize=15)
+
+    ax.set_ylabel(f'{y_key.capitalize()}', fontsize=10)
+    ax.set_xlabel(f'{" & ".join([x_key for x_key in x_keys])}', fontsize=10)
+
+    ax.yaxis.set_major_formatter(EngFormatter())
+    ax.tick_params(axis='y',
+                   which='minor',
+                   direction='out',
+                   bottom=True,
+                   length=5)
+
+    plt.grid(True)
+    plt.legend(loc='lower right')
+    plt.tight_layout()
     plt.show()
     print_links(houses)
+
+
+def plot_xy(x_key, y_key, houses, ax):
+    x = []
+    y = []
+    for house in houses:
+        if x_key in house:
+            x.append(house[x_key])
+        else:
+            x.append(0)
+        y.append(house[y_key])
+
+    x_norm = [(x_val - min(x)) / (max(x) - min(x)) for x_val in x]
+
+    ax.scatter(x_norm, y, marker=".")
+
+    ax.plot(np.unique(x_norm),
+            np.poly1d(np.polyfit(x_norm, y, 1))(np.unique(x_norm)),
+            label=x_key.capitalize())
+
+    for label, x, y in zip(range(len(x_norm)), x_norm, y):
+        ax.annotate(label, xy=(x, y))
 
 
 def print_links(houses):
@@ -34,31 +90,21 @@ def print_links(houses):
         print(f"{i}: {link}")
 
 
-def plot_xy(x_key, y_key, houses, ax):
-    x = [house[x_key] for house in houses]
-    y = [house[y_key] for house in houses]
-    links = [house["link"] for house in houses]
-
-    ax.scatter(x, y, marker=".")
-
-    # get_summary(x, y)
-
-    ax.plot(np.unique(x), np.poly1d(np.polyfit(x, y, 1))(np.unique(x)))
-
-    ax.set_title(f'{y_key} vs {x_key} in Rondebosch', fontsize=15)
-    ax.set_ylabel(f'{y_key}', fontsize=10)
-    ax.set_xlabel(f'{x_key}', fontsize=10)
-
-    for label, x, y in zip(range(len(x)), x, y):
-        ax.annotate(label, xy=(x + 0.1, y + 0.1))
-
-    ax.yaxis.set_major_formatter(EngFormatter())
-
-
 def get_summary(x, y):
     results = sm.OLS(y, sm.add_constant(x)).fit()
     pprint(results.summary())
     print('R2: ', results.rsquared)
+
+
+def download_html(urls):
+    for url in urls:
+        now = datetime.datetime.now().strftime('%Y_%m_%d')
+        path = f"_data/{url.split('/')[4]}-{now}.html"
+        print(f"requests.get({url})")
+        request = requests.get(url)
+
+        with open(path, "w+") as write_file:
+            write_file.write(request.text)
 
 
 def get_property24_houses(url):
