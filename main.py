@@ -1,93 +1,114 @@
-import os
-
-from bs4 import BeautifulSoup
-import requests
 import datetime
+import os
 import re
 from pprint import pprint as pprint
 
-import statsmodels.api as sm
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import requests
+import statsmodels.api as sm
+from bs4 import BeautifulSoup
+from matplotlib import rcParams
 from matplotlib.ticker import EngFormatter
 
-URL = "https://www.property24.com/for-sale/rondebosch/cape-town/western-cape/8682"
 RE_NO_BREAK_SPACE = re.compile(r"( )")
 KEYS = []
+PATHS = [
+    "_data/claremont-2019_10_26.html",
+    "_data/mowbray-2019_10_26.html",
+    "_data/newlands-2019_10_26.html",
+    "_data/rondebosch-2019_10_26.html"
+]
 
 
 def main():
-    urls = [
-        "https://www.property24.com/for-sale/rondebosch/cape-town/western-cape/8682",
-        "https://www.property24.com/for-sale/mowbray/cape-town/western-cape/8677",
-        "https://www.property24.com/for-sale/claremont/cape-town/western-cape/11741",
-        "https://www.property24.com/for-sale/newlands/cape-town/western-cape/8679"
-    ]
-    download_html(urls)
-    pass
-    houses = get_property24_houses(URL)
-    houses.sort(key=lambda x: x["price"])
-    print(KEYS)
+    for path in PATHS:
+        plot_html(path, saveFig=True)
+
+
+def plot_html(path, saveFig=False):
+    houses = get_p24_houses(path)
 
     x_keys = [
         "bedrooms",
         "bathrooms",
         "garages",
-        "erf size"
-        # "floor size",
+        # "erf size",
+        # "floor size"
     ]
     y_key = "price"
 
-    fig, ax = plt.subplots(figsize=(8, 8))
+    fig, ax = plt.subplots(figsize=(8, 14))
+
+    xlabel = "\n & ".join([x_key.capitalize() for x_key in x_keys])
+    ylabel = y_key.capitalize()
 
     for x_key in x_keys:
-        plot_xy(x_key, y_key, houses, ax)
-    ax.set_title(f'{y_key} vs ({" & ".join([x_key for x_key in x_keys])}) in Rondebosch',
+        plot_xy(x_key, y_key, houses, ax, normalise=False)
+    ax.set_title(f'{ylabel} vs \n({xlabel}) \nin {path.split(os.sep)[1]}',
                  fontsize=15)
 
-    ax.set_ylabel(f'{y_key.capitalize()}', fontsize=10)
-    ax.set_xlabel(f'{" & ".join([x_key for x_key in x_keys])}', fontsize=10)
+    ax.set_ylabel(f'{ylabel}', fontsize=10)
+    ax.set_xlabel(f'{xlabel}', fontsize=10)
 
     ax.yaxis.set_major_formatter(EngFormatter())
-    ax.tick_params(axis='y',
-                   which='minor',
-                   direction='out',
-                   bottom=True,
-                   length=5)
+    ax.minorticks_on()
+    ax.tick_params(axis='x', which='minor', bottom=False)
 
-    plt.grid(True)
-    plt.legend(loc='lower right')
-    plt.tight_layout()
-    plt.show()
-    print_links(houses)
+    ax.grid(True)
+    ax.legend(loc='lower right')
+    rcParams.update({'figure.autolayout': True})
+    if saveFig:
+        write_path = "graphs/" + path.split(os.sep)[1]
+        plt.savefig(write_path.replace(".html", ".png"))
+        with open(write_path.replace(".html", ".txt"), "w+") as write_file:
+            write_file.write("\n".join([f"{i}: {link}" for i, link in get_links(houses, should_print=False)]))
+    else:
+        plt.show()
+        get_links(houses)
 
 
-def plot_xy(x_key, y_key, houses, ax):
+def plot_xy(x_key, y_key, houses, ax, normalise=True):
     x = []
     y = []
+    labels = []
+
     for house in houses:
-        if x_key in house:
+        if x_key in house and house[x_key] is not None:
             x.append(house[x_key])
-        else:
-            x.append(0)
-        y.append(house[y_key])
+            y.append(house[y_key])
+            labels.append(house["id"])
 
-    x_norm = [(x_val - min(x)) / (max(x) - min(x)) for x_val in x]
+    x_norm = []
+    if normalise:
+        for x_val in x:
+            max_x = max([i for i in x if i is not None])
+            min_x = min([i for i in x if i is not None])
+            x_norm.append((x_val - min_x) / max(max_x - min_x, 1))
+    else:
+        x_norm = x
+    ax.scatter(x_norm, y, marker=".", label=x_key.capitalize())
 
-    ax.scatter(x_norm, y, marker=".")
+    for label, x_i, y_i in zip(labels, x_norm, y):
+        ax.annotate(label, xy=(x_i, y_i))
 
-    ax.plot(np.unique(x_norm),
-            np.poly1d(np.polyfit(x_norm, y, 1))(np.unique(x_norm)),
-            label=x_key.capitalize())
+    if len(x_norm) > 5:
+        ax.plot(np.unique(x_norm),
+                np.poly1d(np.polyfit(x_norm, y, 1))(np.unique(x_norm)))
+    else:
+        print("Not enough data to plot Least Squares Line: " + x_key)
 
-    for label, x, y in zip(range(len(x_norm)), x_norm, y):
-        ax.annotate(label, xy=(x, y))
 
 
-def print_links(houses):
-    links = [house["link"] for house in houses]
-    for i, link in enumerate(links):
-        print(f"{i}: {link}")
+
+def get_links(houses, should_print=True):
+    links = [(house["id"], house["link"]) for house in houses]
+    links.sort(key=lambda x: x[0])
+    if should_print:
+        for id, link in links:
+            print(f"{id}: {link}")
+    else:
+        return links
 
 
 def get_summary(x, y):
@@ -107,13 +128,19 @@ def download_html(urls):
             write_file.write(request.text)
 
 
-def get_property24_houses(url):
+def get_p24_houses(url_path):
     houses = []
-    print("Parsing url")
-    request = requests.get(URL)
 
-    soup = BeautifulSoup(request.text, features='html.parser')
-    print("Processing data from " + url)
+    if os.path.exists(url_path):
+        print(f"Opening filepath: {url_path}")
+        soup = BeautifulSoup(open(url_path), features='html.parser')
+    else:
+        print(f"Parsing url: {url_path}")
+        request = requests.get(url_path)
+        soup = BeautifulSoup(request.text, features='html.parser')
+
+    print("Processing data from " + url_path)
+    count = 0
     for i, content in enumerate(soup.find_all("div", class_="p24_content")):
 
         house = {}
@@ -141,6 +168,8 @@ def get_property24_houses(url):
                 house["erf size"] = format_numbers(house["erf size"])
             if "floor size" in house:
                 house["floor size"] = format_numbers(house["floor size"])
+            else:
+                house["floor size"] = None
             if "garages" in house:
                 house["garages"] = format_numbers(house["garages"])
             if "price" in house:
@@ -154,12 +183,13 @@ def get_property24_houses(url):
             if k not in KEYS:
                 KEYS.append(k)
         if len(house) != 0:
+            house["id"] = count
+            count += 1
             houses.append(house)
     return houses
 
 
 def format_numbers(s):
-    # print(s)
     s = str(s).replace("m²", "").replace(" ", "").strip()
     if s.replace(".", "", 1).isdigit():
         return float(s)
@@ -172,7 +202,6 @@ def get_icon_attr(icons, attr):
     if attribute:
         return attribute.find("span").text
     else:
-        # print(f"No attr={attr} found, icons:\n{icons.prettify()}")
         return "Unknown"
 
 
