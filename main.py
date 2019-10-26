@@ -3,22 +3,77 @@ import requests
 import re
 from pprint import pprint as pprint
 
+import statsmodels.api as sm
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.ticker import EngFormatter
+
 URL = "https://www.property24.com/for-sale/rondebosch/cape-town/western-cape/8682"
 RE_NO_BREAK_SPACE = re.compile(r"( )")
+KEYS = []
 
 
 def main():
-    house = {}
+    houses = get_property24_houses(URL)
+    print(KEYS)
 
+    x_keys = ["bedrooms", "bathrooms"]
+    y_key = "price"
+
+    fig, axes = plt.subplots(ncols=1, nrows=2, figsize=(8, 12))
+    plot_xy(x_keys[0], y_key, houses, axes[0])
+    plot_xy(x_keys[1], y_key, houses, axes[1])
+
+    plt.show()
+    print_links(houses)
+
+
+def print_links(houses):
+    links = [house["link"] for house in houses]
+    for i, link in enumerate(links):
+        print(f"{i}: {link}")
+
+
+def plot_xy(x_key, y_key, houses, ax):
+    x = [house[x_key] for house in houses]
+    y = [house[y_key] for house in houses]
+    links = [house["link"] for house in houses]
+
+    ax.scatter(x, y, marker=".")
+
+    # get_summary(x, y)
+
+    ax.plot(np.unique(x), np.poly1d(np.polyfit(x, y, 1))(np.unique(x)))
+
+    ax.set_title(f'{y_key} vs {x_key} in Rondebosch', fontsize=15)
+    ax.set_ylabel(f'{y_key}', fontsize=10)
+    ax.set_xlabel(f'{x_key}', fontsize=10)
+
+    for label, x, y in zip(range(len(x)), x, y):
+        ax.annotate(label, xy=(x + 0.1, y + 0.1))
+
+    ax.yaxis.set_major_formatter(EngFormatter())
+
+
+def get_summary(x, y):
+    results = sm.OLS(y, sm.add_constant(x)).fit()
+    pprint(results.summary())
+    print('R2: ', results.rsquared)
+
+
+def get_property24_houses(url):
+    houses = []
+    print("Parsing url")
     request = requests.get(URL)
-    soup = BeautifulSoup(request.text, features='html.parser')
 
-    for i, content in enumerate(soup.find_all("div", class_="p24_content")[:50]):
-        # item = item.text.replace("\n", "")
+    soup = BeautifulSoup(request.text, features='html.parser')
+    print("Processing data from " + url)
+    for i, content in enumerate(soup.find_all("div", class_="p24_content")):
+
+        house = {}
         price = content.find_all("div", class_="p24_price")
         description = content.find_all("div", class_="p24_description")
-        if description:
-
+        if price and description:
             if content.parent.has_attr("href"):
                 house["link"] = "https://www.property24.com" + content.parent["href"]
             icons = content.find("div", class_="p24_icons")
@@ -46,11 +101,15 @@ def main():
                 house["price"] = format_numbers(house["price"])
 
         else:
-            print(f"No description found, content:\n{content.prettify()}")
-            # pass
+            # print(f"No description found, content:\n{content.prettify()}")
+            pass
 
-        pprint(house)
-        print()
+        for k in house:
+            if k not in KEYS:
+                KEYS.append(k)
+        if len(house) != 0:
+            houses.append(house)
+    return houses
 
 
 def format_numbers(s):
