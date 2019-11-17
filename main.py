@@ -2,7 +2,7 @@ import datetime
 import os
 import re
 from pprint import pprint as pprint
-
+import glob
 import matplotlib.pyplot as plt
 import numpy as np
 import requests
@@ -20,21 +20,33 @@ PATHS = [
     "_data/rondebosch-2019_10_26.html"
 ]
 
+URLS = [
+    "https://www.property24.com/for-sale/rondebosch/cape-town/western-cape/8682",
+    "https://www.property24.com/for-sale/rondebosch/cape-town/western-cape/8682/p2",
+    "https://www.property24.com/for-sale/rondebosch/cape-town/western-cape/8682/p3",
+    "https://www.property24.com/for-sale/rondebosch/cape-town/western-cape/8682/p4",
+    "https://www.property24.com/for-sale/rondebosch/cape-town/western-cape/8682/p5",
+    "https://www.property24.com/for-sale/rondebosch/cape-town/western-cape/8682/p6"
+]
+
 
 def main():
+    global PATHS
+    download_html(URLS)
+    PATHS = sorted(glob.glob("_data/*"))
     for path in PATHS:
         plot_html(path, saveFig=True)
 
 
-def plot_html(path, saveFig=False):
+def plot_html(path, saveFig=False, normalise=True):
     houses = get_p24_houses(path)
 
     x_keys = [
         "bedrooms",
         "bathrooms",
         "garages",
-        # "erf size",
-        # "floor size"
+        "erf size",
+        "floor size"
     ]
     y_key = "price"
 
@@ -44,7 +56,7 @@ def plot_html(path, saveFig=False):
     ylabel = y_key.capitalize()
 
     for x_key in x_keys:
-        plot_xy(x_key, y_key, houses, ax, normalise=False)
+        plot_xy(x_key, y_key, houses, ax, normalise=normalise)
     ax.set_title(f'{ylabel} vs \n({xlabel}) \nin {path.split(os.sep)[1]}',
                  fontsize=15)
 
@@ -97,8 +109,6 @@ def plot_xy(x_key, y_key, houses, ax, normalise=True):
                 np.poly1d(np.polyfit(x_norm, y, 1))(np.unique(x_norm)))
     else:
         print("Not enough data to plot Least Squares Line: " + x_key)
-
-
 
 
 def get_links(houses, should_print=True):
