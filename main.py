@@ -20,7 +20,7 @@ RE_NO_BREAK_SPACE = re.compile(r"( )")
 KEYS = []
 NOW = datetime.datetime.now().strftime('%Y_%m_%d')
 # COLOURS = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
-COLOURS = ['#db5f57', '#dbc257', '#91db57', '#57db80', '#57d3db', '#5770db', '#a157db', '#db57b2']
+COLOURS = ['#db5f57', '#dbc257', '#91db57', '#57d3db', '#5770db', '#a157db', '#db57b2']
 URLS = [
     "https://www.property24.com/for-sale/sea-point/cape-town/western-cape/11021",
     "https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157",
@@ -46,9 +46,10 @@ def main():
     # extract_and_save_dataframe(file_paths)
     csvs = sorted(glob.glob(f"CSVs/{NOW}/*"))
 
-    plot_csv(csvs[7],
-             ["bedrooms", "bathrooms", "garages", "erf size", "floor size"][:3],
-             "price")
+    for csv in csvs:
+        plot_csv(csv,
+                 ["bedrooms", "bathrooms", "garages", "erf size", "floor size"],
+                 "price", save_figure=True)
 
     # for path in PATHS[:1]:
     #     plot_html(path, saveFig=True)
@@ -166,17 +167,21 @@ def extract_houses_from_soup(soup, houses=None, house_id=0):
 
 
 def plot_csv(csv_path, x_dims, y_dim, save_figure=False):
+    print(f"Plotting '{csv_path}'")
     rcParams.update({'figure.autolayout': True,
                      'figure.dpi': 300})
     df = pd.read_csv(csv_path)
+    x_dims = df.columns.intersection(x_dims)
     x = df[x_dims]
     y = df[y_dim]
+    x_norm = (x - x.min()) / (x.max() - x.min())
 
     # make the axes, and plot the data
-    fig, axes = plt.subplots(len(x_dims) + 1, figsize=(7, 5 * (len(x_dims) + 1)))
+    fig, axes = plt.subplots(len(x_dims), figsize=(7, 5 * (len(x_dims))))
     for i, x_dim in enumerate(x_dims):
         # Add Least Squares Line and r-squared value
         regression_line = df[[x_dim, y_dim]].dropna()
+
         linreg = sp.stats.linregress(regression_line[x_dim], regression_line[y_dim])
 
         # First plot the data onto separate axes
@@ -188,14 +193,19 @@ def plot_csv(csv_path, x_dims, y_dim, save_figure=False):
                         label=f"{x_dim.title()}, r^2={round(linreg.rvalue ** 2, 2)}",
                         color=COLOURS[i])
 
+        # TODO the last graph just doesn't work
         # Then also dump all the data onto the last plot
-        axes[-1].plot(regression_line[x_dim],
-                      linreg.intercept + linreg.slope * regression_line[x_dim],
-                      color=COLOURS[i])
-        axes[-1].scatter(x[x_dim],
-                         y,
-                         label=f"{x_dim.title()}, r^2={round(linreg.rvalue ** 2, 2)}",
-                         color=COLOURS[i])
+        max_minus_min = (regression_line[x_dim].max() - regression_line[x_dim].min())
+
+        regression_line[x_dim] = (regression_line[x_dim] - regression_line[x_dim].min()) / (max_minus_min)
+        # linreg = sp.stats.linregress(regression_line[x_dim], regression_line[y_dim])
+        # axes[-1].plot(regression_line[x_dim],
+        #               linreg.intercept + (linreg.slope * regression_line[x_dim]) / (max_minus_min),
+        #               color=COLOURS[i])
+        # axes[-1].scatter(x_norm[x_dim],
+        #                  y,
+        #                  label=f"{x_dim.title()}, r^2={round(linreg.rvalue ** 2, 2)}",
+        #                  color=COLOURS[i])
 
     # add a title and axes labels
     suburb = csv_path.split(os.sep)[-1].split("_")[2].replace("-", " ").title()
@@ -208,27 +218,36 @@ def plot_csv(csv_path, x_dims, y_dim, save_figure=False):
 
     # Then dump all the data onto the last plot
     x_label = " & ".join([x_dim.title() for x_dim in x_dims])
-    axes[-1].set_xlabel(x_label)
-    axes[-1].set_ylabel(y_dim.title())
-    axes[-1].set_title(f"{x_label} vs {y_dim.title()} \nin {suburb}")
+    # axes[-1].set_xlabel(x_label)
+    # axes[-1].set_ylabel(y_dim.title())
+    # axes[-1].set_title(f"{x_label} vs {y_dim.title()} \nin {suburb}")
 
     text = []
 
     # add a line to connect datapoints from the same house
     for index, row in df.iterrows():
-        axes[-1].plot([min(row[x_dims]), max(row[x_dims])],
-                      [y[index], y[index]],
-                      'k-',
-                      alpha=0.3,
-                      linewidth=0.25,
-                      zorder=1)
 
-        # add the id of each house
-        axes[-1].annotate(row["id"],
-                          xy=(max(row[x_dims].dropna()) * 1.015, y[index]),
-                          size=8,
-                          va='center',
-                          alpha=0.6)
+        # First plot the annotations onto separate axes
+        for i, x_dim in enumerate(x_dims):
+            axes[i].annotate(row["id"],
+                             xy=(row[x_dim] * 1.015, y[index]),
+                             size=8,
+                             va='center',
+                             alpha=0.6)
+
+        # Then dump all the annotations onto the last plot
+        # axes[-1].plot([min(row[x_dims]), max(row[x_dims])],
+        #               [y[index], y[index]],
+        #               'k-',
+        #               alpha=0.3,
+        #               linewidth=0.25,
+        #               zorder=1)
+        #
+        # axes[-1].annotate(row["id"],
+        #                   xy=(max(row[x_dims].dropna()) * 1.015, y[index]),
+        #                   size=8,
+        #                   va='center',
+        #                   alpha=0.6)
 
         text.append(f"{row['id']}: {row['description']}")
 
@@ -252,7 +271,7 @@ def plot_csv(csv_path, x_dims, y_dim, save_figure=False):
         ax.legend(loc='lower right')
 
     plt.tight_layout()
-    plt.show(dpi=800)
+    # plt.show()
 
     if save_figure:
         path = f"graphs/{os.sep.join(csv_path.split(os.sep)[1:])}"
@@ -260,7 +279,7 @@ def plot_csv(csv_path, x_dims, y_dim, save_figure=False):
 
         if not os.path.exists(directory):
             os.makedirs(directory)
-        plt.savefig(path.replace(".csv", ".png"), dpi=800)
+        plt.savefig(path.replace(".csv", ".png"))
 
 
 def format_numbers(s):
