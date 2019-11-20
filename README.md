@@ -1,5 +1,7 @@
 # Purchase Analysis
 
+Last Updated: 20 November 2019
+
 PurchaseAnalysis scrapes property prices and various other data points from 
 popular real estate websites, and then visualises the data in order to better 
 spot outliers that are under- or over-priced.
