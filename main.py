@@ -51,9 +51,6 @@ def main():
                  ["bedrooms", "bathrooms", "garages", "erf size", "floor size"],
                  "price", save_figure=True)
 
-    # for path in PATHS[:1]:
-    #     plot_html(path, saveFig=True)
-
 
 def download_html(urls):
     for url in urls:
