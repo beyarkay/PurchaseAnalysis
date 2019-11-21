@@ -1,10 +1,10 @@
-,link,address,bedrooms,bathrooms,garages,erf size,price,date,description,location,id,floor size
-0,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/106093156?plId=483836&plt=2,,5.0,3.0,3.0,476.0,16995000.0,2019_11_19,5 Bedroom House in Fresnaye,Fresnaye,0,
-1,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/107937299?plId=486566&plt=3,,3.0,2.0,,,6950000.0,2019_11_19,3 Bedroom Apartment in Fresnaye,Fresnaye,1,145.0
-2,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/107966849?plId=486624&plt=3,,3.0,2.0,1.0,714.0,10995000.0,2019_11_19,3 Bedroom House in Fresnaye,Fresnaye,2,
-3,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/107564523?plId=485488&plt=3,,2.0,2.0,2.0,,5950000.0,2019_11_19,2 Bedroom Apartment in Fresnaye,Fresnaye,3,152.0
-4,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/108073912?plId=485486&plt=3,,3.0,2.0,,,5500000.0,2019_11_19,3 Bedroom Apartment in Fresnaye,Fresnaye,4,155.0
-5,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/108133892?plId=485032&plt=3,,3.0,2.0,2.0,,14000000.0,2019_11_19,3 Bedroom House in Fresnaye,Fresnaye,5,397.0
-6,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/107911794?plId=482868&plt=3,,2.0,2.0,2.0,,5950000.0,2019_11_19,2 Bedroom Apartment in Fresnaye,Fresnaye,6,152.0
-7,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/107362338?plId=483125&plt=3,,4.0,6.5,3.0,510.0,45000000.0,2019_11_19,4 Bedroom House in Fresnaye,Fresnaye,7,
-8,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/107999795?plId=482868&plt=3,,2.0,2.0,2.0,,5950000.0,2019_11_19,2 Bedroom Apartment in Fresnaye,Fresnaye,8,152.0
+,id,link,date,price,bedrooms,bathrooms,garages,erf size,floor size,address,description,location
+0,0,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/106093156?plId=483836&plt=2,2019_11_20,16995000.0,5.0,3.0,3.0,476.0,,,5 Bedroom House in Fresnaye,Fresnaye
+1,1,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/107937299?plId=486566&plt=3,2019_11_20,6950000.0,3.0,2.0,,,145.0,,3 Bedroom Apartment in Fresnaye,Fresnaye
+2,2,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/107966849?plId=486624&plt=3,2019_11_20,10995000.0,3.0,2.0,1.0,714.0,,,3 Bedroom House in Fresnaye,Fresnaye
+3,3,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/107564523?plId=485488&plt=3,2019_11_20,5950000.0,2.0,2.0,2.0,,152.0,,2 Bedroom Apartment in Fresnaye,Fresnaye
+4,4,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/108073912?plId=485486&plt=3,2019_11_20,5500000.0,3.0,2.0,,,155.0,,3 Bedroom Apartment in Fresnaye,Fresnaye
+5,5,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/108133892?plId=485032&plt=3,2019_11_20,14000000.0,3.0,2.0,2.0,,397.0,,3 Bedroom House in Fresnaye,Fresnaye
+6,6,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/107911794?plId=482868&plt=3,2019_11_20,5950000.0,2.0,2.0,2.0,,152.0,,2 Bedroom Apartment in Fresnaye,Fresnaye
+7,7,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/107362338?plId=483125&plt=3,2019_11_20,45000000.0,4.0,6.5,3.0,510.0,,,4 Bedroom House in Fresnaye,Fresnaye
+8,8,https://www.property24.com/for-sale/fresnaye/cape-town/western-cape/11016/107999795?plId=482868&plt=3,2019_11_20,5950000.0,2.0,2.0,2.0,,152.0,,2 Bedroom Apartment in Fresnaye,Fresnaye

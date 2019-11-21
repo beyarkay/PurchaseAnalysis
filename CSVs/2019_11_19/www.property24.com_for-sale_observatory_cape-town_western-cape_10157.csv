@@ -1,17 +1,17 @@
-,link,address,floor size,price,date,description,location,id,bedrooms,bathrooms,erf size,garages
-0,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108088104?plId=478678&plt=2,,1100.0,8500000.0,2019_11_19,Commercial Property in Observatory,Observatory,0,,,,
-1,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108133011?plId=487577&plt=3,,,3800000.0,2019_11_19,4 Bedroom House in Observatory,Observatory,1,4.0,2.0,295.0,
-2,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108081638?plId=486635&plt=3,,60.0,2295000.0,2019_11_19,2 Bedroom Apartment in Observatory,Observatory,2,2.0,1.0,,1.0
-3,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108122262?plId=486482&plt=3,,68.0,1250000.0,2019_11_19,2 Bedroom Apartment in Observatory,Observatory,3,2.0,1.0,,
-4,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/107535769?plId=485483&plt=3,,63.0,1695000.0,2019_11_19,2 Bedroom Apartment in Observatory,Observatory,4,2.0,1.0,,
-5,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/107895507?plId=485340&plt=3,,87.0,2100000.0,2019_11_19,2 Bedroom House in Observatory,Observatory,5,2.0,1.0,,
-6,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108155763?plId=485355&plt=3,,78.0,2650000.0,2019_11_19,1 Bedroom Apartment in Observatory,Observatory,6,1.0,1.0,,
-7,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108102103?plId=485352&plt=3,,78.0,3550000.0,2019_11_19,2 Bedroom Apartment in Observatory,Observatory,7,2.0,2.0,,1.0
-8,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108100814?plId=485351&plt=3,,42.0,2090000.0,2019_11_19,1 Bedroom Apartment in Observatory,Observatory,8,1.0,1.0,,
-9,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108100241?plId=485354&plt=3,,50.0,1990000.0,2019_11_19,1 Bedroom Apartment in Observatory,Observatory,9,1.0,1.0,,
-10,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/106032504?plId=485329&plt=3,,,2650000.0,2019_11_19,3 Bedroom House in Observatory,Observatory,10,3.0,2.0,205.0,1.0
-11,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/107706659?plId=486341&plt=2,,,2050000.0,2019_11_19,4 Bedroom House in Observatory,Observatory,11,4.0,1.0,186.0,
-12,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108046699?plId=486890&plt=2,,,3995000.0,2019_11_19,3 Bedroom House in Observatory,Observatory,12,3.0,2.0,332.0,
-13,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108131931?plId=486887&plt=2,,,2350000.0,2019_11_19,2 Bedroom House in Observatory,Observatory,13,2.0,1.0,152.0,1.0
-14,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108046699?plId=486890&plt=2,,,3995000.0,2019_11_19,3 Bedroom House in Observatory,Observatory,14,3.0,2.0,332.0,
-15,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108088104?plId=478678&plt=2,,1100.0,8500000.0,2019_11_19,Commercial Property in Observatory,Observatory,15,,,,
+,id,link,date,price,bedrooms,bathrooms,garages,erf size,floor size,address,description,location
+0,0,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108088104?plId=478678&plt=2,2019_11_20,8500000.0,,,,,1100.0,,Commercial Property in Observatory,Observatory
+1,1,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108133011?plId=487577&plt=3,2019_11_20,3800000.0,4.0,2.0,,295.0,,,4 Bedroom House in Observatory,Observatory
+2,2,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108081638?plId=486635&plt=3,2019_11_20,2295000.0,2.0,1.0,1.0,,60.0,,2 Bedroom Apartment in Observatory,Observatory
+3,3,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108122262?plId=486482&plt=3,2019_11_20,1250000.0,2.0,1.0,,,68.0,,2 Bedroom Apartment in Observatory,Observatory
+4,4,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/107535769?plId=485483&plt=3,2019_11_20,1695000.0,2.0,1.0,,,63.0,,2 Bedroom Apartment in Observatory,Observatory
+5,5,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/107895507?plId=485340&plt=3,2019_11_20,2100000.0,2.0,1.0,,,87.0,,2 Bedroom House in Observatory,Observatory
+6,6,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108155763?plId=485355&plt=3,2019_11_20,2650000.0,1.0,1.0,,,78.0,,1 Bedroom Apartment in Observatory,Observatory
+7,7,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108102103?plId=485352&plt=3,2019_11_20,3550000.0,2.0,2.0,1.0,,78.0,,2 Bedroom Apartment in Observatory,Observatory
+8,8,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108100814?plId=485351&plt=3,2019_11_20,2090000.0,1.0,1.0,,,42.0,,1 Bedroom Apartment in Observatory,Observatory
+9,9,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108100241?plId=485354&plt=3,2019_11_20,1990000.0,1.0,1.0,,,50.0,,1 Bedroom Apartment in Observatory,Observatory
+10,10,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/106032504?plId=485329&plt=3,2019_11_20,2650000.0,3.0,2.0,1.0,205.0,,,3 Bedroom House in Observatory,Observatory
+11,11,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/107706659?plId=486341&plt=2,2019_11_20,2050000.0,4.0,1.0,,186.0,,,4 Bedroom House in Observatory,Observatory
+12,12,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108046699?plId=486890&plt=2,2019_11_20,3995000.0,3.0,2.0,,332.0,,,3 Bedroom House in Observatory,Observatory
+13,13,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108131931?plId=486887&plt=2,2019_11_20,2350000.0,2.0,1.0,1.0,152.0,,,2 Bedroom House in Observatory,Observatory
+14,14,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108046699?plId=486890&plt=2,2019_11_20,3995000.0,3.0,2.0,,332.0,,,3 Bedroom House in Observatory,Observatory
+15,15,https://www.property24.com/for-sale/observatory/cape-town/western-cape/10157/108088104?plId=478678&plt=2,2019_11_20,8500000.0,,,,,1100.0,,Commercial Property in Observatory,Observatory

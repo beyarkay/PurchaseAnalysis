@@ -27,9 +27,6 @@ def main():
 
 ## Example Graphs
 
-### Newlands Property Prices
-![](readme_resources/newlands.png)
-
 ### Green Point Property Prices
 ![](readme_resources/green_point.png)
 
@@ -50,9 +47,7 @@ def main():
 
 ## Future Features to Add
 
-* Include the number of datapoints plotted
 * Don't display a graph if there weren't enough data points to plot?
-* Make the graphs more intuitive to get an understanding of
 * Add ability to see trends in a suburb over time
 * increase granularity in search parameters: add ability to graph search results based 
 off of different parameters
