@@ -59,11 +59,13 @@ IN_DEVELOPMENT = True
 
 
 def main():
+    global NOW
     if IN_DEVELOPMENT:
 
         # download_autotrader_html(URLS_AUTOTRADER)
         # download_cars_html(URLS_CARS)
         # download_webuycars_html(URLS_WEBUYCARS)
+        NOW = "2019_11_21"
 
         # file_paths = sorted(glob.glob(f"_data/{NOW}/*"))
         # if len(file_paths) == 0:
@@ -75,8 +77,8 @@ def main():
         if len(csvs) == 0:
             print(f"Warning: len(csvs) == 0 from 'CSVs/{NOW}/*'")
 
-        plot_csv(csvs[0], ["year", "odometer_km", "economy_CO2_gpkm"], "price",should_annotate=False, save_figure=True)
-
+        get_good_deals(csvs[0], ["year", "performace_0_to_100_s", "economy_fuel_consumption_lpkm"], "price")
+        # plot_csv(csvs[0], ["year", "performace_0_to_100_s", "economy_fuel_consumption_lpkm"], "price", should_annotate=False, save_figure=True)
 
 
     else:
@@ -313,8 +315,6 @@ def extract_and_save_cars(directories):
                 "year": None,
                 "colour": None,
                 "location": None,
-                "doors": None,
-                "fuel_consumption_lpkm": None,
                 "engine_power_max_kW": None,
                 "engine_size_l": None,
                 "engine_fuel_type": None,
@@ -345,13 +345,13 @@ def extract_and_save_cars(directories):
                 car["id"] = car_id
                 car["price"] = float(re.sub(r"\D", "", car_page.find("div", class_="price").text))
                 car["heading"] = re.sub("\s", " ", car_page.find("h1", class_="heading").text.strip())
-                car["link"] = link
-                car["img_links"] = [link.get("data-src") for link in
-                                    car_page.find_all("img", class_="gallery__slider-image") if
-                                    link.has_attr("data-src")]
-                car["img_links"].append(
-                    [link.get("src") for link in car_page.find_all("img", class_="gallery__slider-image") if
-                     link.has_attr("src")])
+                car["link"] = link.get("href")
+                # car["img_links"] = [link.get("data-src") for link in
+                #                     car_page.find_all("img", class_="gallery__slider-image") if
+                #                     link.has_attr("data-src")]
+                car["img_link"] = [link.get("src") for link in car_page.find_all("img", class_="gallery__slider-image")
+                                   if link.has_attr("src")]
+                car["img_link"] = car["img_link"][0] if len(car["img_link"]) > 0 else None
                 car["make"] = \
                     [link.text.split("\n \n") for link in car_page.find_all("div", class_="js-breadcrumbs")][0][2]
                 car["model"] = \
@@ -361,7 +361,6 @@ def extract_and_save_cars(directories):
                 data_dict = {key: value for key, value in zip(keys, values)}
                 car["odometer_km"] = re.sub(r"\D", "", data_dict.get("Mileage")) if data_dict.get("Mileage") else None
                 car["odometer_km"] = float(car["odometer_km"]) if len(car["odometer_km"]) > 0 else None
-                print(f"car['odometer_km']: {car['odometer_km']}")
                 car["year"] = float(data_dict.get("Year")) if data_dict.get("Year") else None
                 car["colour"] = data_dict.get("Colour").lower() if data_dict.get("Colour") else None
                 car["location"] = data_dict.get("Area").lower() if data_dict.get("Area") else None
@@ -369,7 +368,7 @@ def extract_and_save_cars(directories):
                     "Transmission") else None
                 car["engine_fuel_type"] = data_dict.get("Fuel Type").strip()[0].lower() if data_dict.get(
                     "Fuel Type") else None
-                car["options"] = data_dict.get("Options") if data_dict.get("Doors") else None
+                car["options"] = data_dict.get("Options") if data_dict.get("Options") else None
                 car["description"] = \
                     [link.text.strip() for link in car_page.find_all("div", class_="vehicle-view__content")]
                 car["description"] = car["description"][0] if len(car["description"]) > 0 else None
@@ -394,7 +393,7 @@ def extract_and_save_cars(directories):
                     "Fuel tank capacity") else None
                 car["performace_0_to_100_s"] = float(
                     data_dict.get("0-100Kph").replace("s", "").strip()) if data_dict.get("0-100Kph") and data_dict.get(
-                    "0-100Kph").replace(".", "", 1).isdigit() else None
+                    "0-100Kph").replace("s", "").strip().replace(".", "", 1).isdigit() else None
                 car["performace_speed_max_kmph"] = float(
                     data_dict.get("Top speed").replace("Km/h", "").strip()) if data_dict.get("Top speed") else None
                 car["economy_fuel_range_km"] = float(
@@ -423,6 +422,7 @@ def extract_and_save_cars(directories):
                 pass
             elif domain == "www.webuycars.co.za":
                 pass
+            print(".", end="")
             cars.append(car)
             car_id += 1
 
@@ -437,10 +437,10 @@ def extract_and_save_cars(directories):
         pages = sorted(glob.glob(directory + os.sep + "*"))
         for page in pages:
             soup_start_time = (round(time.time(), 3))
-            print(f"\tExtracting soup from '{page}'", end="")
+            print(f"\tExtracting soup from '{page}'\n\t", end="")
             soup = BeautifulSoup(open(page), features='html.parser')
             cars, car_id = extract_cars_from_soup(soup, cars=cars, car_id=car_id)
-            print(f", Done: {round(round(time.time(), 3) - soup_start_time, 3)}s")
+            print(f" Done: {round(round(time.time(), 3) - soup_start_time, 3)}s")
         print(f"Done: {round(round(time.time(), 3) - data_start_time, 3)}s total")
 
         df = pd.DataFrame(cars)
@@ -455,8 +455,6 @@ def extract_and_save_cars(directories):
             "year",
             "colour",
             "location",
-            "doors",
-            "fuel_consumption_lpkm",
             "engine_power_max_kW",
             "engine_size_l",
             "engine_fuel_type",
@@ -662,7 +660,6 @@ def plot_csv(csv_path, x_dims, y_dim, should_annotate=True, save_figure=False):
                                       ha='center',
                                       alpha=0.6)
 
-
     print(f"\tFormatting axes")
     for ax in axes:
         # add gridlines
@@ -688,6 +685,34 @@ def plot_csv(csv_path, x_dims, y_dim, should_annotate=True, save_figure=False):
         plt.savefig(path)
     else:
         plt.show()
+
+
+def get_good_deals(csv_path, x_dims, y_dim, should_annotate=True, save_figure=False):
+    print(f"Getting deals from '{csv_path}'")
+    df = pd.read_csv(csv_path)
+    x_dims = df.columns.intersection(x_dims)
+    x = df[x_dims].sort_index()
+    y = df[y_dim].sort_index()
+
+    for i, x_dim in enumerate(x_dims):
+        # Add Least Squares Line and r-squared value
+        regression_line = df[[x_dim, y_dim]].dropna()
+
+        # Check to see if there's enough data to plot the regression line
+        if regression_line[x_dim].max() != regression_line[x_dim].min():
+            linreg = sp.stats.linregress(regression_line[x_dim], regression_line[y_dim])
+            deals = (linreg.intercept + linreg.slope * regression_line[x_dim])
+            df.insert(2, "Age", [21, 23, 24, 21], True)
+
+            is_good_deal = y < (linreg.intercept + linreg.slope * regression_line[x_dim]).sort_index()
+            deals = df[is_good_deal]
+
+
+            # axes[i].plot(regression_line[x_dim],
+            #              linreg.intercept + linreg.slope * regression_line[x_dim],
+            #              color=COLOURS[i])
+            # label += f", $r^2$={round(linreg.rvalue ** 2, 2)}"
+
 
 
 def format_numbers(s):

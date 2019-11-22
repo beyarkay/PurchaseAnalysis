@@ -29,6 +29,9 @@ def main():
 
 ## Example Graphs
 
+### About 500 cars from cars.co.za
+![](readme_resources/cars_co_za.png)
+
 ### Green Point Property Prices
 ![](readme_resources/green_point.png)
 
