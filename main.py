@@ -67,18 +67,23 @@ def main():
         # download_webuycars_html(URLS_WEBUYCARS)
         NOW = "2019_11_21"
 
-        # file_paths = sorted(glob.glob(f"_data/{NOW}/*"))
-        # if len(file_paths) == 0:
-        #     print(f"Warning: len(file_paths) == 0 from '_data/{NOW}/*'")
+        file_paths = sorted(glob.glob(f"_data/{NOW}/*"))
+        if len(file_paths) == 0:
+            print(f"Warning: len(file_paths) == 0 from '_data/{NOW}/*'")
         # extract_and_save_cars(file_paths)
-        # extract_and_save_houses(file_paths)
         csvs = sorted(glob.glob(f"CSVs/{NOW}/*"))
 
         if len(csvs) == 0:
             print(f"Warning: len(csvs) == 0 from 'CSVs/{NOW}/*'")
 
-        get_good_deals(csvs[0], ["year", "performace_0_to_100_s", "economy_fuel_consumption_lpkm"], "price")
-        # plot_csv(csvs[0], ["year", "performace_0_to_100_s", "economy_fuel_consumption_lpkm"], "price", should_annotate=False, save_figure=True)
+        prune_records(csvs[0], ["year", "performace_0_to_100_s", "economy_fuel_consumption_lpkm"], "price")
+        # csvs = sorted(glob.glob(f"CSVs/{NOW}/*"))
+        # plot_csv(
+        #     "CSVs/2019_11_21/www.cars.co.za_pruned.csv",
+        #     ["year", "performace_0_to_100_s", "economy_fuel_consumption_lpkm"],
+        #     "price",
+        #     should_annotate=False,
+        #     save_figure=False)
 
 
     else:
@@ -345,7 +350,7 @@ def extract_and_save_cars(directories):
                 car["id"] = car_id
                 car["price"] = float(re.sub(r"\D", "", car_page.find("div", class_="price").text))
                 car["heading"] = re.sub("\s", " ", car_page.find("h1", class_="heading").text.strip())
-                car["link"] = link.get("href")
+                car["link"] = domain + link.get("href")
                 # car["img_links"] = [link.get("data-src") for link in
                 #                     car_page.find_all("img", class_="gallery__slider-image") if
                 #                     link.has_attr("data-src")]
@@ -354,8 +359,10 @@ def extract_and_save_cars(directories):
                 car["img_link"] = car["img_link"][0] if len(car["img_link"]) > 0 else None
                 car["make"] = \
                     [link.text.split("\n \n") for link in car_page.find_all("div", class_="js-breadcrumbs")][0][2]
+                car["make"] = car.get("make").lower()
                 car["model"] = \
                     [link.text.split("\n \n") for link in car_page.find_all("div", class_="js-breadcrumbs")][0][3]
+                car["model"] = car.get("model").lower()
                 keys = [link.text for link in car_page.find_all("td", class_="vehicle-details__label")]
                 values = [link.text for link in car_page.find_all("td", class_="vehicle-details__value")]
                 data_dict = {key: value for key, value in zip(keys, values)}
@@ -363,7 +370,9 @@ def extract_and_save_cars(directories):
                 car["odometer_km"] = float(car["odometer_km"]) if len(car["odometer_km"]) > 0 else None
                 car["year"] = float(data_dict.get("Year")) if data_dict.get("Year") else None
                 car["colour"] = data_dict.get("Colour").lower() if data_dict.get("Colour") else None
+                car["colour"] = car.get("colour").lower()
                 car["location"] = data_dict.get("Area").lower() if data_dict.get("Area") else None
+                car["location"] = car.get("location").lower()
                 car["engine_transmission"] = data_dict.get("Transmission").strip()[0].lower() if data_dict.get(
                     "Transmission") else None
                 car["engine_fuel_type"] = data_dict.get("Fuel Type").strip()[0].lower() if data_dict.get(
@@ -687,32 +696,38 @@ def plot_csv(csv_path, x_dims, y_dim, should_annotate=True, save_figure=False):
         plt.show()
 
 
-def get_good_deals(csv_path, x_dims, y_dim, should_annotate=True, save_figure=False):
+def prune_records(csv_path, x_dims, y_dim):
+    # TODO it might be better to refactor this into two functions: one function
+    #  that evaluates a record, and another that applies that evaluation
+    #  to the csv file
+
     print(f"Getting deals from '{csv_path}'")
     df = pd.read_csv(csv_path)
     x_dims = df.columns.intersection(x_dims)
-    x = df[x_dims].sort_index()
-    y = df[y_dim].sort_index()
+
+    best_deals = df[df.columns]
 
     for i, x_dim in enumerate(x_dims):
-        # Add Least Squares Line and r-squared value
         regression_line = df[[x_dim, y_dim]].dropna()
 
-        # Check to see if there's enough data to plot the regression line
         if regression_line[x_dim].max() != regression_line[x_dim].min():
             linreg = sp.stats.linregress(regression_line[x_dim], regression_line[y_dim])
-            deals = (linreg.intercept + linreg.slope * regression_line[x_dim])
-            df.insert(2, "Age", [21, 23, 24, 21], True)
+            deals = df[df[y_dim] < (linreg.intercept + linreg.slope * df[x_dim])]
+            best_deals = pd.merge(
+                best_deals,
+                deals,
+                how='inner')
+    path = f"{'.'.join(csv_path.split('.')[:-1])}_pruned.csv"
 
-            is_good_deal = y < (linreg.intercept + linreg.slope * regression_line[x_dim]).sort_index()
-            deals = df[is_good_deal]
+    best_deals.to_csv(path, encoding='utf-8')
 
 
-            # axes[i].plot(regression_line[x_dim],
-            #              linreg.intercept + linreg.slope * regression_line[x_dim],
-            #              color=COLOURS[i])
-            # label += f", $r^2$={round(linreg.rvalue ** 2, 2)}"
-
+def draw_records(csv_path, x_dims, y_dim):
+    print(f"Drawing records from '{csv_path}'")
+    df = pd.read_csv(csv_path)
+    if len(df.index) > 20 and input(f"Number of records = '{len(df.index)}' (>20). Continue? [y/n]: ") != "y":
+        return
+    x_dims = df.columns.intersection(x_dims)
 
 
 def format_numbers(s):
