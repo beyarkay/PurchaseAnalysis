@@ -1,6 +1,6 @@
 # Purchase Analysis
 
-Last Updated: 20 November 2019
+Last Updated: 29 November 2019
 
 PurchaseAnalysis scrapes property prices and various other data points from 
 popular real estate websites, and then visualises the data in order to better 
@@ -29,20 +29,20 @@ def main():
 
 ## Example Graphs
 
-### About 500 cars from cars.co.za
-![](readme_resources/cars_co_za.png)
+### Histogram of cars with & without bluetooth from cars.co.za
+![](readme_resources/bt_hist.png)
 
-### Green Point Property Prices
-![](readme_resources/green_point.png)
+### Price histograms of select models from cars.co.za 
+![](readme_resources/models_vs_price_pruned_cropped.png)
+
+### Year, Fuel economy, and acceleration of 500 cars from cars.co.za
+![](readme_resources/cars_co_za.png)
 
 ### Rondebosch Property Prices
 ![](readme_resources/rondebosch.png)
 
 ### Sea Point Property Prices
 ![](readme_resources/sea_point.png)
-
-### Woodstock Property Prices
-![](readme_resources/woodstock.png)
 
 
 ## Current Features
@@ -59,22 +59,30 @@ off of different parameters
 
 ## File Structure
 ```
-PurchaseAnalysis % tree -L 2
-
+PurchaseAnalysis %  tree -L 2
 .
-├── CSVs
-│   └── 2019_11_19
-├── README.md
-├── _data
-│   └── 2019_11_19
-├── graphs
-│   └── 2019_11_19
-├── main.py
-├── readme_resources
-│   ├── green_point.png
-│   ├── newlands.png
-│   ├── rondebosch.png
-│   ├── sea_point.png
-│   └── woodstock.png
-└── requirements.txt
+|-- CSVs
+|   |-- 2019_11_19
+|   `-- 2019_11_21
+|-- README.md
+|-- Scratchpad.ipynb
+|-- _data
+|   |-- 2019_11_19
+|   `-- 2019_11_21
+|-- graphs
+|   |-- 2019_11_19
+|   `-- 2019_11_21
+|-- main.py
+|-- readme_resources
+|   |-- bt_hist.png
+|   |-- cars_co_za.png
+|   |-- green_point.png
+|   |-- models_vs_price.png
+|   |-- models_vs_price_full.png
+|   |-- models_vs_price_pruned.png
+|   |-- models_vs_price_pruned_cropped.png
+|   |-- rondebosch.png
+|   |-- sea_point.png
+|   `-- woodstock.png
+`-- requirements.txt
 ```
