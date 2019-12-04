@@ -1,6 +1,6 @@
 # Purchase Analysis
 
-Last Updated: 29 November 2019
+Last Updated: 04 December 2019
 
 PurchaseAnalysis scrapes property prices and various other data points from 
 popular real estate websites, and then visualises the data in order to better 
