@@ -70,7 +70,7 @@ def main():
         file_paths = sorted(glob.glob(f"_data/{NOW}/*"))
         if len(file_paths) == 0:
             print(f"Warning: len(file_paths) == 0 from '_data/{NOW}/*'")
-        # extract_and_save_cars(file_paths)
+        extract_and_save_cars(file_paths)
         csvs = sorted(glob.glob(f"CSVs/{NOW}/*"))
 
         if len(csvs) == 0:
@@ -318,6 +318,8 @@ def extract_and_save_cars(directories):
                 "model": None,
                 "odometer_km": None,
                 "year": None,
+                "date_accessed": None,
+                "time_accessed": None,
                 "colour": None,
                 "location": None,
                 "engine_power_max_kW": None,
