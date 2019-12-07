@@ -188,9 +188,9 @@ def populate_csv_from_carscoza(carscoza_links):
 
     df = pd.DataFrame(car_dicts)
     path = f"cars.csv"
-    directory = os.sep.join(path.split(os.sep)[:-1])
-    if not os.path.exists(directory):
-        os.makedirs(directory)
+#     directory = os.sep.join(path.split(os.sep)[:-1])
+#     if not os.path.exists(directory):
+#         os.makedirs(directory)
     print(f"Saving data to {path}")
     print(df.describe())
     with open(path, 'a') as f:
