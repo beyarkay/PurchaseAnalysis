@@ -1,31 +1,37 @@
 # Purchase Analysis
 
-Last Updated: 04 December 2019
+Last Updated: 07 December 2019
 
-PurchaseAnalysis scrapes property prices and various other data points from 
-popular real estate websites, and then visualises the data in order to better 
-spot outliers that are under- or over-priced.
+PurchaseAnalysis is a general-purpose web scraper 
+and visualiser for analysing prices. Currently this 
+is applied to housing prices and the second-hand car market
+
 
 ## Usage
 
-* The `main()` method in `main.py` looks like so:
-```
-def main():
-    download_html(URLS)
-    file_paths = sorted(glob.glob(f"_data/{NOW}/*"))
-    extract_and_save_dataframe(file_paths)
-    csvs = sorted(glob.glob(f"CSVs/{NOW}/*"))
+* Analysis of different items (eg cars, houses, apartments, etc) 
+are stored separately, under `project_files/`
+* Each directory in `project_files/` is for 
+web-scraping scripts and the csv files for that item-type
+* Once the data is collected, scripts in the project root 
+directory are used to actually do the analysis and visualisations
+* Currently only `project_files/cars` is in development
+* In `project_files/cars`, there are the following: 
+    * `graphs/` - directory for storing all graphs/visualisations 
+    made
+    * `car_links.txt` - a list of all the relevant car links (for 
+    debugging purposes)
+    * `cars.csv` - the details of every car collected
+    * `details.md` - the specifications of what data to collect 
+    about the cars
+    * `scrape_cars.py` - the script that actually collects and 
+    parses the data, saving it to `cars.csv`
+    
+* Also important is `update_cars_csv.sh`, which is 
+run on a raspberry pi at regular intervals in order
+to collect time series data and save it to the git repo
 
-    for csv in csvs:
-        plot_csv(csv,
-                 ["bedrooms", "bathrooms", "garages", "erf size", "floor size"],
-                 "price", save_figure=True)
-```
 
-* `download_html(URLS)` will download each of the urls specified in the `URLS` list
-* `extract_and_save_dataframe(file_paths)` will save the data found in the property24 html files `file_paths` as `.csv` files
-* `plot_csv(csv_path, x_dims, y_dim, save_figure=False):` will create plots with the x_dims and y_dim specified, from the single `csv_path`
-* Example plots are shown below
 
 ## Example Graphs
 
@@ -41,8 +47,6 @@ def main():
 ### Rondebosch Property Prices
 ![](readme_resources/rondebosch.png)
 
-### Sea Point Property Prices
-![](readme_resources/sea_point.png)
 
 
 ## Current Features
@@ -50,29 +54,43 @@ def main():
 * Automatically navigates to the following pages of search results and add it all as one dataset
 * r-squared values for the linear regression lines to indicate their goodness-of-fit
 
-## Future Features to Add
-
-* Don't display a graph if there weren't enough data points to plot?
-* Add ability to see trends in a suburb over time
-* increase granularity in search parameters: add ability to graph search results based 
-off of different parameters
 
 ## File Structure
 ```
-PurchaseAnalysis %  tree -L 2
+PurchaseAnalysis % tree
 .
 |-- CSVs
 |   |-- 2019_11_19
+|   |   `-- ...
 |   `-- 2019_11_21
+|       `-- ...
 |-- README.md
 |-- Scratchpad.ipynb
-|-- _data
-|   |-- 2019_11_19
-|   `-- 2019_11_21
+|-- Untitled.ipynb
+|-- car_links.txt
+|-- cars.csv
 |-- graphs
 |   |-- 2019_11_19
+|   |   `-- ...
 |   `-- 2019_11_21
+|       |-- ...
 |-- main.py
+|-- project_files
+|   |-- apartments
+|   |   `-- details.md
+|   |-- cars
+|   |   |-- car_links.txt
+|   |   |-- cars.csv
+|   |   |-- details.md
+|   |   |-- graphs
+|   |   `-- scrape_cars.py
+|   |-- houses
+|   |   |-- details.md
+|   |   `-- scrape_houses.py
+|   `-- template
+|       |-- details.md
+|       |-- graphs
+|       `-- template.csv
 |-- readme_resources
 |   |-- bt_hist.png
 |   |-- cars_co_za.png
@@ -84,5 +102,8 @@ PurchaseAnalysis %  tree -L 2
 |   |-- rondebosch.png
 |   |-- sea_point.png
 |   `-- woodstock.png
-`-- requirements.txt
+|-- requirements.txt
+|-- update_cars_csv.sh
+`-- visualise_data.py
+
 ```
