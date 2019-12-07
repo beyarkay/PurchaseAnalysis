@@ -2,6 +2,7 @@
 import datetime
 import os
 import re
+import time
 
 import pandas as pd
 import requests
@@ -26,7 +27,18 @@ def populate_csv_from_carscoza(carscoza_links):
         if i % 10 == 0:
             print(f"({i:03})", end="")
         print(".", end="")
-        soup = BeautifulSoup(requests.get(link).text, features="html.parser")
+        page = ""
+        while not page:
+            try:
+                page = requests.get(link)
+                break
+            except:
+                print("z")
+                time.sleep(5)
+                continue
+
+
+        soup = BeautifulSoup(page.text, features="html.parser")
 
         # predefine the dictionary because it's the easiest way to ensure the dataframe is in a decent order
         car = {
