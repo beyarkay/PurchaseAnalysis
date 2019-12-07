@@ -1,3 +1,5 @@
+CARS_CSV = "project_files/cars/cars.csv"
+
 def main():
     pass
 
