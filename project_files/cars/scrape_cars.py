@@ -215,7 +215,17 @@ def get_cars_links():
     car_links = []
     while True:
         print(".", end="")
-        request = requests.get(url)
+        request = ""
+        while not request:
+            try:
+                request = requests.get(url)
+                break
+            except:
+                print("z")
+                time.sleep(5)
+                continue
+
+        # request = requests.get(url)
         page = BeautifulSoup(request.text, features="html.parser")
 
         # Store all the links to cars from the current page
