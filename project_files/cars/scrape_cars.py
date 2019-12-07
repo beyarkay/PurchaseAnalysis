@@ -1,5 +1,4 @@
-#!/usr/bin/python
-
+#!/usr/bin/python -u
 import datetime
 import os
 import re
