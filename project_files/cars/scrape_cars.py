@@ -23,7 +23,7 @@ def main():
 def populate_csv_from_carscoza(carscoza_links):
     engine = create_engine('sqlite:///items.db', echo=False)
     all_dates = pd.read_sql_query("SELECT date FROM dates_cars GROUP BY date", engine).values
-    if not engine.dialect.has_table(engine, "cars"):
+    if not engine.dialect.has_table(engine, "dates_cars"):
         engine.execute("""
                     create table dates_cars
                     (
