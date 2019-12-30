@@ -8,6 +8,7 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 from sqlalchemy import create_engine
+
 DEBUG = False
 NOW = datetime.datetime.now().strftime('%Y-%m-%d')
 
@@ -22,6 +23,16 @@ def main():
 def populate_csv_from_carscoza(carscoza_links):
     engine = create_engine('sqlite:///items.db', echo=False)
     all_dates = pd.read_sql_query("SELECT date FROM dates_cars GROUP BY date", engine).values
+    if not engine.dialect.has_table(engine, "cars"):
+        engine.execute("""
+                    create table dates_cars
+                    (
+                        date       TEXT,
+                        website    TEXT,
+                        website_id TEXT,
+                        price      FLOAT
+                    );
+                    """)
     if NOW not in all_dates or DEBUG:
         domain = "https://www.cars.co.za"
         car_dicts = []
@@ -109,7 +120,8 @@ def populate_csv_from_carscoza(carscoza_links):
             if dealer:
                 car["dealer"] = dealer[0].text.strip()
             elif soup.select(".vehicle-view__content-links.vehicle-view__content-links_blue"):
-                car["dealer"] = soup.select(".vehicle-view__content-links.vehicle-view__content-links_blue")[0].text.strip()
+                car["dealer"] = soup.select(".vehicle-view__content-links.vehicle-view__content-links_blue")[
+                    0].text.strip()
             elif "private" in soup.select(".lead-form__title")[0].text.lower():
                 car["dealer"] = "Private"
 
@@ -210,7 +222,6 @@ def populate_csv_from_carscoza(carscoza_links):
             date_dicts.append(date)
         print(" done, processing db")
 
-
         cars = pd.DataFrame(car_dicts)
         dates = pd.DataFrame(date_dicts)
         if engine.dialect.has_table(engine, "cars"):
@@ -218,17 +229,15 @@ def populate_csv_from_carscoza(carscoza_links):
             cars = pd.concat([db_cars, cars])
             cars.drop_duplicates(subset=['website_id', 'website'], inplace=True, keep='last')
 
-        if engine.dialect.has_table(engine, "dates_cars"):
-            db_dates = pd.read_sql_table("dates_cars", con=engine)
-            dates = pd.concat([db_dates, dates])
-            dates.drop_duplicates(subset=['date', 'price', 'website_id', 'website'], inplace=True, keep='last')
+        db_dates = pd.read_sql_table("dates_cars", con=engine)
+        dates = pd.concat([db_dates, dates])
+        dates.drop_duplicates(subset=['date', 'price', 'website_id', 'website'], inplace=True, keep='last')
 
         cars.to_sql('cars', con=engine, if_exists='replace', index=False)
         dates.to_sql('dates_cars', con=engine, if_exists='replace', index=False)
         print(f"DB updated with data from {NOW}")
     else:
         print(f"NOW({NOW}) is in all_dates({all_dates})")
-
 
 
 def get_cars_links():
