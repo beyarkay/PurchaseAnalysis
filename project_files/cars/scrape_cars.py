@@ -22,7 +22,6 @@ def main():
 
 def populate_csv_from_carscoza(carscoza_links):
     engine = create_engine('sqlite:///items.db', echo=False)
-    all_dates = pd.read_sql_query("SELECT date FROM dates_cars GROUP BY date", engine).values
     if not engine.dialect.has_table(engine, "dates_cars"):
         engine.execute("""
                     create table dates_cars
@@ -33,6 +32,7 @@ def populate_csv_from_carscoza(carscoza_links):
                         price      FLOAT
                     );
                     """)
+    all_dates = pd.read_sql_query("SELECT date FROM dates_cars GROUP BY date", engine).values
     if NOW not in all_dates or DEBUG:
         domain = "https://www.cars.co.za"
         car_dicts = []
