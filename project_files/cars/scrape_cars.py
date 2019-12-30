@@ -38,11 +38,11 @@ def populate_csv_from_carscoza(carscoza_links):
         car_dicts = []
         date_dicts = []
         print(f"Fetching data from {len(carscoza_links)} links")
-        last_time = time.clock()
+        last_time = time.time()
         for i, link in enumerate(carscoza_links):
             if i % 50 == 0 and i > 0:
-                print(f" elapsed: {time.clock() - last_time}")
-                last_time = time.clock()
+                print(f" elapsed: {time.time() - last_time}")
+                last_time = time.time()
             if i % 10 == 0:
                 print(f"({i:03})", end="")
             print(".", end="")
