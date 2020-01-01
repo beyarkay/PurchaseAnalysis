@@ -12,9 +12,7 @@ https://www.cars.co.za/for-sale/used/2006-Opel-Corsa-1.6-Sport-5dr-Western-Cape-
 https://www.cars.co.za/for-sale/used/2011-Chevrolet-Spark-Lite-Ls-5dr-Western-Cape-Parow/5563695/
 https://www.cars.co.za/for-sale/used/2009-Opel-Corsa-1.6-Sport-5dr-Western-Cape-Wynberg/5401527/
 https://www.cars.co.za/for-sale/used/2009-Hyundai-Getz-1.4-Hs-Western-Cape-Villiersdorp/5460162/
-https://www.cars.co.za/for-sale/used/2007-Audi-A3-Sportback-2.0-Fsi-Ambition-Western-Cape-Wynberg/5572697/
 https://www.cars.co.za/for-sale/used/2009-Audi-A3-Sportback-1.9tdi-Attraction-Western-Cape-Kuils-River/3856300/
-https://www.cars.co.za/for-sale/used/2006-Nissan-Micra-1.5-Dci-Tekna-3dr-d6669-Western-Cape-Paarl/5356071/
 https://www.cars.co.za/for-sale/used/2013-Peugeot-107-Urban-Western-Cape-Brackenfell/4852591/
 https://www.cars.co.za/for-sale/used/2008-Peugeot-207-1.4-Xr-3dr-Western-Cape-Cape-Town/5328537/
 https://www.cars.co.za/for-sale/used/2007-Toyota-Yaris-T1-3dr-Western-Cape-Bergvliet/5531874/
@@ -42,12 +40,15 @@ https://www.cars.co.za/for-sale/used/2004-Peugeot-307-1.6-Xt-At-Western-Cape-Goo
 https://www.cars.co.za/for-sale/used/2013-TATA-Indica-Vista-1.4-Ignis-Western-Cape-Goodwood/5330173/
 https://www.cars.co.za/for-sale/used/2009-Chevrolet-Aveo-1.6-L-5dr-Western-Cape-Villiersdorp/5324571/
 https://www.cars.co.za/for-sale/used/2011-Chevrolet-Spark-1.2-L-5dr-Western-Cape-Villiersdorp/5515434/
+https://www.cars.co.za/for-sale/used/2007-Audi-A3-2.0-TDI-Stronic-Western-Cape-Parow/5576263/
+https://www.cars.co.za/for-sale/used/2010-Hyundai-Getz-1.4-Hs-Western-Cape-Parow/3718362/
 https://www.cars.co.za/for-sale/used/2014-Chevrolet-Aveo-1.6-L-5dr-Western-Cape-Vredendal/5164815/
 https://www.cars.co.za/for-sale/used/2011-Ford-Figo-1.4-Ambiente-Western-Cape-Paarl/5359831/
 https://www.cars.co.za/for-sale/used/2014-Renault-Clio-IV-1.2-Authentique-5-Door-55KW-Western-Cape-Strand/5499826/
 https://www.cars.co.za/for-sale/used/2012-Chevrolet-Spark-1.2-Ls-5dr-Western-Cape-Cape-Town/5561026/
 https://www.cars.co.za/for-sale/used/2012-Ford-Figo-1.4-Ambiente-Western-Cape-Milnerton/5567369/
 https://www.cars.co.za/for-sale/used/2011-Nissan-Micra-1.2-Visia-5dr-d82-Western-Cape-Malmesbury/5570495/
+https://www.cars.co.za/for-sale/used/2011-Hyundai-Getz-1.4-Hs-Western-Cape-Hermanus/5576379/
 https://www.cars.co.za/for-sale/used/2013-Chevrolet-Spark-1.2-L-5dr-Western-Cape-Vredenburg/5313307/
 https://www.cars.co.za/for-sale/used/2010-Ford-Figo-1.4-Tdci-Ambiente-Western-Cape-George/5536594/
 https://www.cars.co.za/for-sale/used/2009-Hyundai-i10-1.2-Gls-Western-Cape-George/5541248/
@@ -82,6 +83,7 @@ https://www.cars.co.za/for-sale/used/2014-Honda-Brio-1.2-Comfort-Western-Cape-Pa
 https://www.cars.co.za/for-sale/used/2017-Datsun-Go-1.2i-LUX-AIR-BAG-Western-Cape-Worcester/5537824/
 https://www.cars.co.za/for-sale/used/2012-Nissan-Micra-1.5i-TEKNA-D85-Western-Cape-Worcester/5537920/
 https://www.cars.co.za/for-sale/used/2011-Peugeot-308-1.6-Premium-Western-Cape-Milnerton/5557142/
+https://www.cars.co.za/for-sale/used/2017-Datsun-Go-1.2-LUX-AB-Western-Cape-Strand/5557420/
 https://www.cars.co.za/for-sale/used/2013-Hyundai-i10-1.1-Gls-Western-Cape-Strand/5569349/
 https://www.cars.co.za/for-sale/used/2008-Volvo-C30-2.0-Very-Clean-SVC-History-up-to-Date-Low-Kms-Western-Cape-Milnerton/4610803/
 https://www.cars.co.za/for-sale/used/2012-Toyota-Aygo-1.0-Wild-5dr-Western-Cape-Cape-Town/5569753/
@@ -90,6 +92,7 @@ https://www.cars.co.za/for-sale/used/2010-Ford-Figo-1.4-Trend-Western-Cape-Brack
 https://www.cars.co.za/for-sale/used/2012-Ford-Figo-1.4-Trend-Western-Cape-Bellville/5023778/
 https://www.cars.co.za/for-sale/used/2012-Hyundai-i10-1.25-Gls-Western-Cape-Bellville/5401843/
 https://www.cars.co.za/for-sale/used/2009-Hyundai-i20-1.4-Western-Cape-Brackenfell/5542160/
+https://www.cars.co.za/for-sale/used/2007-Toyota-RunX-140i-RT-manual-Western-Cape-Goodwood/5576209/
 https://www.cars.co.za/for-sale/used/2011-Nissan-Micra-1.5-Dci-Acenta-5dr-d70-Western-Cape-Cape-Town/1307051/
 https://www.cars.co.za/for-sale/used/2013-Opel-Corsa-1.4-Essentia-5dr-Western-Cape-Cape-Town/2649588/
 https://www.cars.co.za/for-sale/used/2014-Peugeot-107-Urban-Western-Cape-Parow/4769187/
@@ -110,13 +113,13 @@ https://www.cars.co.za/for-sale/used/2009-Honda-Civic-1.8i-vtec-Exi-5dr-Western-
 https://www.cars.co.za/for-sale/used/2010-Renault-Clio-Iii-1.6-Dynamique-5dr-Western-Cape-Parow/5541472/
 https://www.cars.co.za/for-sale/used/2013-Toyota-Etios-1.5-Xi-5dr-Western-Cape-Goodwood/5545040/
 https://www.cars.co.za/for-sale/used/2010-Hyundai-i10-1.2-Gls-Hs-Western-Cape-Kuils-River/5561718/
-https://www.cars.co.za/for-sale/used/2011-Hyundai-i10-Hyndai-i10-1.2-Gls-Western-Cape-Bellville/5566955/
 https://www.cars.co.za/for-sale/used/2004-Toyota-RunX-140i-Rt-Western-Cape/5571327/
-https://www.cars.co.za/for-sale/used/2014-Chevrolet-Spark-1.2-LT-5DR-Western-Cape-Malmesbury/5570919/
 https://www.cars.co.za/for-sale/used/2014-Chevrolet-Sonic-1.6-Ls-5dr-Western-Cape-Kuils-River/5351835/
 https://www.cars.co.za/for-sale/used/2017-Renault-Kwid-1.0-Dynamique-5-Door-Western-Cape-Cape-Town/5410137/
 https://www.cars.co.za/for-sale/used/2013-Ford-Figo-1.4-Ambiente-Western-Cape-Vredenburg/5436067/
 https://www.cars.co.za/for-sale/used/2011-Volkswagen-Polo-Vivo-1.4-5Dr-Western-Cape-Milnerton/5494910/
+https://www.cars.co.za/for-sale/used/2014-Ford-Figo-1.4-Tdci-Ambiente-Western-Cape-Cape-Town/5574957/
+https://www.cars.co.za/for-sale/used/2011-Volkswagen-Polo-1.4-Trendline-5dr-Western-Cape-Paarden-Island/5575725/
 https://www.cars.co.za/for-sale/used/2013-Ford-Figo-1.4-Tdci-Ambiente-Western-Cape-Bellville/5407131/
 https://www.cars.co.za/for-sale/used/2009-Opel-Corsa-1.4i-Sport-Western-Cape/5433813/
 https://www.cars.co.za/for-sale/used/2011-Suzuki-Alto-1.0-Gls-Western-Cape-Cape-Town/5260991/
@@ -134,6 +137,7 @@ https://www.cars.co.za/for-sale/used/2008-Mazda-3-1.6-Sport-Dynamic-Western-Cape
 https://www.cars.co.za/for-sale/used/2014-Hyundai-i20-1.4D-Glide-Western-Cape-Paarden-Island/5554480/
 https://www.cars.co.za/for-sale/used/2013-Volkswagen-Polo-Vivo-1.4-5Dr-Western-Cape-Goodwood/5562363/
 https://www.cars.co.za/for-sale/used/2014-Suzuki-Swift-1.2-GA-Western-Cape-Brackenfell/5564321/
+https://www.cars.co.za/for-sale/used/2015-Mitsubishi-Mirage-1.2-GLX-Western-Cape-Paarden-Island/5575727/
 https://www.cars.co.za/for-sale/used/2014-Nissan-Micra-1.2-Visia-Insync-5dr-d86v-Western-Cape-Mossel-Bay/5168553/
 https://www.cars.co.za/for-sale/used/2016-Chevrolet-Spark-1.2-L-5dr-Western-Cape-Mossel-Bay/5172807/
 https://www.cars.co.za/for-sale/used/2012-Volkswagen-Polo-Vivo-1.4-5Dr-Western-Cape-Paarl/5408973/
@@ -179,7 +183,6 @@ https://www.cars.co.za/for-sale/used/2012-Renault-Sandero-1.6-Stepway-Western-Ca
 https://www.cars.co.za/for-sale/used/2018-TATA-Indica-Vista-1.4-Ignis-Western-Cape-Goodwood/4878159/
 https://www.cars.co.za/for-sale/used/2011-MINI-Cooper-Western-Cape-Cape-Town/5208873/
 https://www.cars.co.za/for-sale/used/2017-Suzuki-Celerio-1.0-GA-Western-Cape-Ottery/5480970/
-https://www.cars.co.za/for-sale/used/2015-Honda-Brio-1.2-Comfort-At-Western-Cape-Cape-Town/5565053/
 https://www.cars.co.za/for-sale/used/2012-Nissan-Livina-1.6-Acenta-Western-Cape-Tygervalley/5456522/
 https://www.cars.co.za/for-sale/used/2012-Volkswagen-Polo-Vivo-1.4-5Dr-Western-Cape-Diep-River/5555168/
 https://www.cars.co.za/for-sale/used/2017-Suzuki-Celerio-1.0-GA-Western-Cape-Knysna/5131039/
@@ -195,6 +198,7 @@ https://www.cars.co.za/for-sale/used/2016-Hyundai-i10-1.1-Gls-Western-Cape-Brack
 https://www.cars.co.za/for-sale/used/2015-Renault-Sandero-900-T-expression-Western-Cape-Oudtshoorn/5566883/
 https://www.cars.co.za/for-sale/used/2015-Fiat-500-1.2-Western-Cape-Milnerton/5568721/
 https://www.cars.co.za/for-sale/used/2007-Audi-A3-2.0t-Fsi-Ambition-Dsg-Low-Kms-Western-Cape-Milnerton/5190671/
+https://www.cars.co.za/for-sale/used/2017-Renault-Kwid-1.0-Dynamique-5-Door-Western-Cape-Vredenburg/5218059/
 https://www.cars.co.za/for-sale/used/2015-Honda-Brio-1.2-Comfort-Western-Cape-Vredenburg/5310421/
 https://www.cars.co.za/for-sale/used/2014-Toyota-Etios-1.5-Xs-5dr-Western-Cape-Vredenburg/5310427/
 https://www.cars.co.za/for-sale/used/2008-Volkswagen-Golf-1.6-Trendline-Hatch-Low-Kms-Western-Cape-Milnerton/5420625/
@@ -234,6 +238,7 @@ https://www.cars.co.za/for-sale/used/2015-Toyota-Etios-1.5-Xs-5Dr-Western-Cape-M
 https://www.cars.co.za/for-sale/used/2014-Chevrolet-Sonic-1.6-Ls-5dr-Western-Cape-Paarl/5413575/
 https://www.cars.co.za/for-sale/used/2013-Volkswagen-Polo-Vivo-1.4-Blueline-5Dr-Western-Cape-Cape-Town/5430037/
 https://www.cars.co.za/for-sale/used/2015-Suzuki-Splash-1.2-GL-Auto-Western-Cape-Paarl/5461198/
+https://www.cars.co.za/for-sale/used/2015-Toyota-Aygo-1.0-X--PLAY-5-Door-Western-Cape-Somerset-West/5475932/
 https://www.cars.co.za/for-sale/used/2013-Renault-Megane-Iii-1.6-Expression-5dr-Western-Cape-Cape-Town/5503130/
 https://www.cars.co.za/for-sale/used/2014-Volkswagen-Polo-Vivo-1.4-5dr-Western-Cape-Milnerton/5554366/
 https://www.cars.co.za/for-sale/used/2012-Hyundai-i20-1.6-Western-Cape-Kuils-River/5555224/
@@ -248,13 +253,13 @@ https://www.cars.co.za/for-sale/used/2014-Hyundai-i10-1.25-Gls-At-Western-Cape-T
 https://www.cars.co.za/for-sale/used/2017-Renault-Kwid-1.0-Dynamique-5-Door-Western-Cape-Parow/5556678/
 https://www.cars.co.za/for-sale/used/2016-Hyundai-i10-1.1-Gls-Western-Cape-Paarl/5456500/
 https://www.cars.co.za/for-sale/used/2016-Ford-Figo-1.4-Tdci-Ambiente-Western-Cape-Brackenfell/5550138/
+https://www.cars.co.za/for-sale/used/2017-Kia-Picanto-1.0-Lx-Western-Cape-Strand/5307505/
 https://www.cars.co.za/for-sale/used/2017-Kia-Picanto-1.0-Street-Western-Cape-Diep-River/5515980/
 https://www.cars.co.za/for-sale/used/2018-Nissan-Micra-1.2-Active-Visia-Western-Cape-Strand/5558838/
 https://www.cars.co.za/for-sale/used/2019-Renault-Kwid-1.0-Dynamique-5-Door-Western-Cape-Paarl/4376796/
 https://www.cars.co.za/for-sale/used/2019-Renault-Kwid-1.0-Dynamique-5-Door-Western-Cape-Paarl/5026840/
 https://www.cars.co.za/for-sale/used/2019-Fiat-Panda-900T-Easy-Western-Cape-Cape-Town/5135621/
 https://www.cars.co.za/for-sale/used/2018-Nissan-Micra-1.2-Active-Visia-Western-Cape-Worcester/5245915/
-https://www.cars.co.za/for-sale/used/2017-Kia-Picanto-1.0-Lx-Western-Cape-Strand/5307505/
 https://www.cars.co.za/for-sale/used/2018-Renault-Kwid-1.0-Expression-5-Door-Western-Cape-Cape-Town/5325489/
 https://www.cars.co.za/for-sale/used/2010-Suzuki-SX4-2.0-Western-Cape-Tygervalley/5330041/
 https://www.cars.co.za/for-sale/used/2013-Toyota-Yaris-1.3-Xs-5dr-Western-Cape-Kuils-River/5351833/
@@ -270,6 +275,7 @@ https://www.cars.co.za/for-sale/used/2011-Hyundai-i20-1.6-Western-Cape-Worcester
 https://www.cars.co.za/for-sale/used/2013-Hyundai-i10-1.25-Gls-At-Western-Cape-Cape-Town/5554178/
 https://www.cars.co.za/for-sale/used/2016-Kia-Picanto-1.0-Lx-Western-Cape-Mossel-Bay/5558944/
 https://www.cars.co.za/for-sale/used/2017-Renault-Kwid-1.0-Dynamique-5-Door-Western-Cape-Stellenbosch/5570485/
+https://www.cars.co.za/for-sale/used/2013-Suzuki-Swift-1.4-Gls-Western-Cape-Cape-Town/5576059/
 https://www.cars.co.za/for-sale/used/2013-Opel-Corsa-1.4-Essentia-5dr-Western-Cape-Vredenburg/5353369/
 https://www.cars.co.za/for-sale/used/2016-Toyota-Aygo-1.0-5-Door-Western-Cape-Parow/5480000/
 https://www.cars.co.za/for-sale/used/2016-Renault-Sandero-900-T-expression-Western-Cape-Parow/5541848/
@@ -290,7 +296,6 @@ https://www.cars.co.za/for-sale/used/2018-Renault-Kwid-1.0-Dynamique-5-Door-West
 https://www.cars.co.za/for-sale/used/2014-Opel-Corsa-1.4-Essentia-5dr-Western-Cape-Claremont/5474920/
 https://www.cars.co.za/for-sale/used/2016-Ford-Figo-1.4-Ambiente-Western-Cape-Wynberg/5480028/
 https://www.cars.co.za/for-sale/used/2013-Toyota-Etios-1.5-Xs-5dr-Western-Cape-Bellville/5484292/
-https://www.cars.co.za/for-sale/used/2016-Kia-Picanto-1.0-Lx-Western-Cape-Table-View/5511372/
 https://www.cars.co.za/for-sale/used/2015-Renault-Sandero-900-T-Dynamique-Western-Cape-Cape-Town/5530148/
 https://www.cars.co.za/for-sale/used/2011-Volkswagen-Polo-Volkswagen-Polo-1.6-Tdi-Comfortline-Western-Cape-Bellville/5537952/
 https://www.cars.co.za/for-sale/used/2014-Hyundai-i20-1.2-Fluid-Western-Cape-Parow/5561316/
@@ -327,6 +332,7 @@ https://www.cars.co.za/for-sale/used/2013-Hyundai-i10-1.25-Gls-Western-Cape-West
 https://www.cars.co.za/for-sale/used/2018-Hyundai-i10-1.1-GLS-manual-Western-Cape-Goodwood/5483914/
 https://www.cars.co.za/for-sale/used/2012-Kia-Rio-1.4-5dr-Western-Cape-Milnerton/5556560/
 https://www.cars.co.za/for-sale/used/2017-Hyundai-i10-1.1-Gls-Western-Cape-Worcester/4605871/
+https://www.cars.co.za/for-sale/used/2019-Renault-Kwid-1.0-Expression-5-Door-Western-Cape-Strand/5562829/
 https://www.cars.co.za/for-sale/used/2018-Nissan-Micra-1.2-Active-Visia-Western-Cape-Strand/5558834/
 https://www.cars.co.za/for-sale/used/2018-Nissan-Micra-1.2-Active-Visia-Western-Cape-Strand/5558842/
 https://www.cars.co.za/for-sale/used/2015-Volkswagen-Polo-Vivo-GP-1.4-Conceptline-5-Door-Western-Cape-Cape-Town/5530420/
@@ -359,8 +365,10 @@ https://www.cars.co.za/for-sale/used/2014-Renault-Clio-IV-900-T-expression-5-Doo
 https://www.cars.co.za/for-sale/used/2011-Volkswagen-Polo-1.6-Comfortline-5dr-Western-Cape-Cape-Town/5439401/
 https://www.cars.co.za/for-sale/used/2014-Hyundai-i10-1.25-Gls-At-Western-Cape-Goodwood/5450428/
 https://www.cars.co.za/for-sale/used/2017-Volkswagen-Polo-Vivo-GP-1.4-CONCEPTLINE-5-DOOR-Western-Cape-Goodwood/5459770/
+https://www.cars.co.za/for-sale/used/2008-Volkswagen-Golf-Gti-2.0t-Fsi-Western-Cape-Parow/5469544/
 https://www.cars.co.za/for-sale/used/2011-MINI-Cooper-Western-Cape-Parow/5489284/
 https://www.cars.co.za/for-sale/used/2017-Volkswagen-Up-Take-UP-1.0-5-Door-Western-Cape-Parow/5493650/
+https://www.cars.co.za/for-sale/used/2016-Toyota-Etios-1.5-Xs-5dr-Western-Cape-Table-View/5511410/
 https://www.cars.co.za/for-sale/used/2012-Hyundai-i20-1.4-Fluid-At-Western-Cape-Parow/5534796/
 https://www.cars.co.za/for-sale/used/2010-Audi-A3-Sportback-1.9tdi-Attraction-Western-Cape-Cape-Town/5548094/
 https://www.cars.co.za/for-sale/used/2017-Volkswagen-Polo-Vivo-GP-1.4-Conceptline-5-Door-Western-Cape-Goodwood/5549584/
@@ -408,6 +416,7 @@ https://www.cars.co.za/for-sale/used/2019-Datsun-Go-1.2-MID-Western-Cape-Stellen
 https://www.cars.co.za/for-sale/used/2012-Volkswagen-Polo-Vivo-1.6-5Dr-Western-Cape-Hermanus/5374445/
 https://www.cars.co.za/for-sale/used/2019-Kia-Picanto-1.0-Start-Western-Cape-Strand/5388371/
 https://www.cars.co.za/for-sale/used/2019-Kia-Picanto-1.0-Start-Western-Cape-Strand/5411613/
+https://www.cars.co.za/for-sale/used/2017-Renault-Sandero-900-T-expression-Western-Cape-Oudtshoorn/5412061/
 https://www.cars.co.za/for-sale/used/2018-Renault-Kwid-1.0-Dynamique-5-Door-Auto-Western-Cape/5434571/
 https://www.cars.co.za/for-sale/used/2015-Volkswagen-Polo-1.2-TSI-Trendline-66KW-Western-Cape-Milnerton/5437623/
 https://www.cars.co.za/for-sale/used/2017-Kia-Picanto-1.2-Start-Western-Cape-George/5451240/
@@ -454,6 +463,7 @@ https://www.cars.co.za/for-sale/used/2019-Kia-Picanto-1.0-Start-Western-Cape-Str
 https://www.cars.co.za/for-sale/used/2017-Toyota-Etios-1.5-Xs-5dr-Western-Cape-Tygervalley/5535018/
 https://www.cars.co.za/for-sale/used/2018-Volkswagen-Up-Move-UP-1.0-5-Door-Western-Cape-Tygervalley/4215612/
 https://www.cars.co.za/for-sale/used/2019-Kia-Picanto-1.0-Start-Auto-Western-Cape-Cape-Town/4990990/
+https://www.cars.co.za/for-sale/used/2018-Toyota-Etios-1.5-Xs-5dr-Western-Cape-Kuils-River/5331057/
 https://www.cars.co.za/for-sale/used/2011-Volkswagen-Polo-1.6-Tdi-Comfortline-5dr-Western-Cape-Malmesbury/5362011/
 https://www.cars.co.za/for-sale/used/2019-Kia-Picanto-1.0-Start-Western-Cape-Strand/5411611/
 https://www.cars.co.za/for-sale/used/2018-Renault-Sandero-900-T-expression-Western-Cape-Somerset-West/5479002/
@@ -462,7 +472,6 @@ https://www.cars.co.za/for-sale/used/2016-Hyundai-Grand-i10-1.25-Fluid-Western-C
 https://www.cars.co.za/for-sale/used/2012-Volkswagen-Polo-1.4-Low-Mileage-Immaculate-Western-Cape-Maitland/5532714/
 https://www.cars.co.za/for-sale/used/2019-Kia-Picanto-1.0-Street-Western-Cape-Diep-River/5561044/
 https://www.cars.co.za/for-sale/used/2015-Volkswagen-Polo-GP-1.2-TSI-Comfortline-66KW-Western-Cape-Milnerton/5573263/
-https://www.cars.co.za/for-sale/used/2017-Volkswagen-Polo-Vivo-GP-1.4-Trendline-5-Door-Western-Cape-Cape-Town/5526550/
 https://www.cars.co.za/for-sale/used/2018-Toyota-Aygo-1.0-X-Play-5-Door-Western-Cape-Plumstead/5573239/
 https://www.cars.co.za/for-sale/used/2017-Volkswagen-Polo-Vivo-GP-1.4-Trendline-5-Door-Western-Cape-Bellville/5550248/
 https://www.cars.co.za/for-sale/used/2012-Kia-Rio-1.4-5dr-At-Western-Cape-Milnerton/5488836/
@@ -487,17 +496,15 @@ https://www.cars.co.za/for-sale/used/2019-Datsun-Go-1.2-LUX-Western-Cape-Cape-To
 https://www.cars.co.za/for-sale/used/2015-Volkswagen-Polo-1.2-TSI-Trendline-66KW-Western-Cape-Paarden-Island/5297137/
 https://www.cars.co.za/for-sale/used/2014-Volkswagen-Polo-1.2-Tdi-Bluemotion-5dr-Western-Cape-Vredendal/5319551/
 https://www.cars.co.za/for-sale/used/2017-Toyota-Etios-1.5-Xs-5dr-Western-Cape-Cape-Town/5325477/
-https://www.cars.co.za/for-sale/used/2018-Toyota-Etios-1.5-Xs-5dr-Western-Cape-Kuils-River/5331057/
 https://www.cars.co.za/for-sale/used/2019-Kia-Picanto-1.0-Start-Western-Cape-Tygervalley/5363921/
 https://www.cars.co.za/for-sale/used/2019-Kia-Picanto-1.2-Start-Western-Cape-Strand/5388331/
-https://www.cars.co.za/for-sale/used/2017-Renault-Sandero-900-T-expression-Western-Cape-Oudtshoorn/5412061/
 https://www.cars.co.za/for-sale/used/2016-Opel-Corsa-1.0T-Enjoy-5-Door-Western-Cape-Vredendal/5421381/
 https://www.cars.co.za/for-sale/used/2015-Honda-Jazz-1.2-Comfort-CVT-Western-Cape-Cape-Town/5429763/
 https://www.cars.co.za/for-sale/used/2016-Toyota-Etios-Cross-1.5-Xs-5Dr-Western-Cape-Table-View/5436449/
 https://www.cars.co.za/for-sale/used/2017-Volkswagen-Up-Move-UP-1.0-5-Door-Western-Cape-Paarden-Island/5455290/
-https://www.cars.co.za/for-sale/used/2019-Honda-Brio-1.2-Comfort-Western-Cape-Somerset-West/5475978/
 https://www.cars.co.za/for-sale/used/2014-Renault-Clio-IV-900-T-Dynamique-5-Door-66KW-Western-Cape-Strand/5483628/
 https://www.cars.co.za/for-sale/used/2012-Volkswagen-Polo-1.4-Comfortline-5dr-Western-Cape-Malmesbury/5494406/
+https://www.cars.co.za/for-sale/used/2013-Volkswagen-Polo-1.4-Comfortline-5dr-Western-Cape-Oudtshoorn/5506482/
 https://www.cars.co.za/for-sale/used/2017-Suzuki-Swift-1.2-GL-Auto-Western-Cape-Cape-Town/5509662/
 https://www.cars.co.za/for-sale/used/2016-Volkswagen-Polo-1.2-TSI-Trendline-66KW-Western-Cape-Bellville/5535284/
 https://www.cars.co.za/for-sale/used/2019-Toyota-Etios-1.5-Xs-5dr-Western-Cape-Cape-Town/5546822/
@@ -511,6 +518,7 @@ https://www.cars.co.za/for-sale/used/2015-Volkswagen-Polo-GP-1.2-TSI-Comfortline
 https://www.cars.co.za/for-sale/used/2015-Volkswagen-Polo-GP-1.2-TSI-Comfortline-66KW-Western-Cape-Paarden-Island/5390759/
 https://www.cars.co.za/for-sale/used/2013-Volkswagen-Polo-1.4-Comfortline-5dr-Western-Cape-Ottery/5485034/
 https://www.cars.co.za/for-sale/used/2007-Audi-S3-Sportback-Western-Cape-Athlone/5548718/
+https://www.cars.co.za/for-sale/used/2014-Kia-Rio-1.4-TEC-5dr-manual-Western-Cape-Goodwood/5561470/
 https://www.cars.co.za/for-sale/used/2011-Volkswagen-Golf-Vi-1.4-Tsi-Comfortline-Western-Cape-Ottery/5574303/
 https://www.cars.co.za/for-sale/used/2013-Kia-Rio-1.4-5dr-At-Western-Cape-Ottery/5574563/
 https://www.cars.co.za/for-sale/used/2015-Renault-Sandero-900T-Stepway-Western-Cape-Claremont/5474922/
@@ -529,6 +537,6 @@ https://www.cars.co.za/for-sale/used/2014-Kia-Rio-1.4-Tec-5dr-Western-Cape-Goodw
 https://www.cars.co.za/for-sale/used/2017-Kia-Picanto-1.2-Style-Western-Cape-Milnerton/5568853/
 https://www.cars.co.za/for-sale/used/2019-Kia-Picanto-1.0-Start-Western-Cape-Milnerton/5573081/
 https://www.cars.co.za/for-sale/used/2019-Kia-Picanto-1.0-Start-Western-Cape-Milnerton/5573097/
+https://www.cars.co.za/for-sale/used/2016-Renault-Sandero-900T-Stepway-Western-Cape-Goodwood/5575211/
 https://www.cars.co.za/for-sale/used/2013-MINI-Cooper-Western-Cape-Strand/3428042/
 https://www.cars.co.za/for-sale/used/2012-Volkswagen-Polo-1.6-Tdi-Comfortline-5dr-Western-Cape-Athlone/5138307/
-https://www.cars.co.za/for-sale/used/2014-Kia-Rio-1.4-TEC-5dr-manual-Western-Cape-Goodwood/5561470/
