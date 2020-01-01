@@ -17,10 +17,10 @@ def main():
     carscoza_links = get_cars_links()
     # with open("car_links.txt", "r") as read_file:
     #     carscoza_links = [line.strip() for line in read_file.readlines()]
-    populate_csv_from_carscoza(carscoza_links)
+    populate_db_from_carscoza(carscoza_links)
 
 
-def populate_csv_from_carscoza(carscoza_links):
+def populate_db_from_carscoza(carscoza_links):
     engine = create_engine('sqlite:///project_files/cars/items.db', echo=False)
     if not engine.dialect.has_table(engine, "dates_cars"):
         engine.execute("""
