@@ -21,7 +21,7 @@ def main():
 
 
 def populate_csv_from_carscoza(carscoza_links):
-    engine = create_engine('sqlite:///items.db', echo=False)
+    engine = create_engine('sqlite:///project_files/cars/items.db', echo=False)
     if not engine.dialect.has_table(engine, "dates_cars"):
         engine.execute("""
                     create table dates_cars
@@ -267,7 +267,7 @@ def get_cars_links():
             url = domain + next_page_links[0].get("href")
         else:
             print(f" ({len(car_links)} cars found)")
-            path = "car_links.txt"
+            path = "project_files/cars/car_links.txt"
             with open(path, "w+") as write_file:
                 write_file.write("\n".join(car_links))
 
