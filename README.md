@@ -18,6 +18,7 @@ is applied to housing prices and the second-hand car market
   * Push these changes to github in a commit named `Beep Boop: Automatic update from raspberry pi`
 * `update_cars_db.sh` is intended to be run from `crontab` automatically
 and is set up on a raspberry pi to run every night
+* Note that `PurchaseAnalysis/main.py` is deprecated and not in use at all.
 
 ### Analysis of the data
 * Data analysis isn't automated at the moment, however there are
