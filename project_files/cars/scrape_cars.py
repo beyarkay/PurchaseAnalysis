@@ -17,16 +17,8 @@ NOW = datetime.datetime.now().strftime('%Y-%m-%d')
 
 
 def main():
-    # options = Options()
-    # options.headless = True
-    # driver = Chrome(options=options)
-    # driver.get("https://www.autotrader.co.za/dealer/outeniqua-motors/483?category=Cars")
-    # elements = driver.find_elements_by_tag_name('p')
-    # for e in elements:
-    #     print(e.text)
-
     carscoza_links = get_cars_links()
-    # autotrader_links = get_autotrader_links()
+    autotrader_links = get_autotrader_links()
     # with open("project_files/cars/cars_links.txt", "r") as cars_file:
     #     carscoza_links = [line.strip() for line in cars_file.readlines()]
     populate_db_from_carscoza(carscoza_links)
@@ -336,6 +328,7 @@ def get_autotrader_links():
                 write_file.write("\n".join(car_links))
             return car_links
 
+
 def process_autotrader_page(autotrader_link):
     options = Options()
     options.headless = True
@@ -343,9 +336,13 @@ def process_autotrader_page(autotrader_link):
     driver.get(autotrader_link)
     for link in driver.find_elements_by_css_selector('div.b-accordion.m-specification-accordion'):
         link.click()
+    element = driver.find_element_by_css_selector(".e-read-more")
+    if element:
+        element.click()
     html = driver.page_source
     driver.close()
     return html
+
 
 def populate_db_from_autotradercoza(autotrader_links):
     engine = create_engine('sqlite:///project_files/cars/items.db', echo=False)
@@ -423,65 +420,98 @@ def populate_db_from_autotradercoza(autotrader_links):
             "safety_passenger_airbag": None,
             "safety_airbag_quantity": None,
             "features_bluetooth": None,
+            "features_usb": None,
             "features_aircon": None,
+            "features_computer": None,
+            "features_electric_windows": None,
+            "features_cruise_control": None,
+            "features_navigation": None,
             "specs_doors": None,
+            "specs_tyres_front": None,
+            "specs_tyres_back": None,
+            "specs_power_steering": None,
             "specs_seats": None,
             "specs_kerb_weight": None,
             "specs_service_interval_km": None,
+            "specs_central_locking": None,
             "previous_owners": None,
             "service_history": None,
             "warranty_remaining_months": None,
             "options": None,
             "description": soup.select("div.e-restrict-height")[0].get_text(),
         }
+
+
         basic_details = [[d.get_text() for d in div.select("div.col-6")] for div in soup.select("div.row") if
                          div.select("div.col-6")]
         data_dict = {item[0]: item[1] for item in basic_details if len(item) == 2}
-        car["previous_owners"] = float(data_dict["Previous Owners"])
-        car["service_history"] = data_dict["Service History"]
-        car["colours"] = data_dict["Manufacturers Colour"]
-        car["warranty_remaining_months"] = int(re.sub(r"\D", "", data_dict["Warranty Remaining"]))
+        if data_dict.get("Previous Owners"):
+            car["previous_owners"] = float(data_dict["Previous Owners"])
+        if data_dict.get("Service History"):
+            car["service_history"] = data_dict["Service History"]
+        if data_dict.get("Manufacturers Colour"):
+            car["colours"] = data_dict["Manufacturers Colour"]
+        if data_dict.get("Warranty Remaining"):
+            car["warranty_remaining_months"] = int(re.sub(r"\D", "", data_dict["Warranty Remaining"]))
         car["dealer_location"] = basic_details[0][0].split("|")[0].strip()
 
         # Figure out the accordian
         details = soup.select("div.e-accordion-body")
         divs = [item for sublist in details for item in sublist]
-        data_dict = {div.select("span")[0].text : div.select("span")[1].text for div in divs}
+        data_dict = {div.select("span")[0].text: div.select("span")[1].text for div in divs}
 
-        car["economy_fuel_range_km"] = float(re.sub(r"\D", "", data_dict["Fuel range (average)"]))
-        car["economy_CO2_gpkm"] = float(re.sub(r"\D", "", data_dict["CO2 emissions (average)"]))
-        car["specs_doors"] = float(re.sub(r"\D", "", data_dict["No of doors"]))
-        car["specs_service_interval_km"] = float(re.sub(r"\D", "", data_dict["Service interval distance"]))
-        car["economy_fuel_consumption_lpkm"] = data_dict["Fuel consumption (average)"]
+        if data_dict.get("Fuel range (average)"):
+            car["economy_fuel_range_km"] = float(re.sub(r"\D", "", data_dict["Fuel range (average)"]))
+        if data_dict.get("CO2 emissions (average)"):
+            car["economy_CO2_gpkm"] = float(re.sub(r"\D", "", data_dict["CO2 emissions (average)"]))
+        if data_dict.get("No of doors"):
+            car["specs_doors"] = float(re.sub(r"\D", "", data_dict["No of doors"]))
+        if data_dict.get("Service interval distance"):
+            car["specs_service_interval_km"] = float(re.sub(r"\D", "", data_dict["Service interval distance"]))
+        if data_dict.get("Fuel consumption (average)"):
+            car["economy_fuel_consumption_lpkm"] = float(
+                re.sub(r" /100km", "", data_dict["Fuel consumption (average)"]).replace(",", "."))
+        if data_dict.get("Engine size (litre)"):
+            car["engine_size_l"] = float(re.sub(r" l", "", data_dict["Engine size (litre)"]).replace(",", "."))
+        if data_dict.get("Power maximum (detail)"):
+            car["engine_power_max_kW"] = float(re.sub(r" kW", "", data_dict["Power maximum (detail)"]))
+        if data_dict.get("Acceleration 0-100 km/h"):
+            car["performace_0_to_100_s"] = float(
+                re.sub(r" s", "", data_dict["Acceleration 0-100 km/h"]).replace(",", "."))
 
+        if data_dict.get("Maximum/top speed"):
+            car["performace_speed_max_kmph"] = float(re.sub(r" km/h", "", data_dict["Maximum/top speed"]))
+        if data_dict.get("Front tyres"):
+            car["specs_tyres_front"] = data_dict["Front tyres"]
+        if data_dict.get("Rear tyres"):
+            car["specs_tyres_back"] = data_dict["Rear tyres"]
+        if data_dict.get("Power steering"):
+            car["specs_power_steering"] = data_dict["Power steering"]
+        if data_dict.get("Seats (quantity)"):
+            car["specs_seats"] = float(data_dict["Seats (quantity)"])
+        if data_dict.get("Airbag quantity"):
+            car["safety_airbag_quantity"] = float(data_dict["Airbag quantity"])
+        if data_dict.get("Anti-lock braking system (ABS)"):
+            car["safety_ABS"] = True
+        if data_dict.get("Remote central locking"):
+            car["specs_central_locking"] = "remote"
+        if data_dict.get("Air conditioning"):
+            car["features_aircon"] = True
+        if data_dict.get("Electric windows"):
+            car["features_electric_windows"] = True
+        if data_dict.get("Bluetooth connectivity"):
+            car["features_bluetooth"] = data_dict.get("Bluetooth connectivity")
+        if data_dict.get("USB port"):
+            car["features_usb"] = data_dict.get("USB port")
 
+        if data_dict.get("Navigation"):
+            car["features_navigation"] = data_dict.get("Navigation")
+        if data_dict.get("Cruise control"):
+            car["features_cruise_control"] = data_dict.get("Cruise control")
+        if data_dict.get("On-board computer / multi-information display"):
+            car["features_computer"] = True
 
-
-        ## OLD CONTENT
-        dealer_location = soup.select(".number-tracker__address")
-        if dealer_location:
-            car["dealer_location"] = dealer_location[0].text.strip()
-        dealer = soup.select(".heading.heading_centered.number-tracker__name")
-        if dealer:
-            car["dealer"] = dealer[0].text.strip()
-        elif soup.select(".vehicle-view__content-links.vehicle-view__content-links_blue"):
-            car["dealer"] = soup.select(".vehicle-view__content-links.vehicle-view__content-links_blue")[
-                0].text.strip()
-        elif "private" in soup.select(".lead-form__title")[0].text.lower():
-            car["dealer"] = "Private"
-
-        dealer_link = soup.select(".vehicle-view__content-links.vehicle-view__content-links_blue")
-        if dealer_link:
-            car["dealer_link"] = domain + dealer_link[0].get("href")
-        elif soup.select(".bbtn.btn-primary.button.button_size_small.button_side-pad_medium.stock-reel__view-btn"):
-            car["dealer_link"] = domain + soup.select(
-                ".bbtn.btn-primary.button.button_size_small.button_side-pad_medium.stock-reel__view-btn")[0].get(
-                "href")
         car["img_link"] = car["img_link"][0] if len(car["img_link"]) > 0 else None
-
-        keys = [link.text for link in soup.find_all("td", class_="vehicle-details__label")]
-        values = [link.text for link in soup.find_all("td", class_="vehicle-details__value")]
-        data_dict = {key: value for key, value in zip(keys, values)}
 
         # normalise the colours to be something workable
         colours = {
@@ -495,8 +525,8 @@ def populate_db_from_autotradercoza(autotrader_links):
             "red": re.compile("(pepper|red)"),
         }
         actual_colours = []
-        if data_dict.get("Colour"):
-            item = data_dict.get("Colour").lower()
+        if car["colours"]:
+            item = car["colours"].lower()
             for k, v in colours.items():
                 if re.search(v, item):
                     actual_colours.append(k)
@@ -504,68 +534,8 @@ def populate_db_from_autotradercoza(autotrader_links):
                 actual_colours.append(item.replace(",", ""))
             car["colours"] = " ".join(actual_colours)
 
-        car["odometer_km"] = re.sub(r"\D", "", data_dict.get("Mileage")) if data_dict.get("Mileage") else None
-        car["odometer_km"] = float(car["odometer_km"]) if len(car["odometer_km"]) > 0 else None
-        car["year"] = float(data_dict.get("Year")) if data_dict.get("Year") else None
-        car["area"] = data_dict.get("Area").lower() if data_dict.get("Area") else None
-        car["engine_transmission"] = data_dict.get("Transmission").strip()[0].lower() if data_dict.get(
-            "Transmission") else None
-        car["engine_fuel_type"] = data_dict.get("Fuel Type").strip()[0].lower() if data_dict.get(
-            "Fuel Type") else None
-        car["options"] = data_dict.get("Options") if data_dict.get("Options") else None
-
-        car["description"] = \
-            [link.text.strip() for link in soup.find_all("div", class_="vehicle-view__content")]
-        car["description"] = car["description"][0] if len(car["description"]) > 0 else None
-        # First extract the table from the webpage
-        table_data = [[td.text for td in link.find_all("td")] for link in
-                      soup.find_all("table", class_="vehicle-specs__table")]
-        # Then put the key-value pairs together into tuples
-        zipped_data = [list(zip(sub_list[0::2], sub_list[1::2])) for sub_list in table_data]
-        # Then flatten the list of lists to be just one long list
-        flat_list = [item for sublist in zipped_data for item in sublist]
-        # finally, convert the list of tuples into a dict
-        data_dict = dict(flat_list)
-        # And now add the data into the car dict
-        car["economy_fuel_consumption_lpkm"] = float(
-            data_dict.get("Average").replace("l/100km", "").strip()) if data_dict.get("Average") else None
-        car["engine_power_max_kW"] = float(
-            data_dict.get("Power Max").replace("Kw", "").strip()) if data_dict.get("Power Max") else None
-        car["engine_size_l"] = float(data_dict.get("Engine Size").replace("l", "").strip()) if data_dict.get(
-            "Power Max") else None
-        car["engine_fuel_tank_l"] = float(
-            data_dict.get("Fuel tank capacity").replace("l", "").strip()) if data_dict.get(
-            "Fuel tank capacity") else None
-        car["performace_0_to_100_s"] = float(
-            data_dict.get("0-100Kph").replace("s", "").strip()) if data_dict.get("0-100Kph") and data_dict.get(
-            "0-100Kph").replace("s", "").strip().replace(".", "", 1).isdigit() else None
-        car["performace_speed_max_kmph"] = float(
-            data_dict.get("Top speed").replace("Km/h", "").strip()) if data_dict.get("Top speed") else None
-        car["economy_fuel_range_km"] = float(
-            data_dict.get("Fuel range").replace("Km", "").replace(" ", "").strip()) if data_dict.get(
-            "Fuel range") else None
-        car["economy_CO2_gpkm"] = float(data_dict.get("Co2").replace("g/km", "").strip()) if data_dict.get(
-            "Co2") else None
-        car["safety_ABS"] = True if data_dict.get("ABS") else False
-        car["safety_EBD"] = True if data_dict.get("EBD") else False
-        car["safety_brake_assist"] = True if data_dict.get("Brake assist") else False
-        car["safety_driver_airbag"] = True if data_dict.get("Driver airbag") else False
-        car["safety_passenger_airbag"] = True if data_dict.get("Passenger airbag") else False
-        car["safety_airbag_quantity"] = float(data_dict.get("Airbag quantity").strip()[0]) if data_dict.get(
-            "Airbag quantity") else None
-        car["features_bluetooth"] = True if data_dict.get("Bluetooth connectivity") else False
-        car["features_aircon"] = True if data_dict.get("Air conditioning") else False
-        car["specs_doors"] = float(data_dict.get("Doors").strip()) if data_dict.get("Doors") else None
-        car["specs_seats"] = float(data_dict.get("Seats quantity").replace("l", "").strip()) if data_dict.get(
-            "Seats quantity") else None
-        car["specs_kerb_weight"] = float(
-            data_dict.get("Kerb weight").replace("Kg", "").split("-")[0].strip()) if data_dict.get(
-            "Kerb weight") else None
-        car["specs_central_locking"] = data_dict.get("Central locking").strip().lower() if data_dict.get(
-            "Central locking") else None
         car_dicts.append(car)
         date_dicts.append(date)
-    # print(" done, processing db")
 
     cars = pd.DataFrame(car_dicts)
     dates = pd.DataFrame(date_dicts)
