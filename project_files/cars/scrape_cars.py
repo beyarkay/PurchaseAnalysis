@@ -19,15 +19,15 @@ NOW = datetime.datetime.now().strftime('%Y-%m-%d')
 
 
 def main():
-    # carscoza_links = get_cars_links()
-    autotrader_links = get_autotrader_links()
-    print(len(autotrader_links))
+    carscoza_links = get_cars_links()
+    # autotrader_links = get_autotrader_links()
+    # print(len(autotrader_links))
     # with open("project_files/cars/cars_links.txt", "r") as cars_file:
     #     carscoza_links = [line.strip() for line in cars_file.readlines()]
-    with open("project_files/cars/autotrader_links.txt", "w+") as cars_file:
-        cars_file.writelines("\n".join(autotrader_links))
-        # autotrader_links = [line.strip() for line in cars_file.readlines()]
-    # populate_db_from_carscoza(carscoza_links)
+    # with open("project_files/cars/autotrader_links.txt", "w+") as cars_file:
+    #     cars_file.writelines("\n".join(autotrader_links))
+    #     # autotrader_links = [line.strip() for line in cars_file.readlines()]
+    populate_db_from_carscoza(carscoza_links)
     # populate_db_from_autotradercoza(autotrader_links[:10])
 
 
