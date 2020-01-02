@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import requests
 import statsmodels.api as sm
-import scipy as sp
+# import scipy as sp
 from bs4 import BeautifulSoup
 from matplotlib import rcParams
 from matplotlib.ticker import EngFormatter
