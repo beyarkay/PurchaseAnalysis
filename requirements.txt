@@ -1,9 +1,7 @@
-scipy
 pandas
 requests
 numpy
 beautifulsoup4
-statsmodels
 matplotlib
 sqlalchemy
 tqdm
