@@ -1,8 +1,10 @@
 #!/usr/bin/python -u
 import datetime
+import sys
 import time
 import re
 import time
+from random import random
 
 import pandas as pd
 import requests
@@ -17,59 +19,128 @@ NOW = datetime.datetime.now().strftime('%Y-%m-%d')
 
 
 def main():
-    carscoza_links = get_cars_links()
+    # carscoza_links = get_cars_links()
     autotrader_links = get_autotrader_links()
+    print(len(autotrader_links))
     # with open("project_files/cars/cars_links.txt", "r") as cars_file:
     #     carscoza_links = [line.strip() for line in cars_file.readlines()]
-    populate_db_from_carscoza(carscoza_links)
+    with open("project_files/cars/autotrader_links.txt", "w+") as cars_file:
+        cars_file.writelines("\n".join(autotrader_links))
+        # autotrader_links = [line.strip() for line in cars_file.readlines()]
+    # populate_db_from_carscoza(carscoza_links)
+    # populate_db_from_autotradercoza(autotrader_links[:10])
 
 
-def get_cars_links():
+def get_website_links(url, domain, get_total_pages, get_links_on_page, get_next_page_link):
+    """
+
+    Parameters
+    ----------
+    url: string
+    domain: string
+    get_total_pages: function(): int: Used once on the first page, returns the total number of pages to traverse
+    get_links_on_page: function(page): Returns a list of full links for every relevant item on that page
+    get_next_page_link: function(page): Returns a full link to the next page if it exists, None otherwise
+
+    Returns
+    -------
+    A list of the all the full item links
+    """
     global pbar
-    url = "https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=1"
-    domain = "https://www.cars.co.za"
-    print(domain)
-    car_links = []
-    # pbar = tqdm(total=10)
-    last_time = time.time()
+    item_links = []
     while True:
-        # print(".", end="")
         request = ""
         while not request:
             try:
                 request = requests.get(url)
                 break
             except:
+                print("z")
                 time.sleep(5)
                 continue
 
-        # request = requests.get(url)
         page = BeautifulSoup(request.text, features="html.parser")
 
         # Print out how many pages there are
-        if len(car_links) == 0:
-            items = [div.get_text() for div in
-                     page.select('div.resultsnum.pagination__page-number.pagination__page-number_right')][0].split('\n')
-            total_pages = int(int(items[-1].strip()) / 20 + 1)
-            # print(f"({total_pages})")
-            pbar = tqdm(total=total_pages)
+        if len(item_links) == 0:
+            pbar = tqdm(total=get_total_pages(page))
         pbar.update(1)
-
+        pbar.set_description(url)
         # Store all the links to cars from the current page
-        car_links.extend(
-            [domain + link.get("href") for link in page.find_all("a", class_="vehicle-list__vehicle-name")])
+        item_links.extend(get_links_on_page(page))
 
         # Find the link to the next page
+        next_page_link = get_next_page_link(page)
+        if next_page_link:  # Check to see if we're at the last page or not
+            url = next_page_link
+        else:
+            return list(set(item_links))  # remove any duplicate links
+
+
+def get_cars_links():
+    url = "https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=1"
+    domain = "https://www.cars.co.za"
+
+    def get_total_pages(page):
+        items = \
+            [div.get_text() for div in
+             page.select('div.resultsnum.pagination__page-number.pagination__page-number_right')][
+                0].split('\n')
+        total_pages = int(int(items[-1].strip()) / 20 + 1)
+        return total_pages
+
+    def get_links_on_page(page):
+        return [domain + link.get("href") for link in page.find_all("a", class_="vehicle-list__vehicle-name")]
+
+    def get_next_page_link(page):
         next_page_links = page.select(".pagination__nav.fa-right-open-big")
         if next_page_links:
-            url = domain + next_page_links[0].get("href")
+            return domain + next_page_links[0].get("href")
         else:
-            pbar.close()
-            # print(f" ({len(car_links)} cars found)")
-            path = "project_files/cars/cars_links.txt"
-            with open(path, "w+") as write_file:
-                write_file.write("\n".join(car_links))
-            return car_links
+            return None
+
+    return get_website_links(url, domain, get_total_pages, get_links_on_page, get_next_page_link)
+
+
+def get_autotrader_links():
+    url = "https://www.autotrader.co.za/cars-for-sale/western-cape/p-9?price=50001-to-200000&bodytype=hatchback&bodytype=sedan&colour=Black&colour=Grey&colour=Silver&colour=White&isused=True"
+    domain = "https://www.autotrader.co.za"
+
+    def get_total_pages(page):
+        return int([li.a for li in page.find_all('li', 'e-page-number')][-1].get_text())
+
+    def get_links_on_page(page):
+        item_links = [domain + link.find("a").get("href") for link in
+                      page.find_all("div", ["e-available", "m-has-photos"])]
+        item_links.extend([domain + link.get("href") for link in page.select("a.b-featured-result-tile")])
+        return item_links
+
+    def get_next_page_link(page):
+        next_page_links = page.select("a.gm-float-right.e-pagination-link")
+        if next_page_links and next_page_links[0].has_attr("href"):
+            min_sleep = 5   # autotrader has bot-protection, so sleep for a random amount between page loads
+            max_sleep = 9
+            time.sleep(round(random() * max_sleep + min_sleep, 2))
+            return domain + next_page_links[0].get("href")
+        else:
+            return None
+
+    return get_website_links(url, domain, get_total_pages, get_links_on_page, get_next_page_link)
+
+
+def process_autotrader_page(autotrader_link):
+    options = Options()
+    options.headless = True
+    driver = Chrome(options=options)
+    driver.get(autotrader_link)
+    for link in driver.find_elements_by_css_selector('div.b-accordion.m-specification-accordion'):
+        link.click()
+    # element = driver.find_element_by_css_selector(".e-read-more")
+    # if element:
+    #     element.click()
+    html = driver.page_source
+    driver.close()
+    return html
 
 
 def populate_db_from_carscoza(carscoza_links):
@@ -281,69 +352,6 @@ def populate_db_from_carscoza(carscoza_links):
     print(f"DB updated with data from {domain} at {NOW}")
 
 
-def get_autotrader_links():
-    global pbar
-    url = "https://www.autotrader.co.za/cars-for-sale/western-cape/p-9?price=50001-to-200000&bodytype=hatchback&bodytype=sedan&colour=Black&colour=Grey&colour=Silver&colour=White&isused=True"
-    domain = "https://www.autotrader.co.za"
-    print(domain)
-    car_links = []
-    while True:
-        # print(".", end="")
-        request = ""
-        while not request:
-            try:
-                request = requests.get(url)
-                break
-            except:
-                print("z")
-                time.sleep(5)
-                continue
-
-        # request = requests.get(url)
-        page = BeautifulSoup(request.text, features="html.parser")
-
-        # Print out how many pages there are
-        if len(car_links) == 0:
-            # print(f"({[li.a for li in page.find_all('li', 'e-page-number')][-1].get_text()})")
-            # items = [div.get_text() for div in
-            #          page.select('div.resultsnum.pagination__page-number.pagination__page-number_right')][0].split('\n')
-            total_pages = int([li.a for li in page.find_all('li', 'e-page-number')][-1].get_text())
-            pbar = tqdm(total=total_pages)
-        pbar.update(1)
-        # Store all the links to cars from the current page
-        car_links.extend(
-            [domain + link.find("a").get("href") for link in page.find_all("div", ["e-available", "m-has-photos"])])
-        car_links.extend([domain + link.get("href") for link in page.select("a.b-featured-result-tile")])
-
-        # Find the link to the next page
-        next_page_links = page.select("a.gm-float-right.e-pagination-link")
-        # print(f"next_page_links={next_page_link}")
-        if next_page_links and next_page_links[0].has_attr("href"):  # Check to see if we're at the last page or not
-            url = domain + next_page_links[0].get("href")
-        else:
-            car_links = list(set(car_links))  # remove any duplicate links
-            # print(f" ({len(car_links)} cars found)")
-            path = "project_files/cars/autotrader_links.txt"
-            with open(path, "w+") as write_file:
-                write_file.write("\n".join(car_links))
-            return car_links
-
-
-def process_autotrader_page(autotrader_link):
-    options = Options()
-    options.headless = True
-    driver = Chrome(options=options)
-    driver.get(autotrader_link)
-    for link in driver.find_elements_by_css_selector('div.b-accordion.m-specification-accordion'):
-        link.click()
-    element = driver.find_element_by_css_selector(".e-read-more")
-    if element:
-        element.click()
-    html = driver.page_source
-    driver.close()
-    return html
-
-
 def populate_db_from_autotradercoza(autotrader_links):
     engine = create_engine('sqlite:///project_files/cars/items.db', echo=False)
     if not engine.dialect.has_table(engine, "dates_cars"):
@@ -360,18 +368,24 @@ def populate_db_from_autotradercoza(autotrader_links):
     car_dicts = []
     date_dicts = []
     print(f"Fetching data from {len(autotrader_links)} links")
-    first_time = time.time()
-    for i, link in enumerate(tqdm(autotrader_links)):
+    pbar = tqdm(autotrader_links)
+    for i, link in enumerate(pbar):
+        pbar.set_description(link)
         html = ""
         while not html:
             try:
                 html = process_autotrader_page(link)
                 break
-            except:
+            except Exception as e:
+                print("error: " + e)
                 time.sleep(5)
                 continue
 
         soup = BeautifulSoup(html, features="html.parser")
+        if soup.body.text == "The service is unavailable.":
+            pbar.close()
+            print(f"ERROR: Autotrader is unavailable, saving {len(car_dicts)} cars to DB")
+            break
         date = {
             "date": NOW,
             "website": "/".join(link.split(r"/")[:3]),
@@ -438,9 +452,9 @@ def populate_db_from_autotradercoza(autotrader_links):
             "service_history": None,
             "warranty_remaining_months": None,
             "options": None,
-            "description": soup.select("div.e-restrict-height")[0].get_text(),
+            "description": [div.select("div")[0].text for div in soup.select("div") if
+                            div.has_attr("data-reactroot") and len(div.select("div")) > 0][2],
         }
-
 
         basic_details = [[d.get_text() for d in div.select("div.col-6")] for div in soup.select("div.row") if
                          div.select("div.col-6")]
@@ -537,20 +551,23 @@ def populate_db_from_autotradercoza(autotrader_links):
         car_dicts.append(car)
         date_dicts.append(date)
 
-    cars = pd.DataFrame(car_dicts)
-    dates = pd.DataFrame(date_dicts)
-    if engine.dialect.has_table(engine, "cars"):
-        db_cars = pd.read_sql_table("cars", con=engine)
-        cars = pd.concat([db_cars, cars])
-        cars.drop_duplicates(subset=['website_id', 'website'], inplace=True, keep='last')
+    if len(car_dicts) > 0:
+        cars = pd.DataFrame(car_dicts)
+        dates = pd.DataFrame(date_dicts)
+        if engine.dialect.has_table(engine, "cars"):
+            db_cars = pd.read_sql_table("cars", con=engine)
+            cars = pd.concat([db_cars, cars])
+            cars.drop_duplicates(subset=['website_id', 'website'], inplace=True, keep='last')
 
-    db_dates = pd.read_sql_table("dates_cars", con=engine)
-    dates = pd.concat([db_dates, dates])
-    dates.drop_duplicates(subset=['date', 'price', 'website_id', 'website'], inplace=True, keep='last')
+        db_dates = pd.read_sql_table("dates_cars", con=engine)
+        dates = pd.concat([db_dates, dates])
+        dates.drop_duplicates(subset=['date', 'price', 'website_id', 'website'], inplace=True, keep='last')
 
-    cars.to_sql('cars', con=engine, if_exists='replace', index=False)
-    dates.to_sql('dates_cars', con=engine, if_exists='replace', index=False)
-    print(f"DB updated with data from {domain} at {NOW}")
+        cars.to_sql('cars', con=engine, if_exists='replace', index=False)
+        dates.to_sql('dates_cars', con=engine, if_exists='replace', index=False)
+        print(f"DB updated with data from {domain} at {NOW}")
+    else:
+        print(f"len(car_dicts) == {len(car_dicts)}, not doing anything")
 
 
 if __name__ == '__main__':
