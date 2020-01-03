@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dt=$(date '+%d/%m/%Y %H:%M:%S');
+echo "=====================$dt====================="
 cd ~/git_repos/PurchaseAnalysis
 source venv/bin/activate
 echo "-----------PULLING FROM REPO-----------"
