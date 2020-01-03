@@ -29,6 +29,9 @@ def main():
     #     # autotrader_links = [line.strip() for line in cars_file.readlines()]
     populate_db_from_carscoza(carscoza_links)
     # populate_db_from_autotradercoza(autotrader_links[:10])
+    with open("log.txt", "a") as write_file:
+        write_file.write(f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')},carscoza: {len(carscoza_links)}\n")
+
 
 
 def get_website_links(url, domain, get_total_pages, get_links_on_page, get_next_page_link):
