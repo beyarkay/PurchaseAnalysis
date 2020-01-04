@@ -557,3 +557,567 @@ Requirement already satisfied: setuptools in ./venv/lib/python3.7/site-packages 
  done, processing db
 DB updated with data from https://www.cars.co.za at 2020-01-03
 https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=27: 100%|██████████| 27/27 [10:22<00:00, 23.04s/it]
+[master e04e139] Beep Boop: Automatic update from raspberry pi
+ 1 file changed, 559 insertions(+)
+-----------PUSHING TO REPO-------------
+To github.com:beyarkay/PurchaseAnalysis.git
+   65236f2..e04e139  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+=====================04/01/2020 02:00:01=====================
+-----------PULLING FROM REPO-----------
+error: cannot pull with rebase: You have unstaged changes.
+error: please commit or stash them.
+-----------UPDATING REQUIREMENTS-----------
+Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
+Requirement already satisfied: pandas in ./venv/lib/python3.7/site-packages (from -r requirements.txt (line 1)) (0.25.3)
+Requirement already satisfied: requests in ./venv/lib/python3.7/site-packages (from -r requirements.txt (line 2)) (2.22.0)
+Requirement already satisfied: numpy in ./venv/lib/python3.7/site-packages (from -r requirements.txt (line 3)) (1.17.4)
+Requirement already satisfied: beautifulsoup4 in ./venv/lib/python3.7/site-packages (from -r requirements.txt (line 4)) (4.8.1)
+Requirement already satisfied: matplotlib in ./venv/lib/python3.7/site-packages (from -r requirements.txt (line 5)) (3.1.2)
+Requirement already satisfied: sqlalchemy in ./venv/lib/python3.7/site-packages (from -r requirements.txt (line 6)) (1.3.12)
+Requirement already satisfied: tqdm in ./venv/lib/python3.7/site-packages (from -r requirements.txt (line 7)) (4.41.1)
+Requirement already satisfied: selenium in ./venv/lib/python3.7/site-packages (from -r requirements.txt (line 8)) (3.141.0)
+Requirement already satisfied: python-dateutil>=2.6.1 in ./venv/lib/python3.7/site-packages (from pandas->-r requirements.txt (line 1)) (2.8.1)
+Requirement already satisfied: pytz>=2017.2 in ./venv/lib/python3.7/site-packages (from pandas->-r requirements.txt (line 1)) (2019.3)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in ./venv/lib/python3.7/site-packages (from requests->-r requirements.txt (line 2)) (3.0.4)
+Requirement already satisfied: certifi>=2017.4.17 in ./venv/lib/python3.7/site-packages (from requests->-r requirements.txt (line 2)) (2019.11.28)
+Requirement already satisfied: idna<2.9,>=2.5 in ./venv/lib/python3.7/site-packages (from requests->-r requirements.txt (line 2)) (2.8)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in ./venv/lib/python3.7/site-packages (from requests->-r requirements.txt (line 2)) (1.25.7)
+Requirement already satisfied: soupsieve>=1.2 in ./venv/lib/python3.7/site-packages (from beautifulsoup4->-r requirements.txt (line 4)) (1.9.5)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 in ./venv/lib/python3.7/site-packages (from matplotlib->-r requirements.txt (line 5)) (2.4.6)
+Requirement already satisfied: cycler>=0.10 in ./venv/lib/python3.7/site-packages (from matplotlib->-r requirements.txt (line 5)) (0.10.0)
+Requirement already satisfied: kiwisolver>=1.0.1 in ./venv/lib/python3.7/site-packages (from matplotlib->-r requirements.txt (line 5)) (1.1.0)
+Requirement already satisfied: six>=1.5 in ./venv/lib/python3.7/site-packages (from python-dateutil>=2.6.1->pandas->-r requirements.txt (line 1)) (1.13.0)
+Requirement already satisfied: setuptools in ./venv/lib/python3.7/site-packages (from kiwisolver>=1.0.1->matplotlib->-r requirements.txt (line 5)) (40.8.0)
+-----------EXECUTING SCRIPT------------
+z
+  0%|          | 0/27 [00:00<?, ?it/s]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=1:   4%|▎         | 1/27 [00:00<00:00, 19972.88it/s]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=1:   7%|▋         | 2/27 [00:01<00:13,  1.81it/s]   https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=2:   7%|▋         | 2/27 [00:01<00:13,  1.81it/s]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=2:  11%|█         | 3/27 [00:02<00:17,  1.39it/s]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=3:  11%|█         | 3/27 [00:02<00:17,  1.39it/s]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=3:  15%|█▍        | 4/27 [00:03<00:22,  1.04it/s]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=4:  15%|█▍        | 4/27 [00:03<00:22,  1.04it/s]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=4:  19%|█▊        | 5/27 [00:05<00:24,  1.11s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=5:  19%|█▊        | 5/27 [00:05<00:24,  1.11s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=5:  22%|██▏       | 6/27 [00:06<00:23,  1.11s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=6:  22%|██▏       | 6/27 [00:06<00:23,  1.11s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=6:  26%|██▌       | 7/27 [00:07<00:24,  1.23s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=7:  26%|██▌       | 7/27 [00:07<00:24,  1.23s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=7:  30%|██▉       | 8/27 [00:09<00:25,  1.33s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=8:  30%|██▉       | 8/27 [00:09<00:25,  1.33s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=8:  33%|███▎      | 9/27 [00:10<00:24,  1.37s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=9:  33%|███▎      | 9/27 [00:10<00:24,  1.37s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=9:  37%|███▋      | 10/27 [00:12<00:22,  1.33s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=10:  37%|███▋      | 10/27 [00:12<00:22,  1.33s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=10:  41%|████      | 11/27 [00:13<00:20,  1.29s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=11:  41%|████      | 11/27 [00:13<00:20,  1.29s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=11:  44%|████▍     | 12/27 [00:14<00:20,  1.37s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=12:  44%|████▍     | 12/27 [00:14<00:20,  1.37s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=12:  48%|████▊     | 13/27 [00:16<00:18,  1.35s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=13:  48%|████▊     | 13/27 [00:16<00:18,  1.35s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=13:  52%|█████▏    | 14/27 [00:17<00:16,  1.28s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=14:  52%|█████▏    | 14/27 [00:17<00:16,  1.28s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=14:  56%|█████▌    | 15/27 [00:18<00:15,  1.31s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=15:  56%|█████▌    | 15/27 [00:18<00:15,  1.31s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=15:  59%|█████▉    | 16/27 [00:19<00:13,  1.26s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=16:  59%|█████▉    | 16/27 [00:19<00:13,  1.26s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=16:  63%|██████▎   | 17/27 [00:21<00:12,  1.26s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=17:  63%|██████▎   | 17/27 [00:21<00:12,  1.26s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=17:  67%|██████▋   | 18/27 [00:22<00:10,  1.22s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=18:  67%|██████▋   | 18/27 [00:22<00:10,  1.22s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=18:  70%|███████   | 19/27 [00:23<00:09,  1.19s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=19:  70%|███████   | 19/27 [00:23<00:09,  1.19s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=19:  74%|███████▍  | 20/27 [00:24<00:08,  1.18s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=20:  74%|███████▍  | 20/27 [00:26<00:08,  1.18s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=20:  78%|███████▊  | 21/27 [00:28<00:11,  1.97s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=21:  78%|███████▊  | 21/27 [00:28<00:11,  1.97s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=21:  81%|████████▏ | 22/27 [00:29<00:08,  1.72s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=22:  81%|████████▏ | 22/27 [00:29<00:08,  1.72s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=22:  85%|████████▌ | 23/27 [00:30<00:06,  1.55s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=23:  85%|████████▌ | 23/27 [00:30<00:06,  1.55s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=23:  89%|████████▉ | 24/27 [00:31<00:04,  1.43s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=24:  89%|████████▉ | 24/27 [00:31<00:04,  1.43s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=24:  93%|█████████▎| 25/27 [00:33<00:02,  1.46s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=25:  93%|█████████▎| 25/27 [00:33<00:02,  1.46s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=25:  96%|█████████▋| 26/27 [00:34<00:01,  1.36s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=26:  96%|█████████▋| 26/27 [00:34<00:01,  1.36s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=26: 100%|██████████| 27/27 [00:35<00:00,  1.35s/it]https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=27: 100%|██████████| 27/27 [00:35<00:00,  1.35s/it]Fetching data from 524 links
+
+  0%|          | 0/524 [00:00<?, ?it/s][A
+  0%|          | 1/524 [00:01<09:59,  1.15s/it][A
+  0%|          | 2/524 [00:02<11:11,  1.29s/it][A
+  1%|          | 3/524 [00:03<10:53,  1.26s/it][A
+  1%|          | 4/524 [00:05<10:24,  1.20s/it][A
+  1%|          | 5/524 [00:06<10:08,  1.17s/it][A
+  1%|          | 6/524 [00:07<09:33,  1.11s/it][A
+  1%|▏         | 7/524 [00:08<09:28,  1.10s/it][A
+  2%|▏         | 8/524 [00:09<09:09,  1.07s/it][A
+  2%|▏         | 9/524 [00:10<08:48,  1.03s/it][A
+  2%|▏         | 10/524 [00:11<08:42,  1.02s/it][A
+  2%|▏         | 11/524 [00:12<08:44,  1.02s/it][A
+  2%|▏         | 12/524 [00:13<08:40,  1.02s/it][A
+  2%|▏         | 13/524 [00:14<08:45,  1.03s/it][A
+  3%|▎         | 14/524 [00:15<08:30,  1.00s/it][A
+  3%|▎         | 15/524 [00:15<08:00,  1.06it/s][A
+  3%|▎         | 16/524 [00:16<08:16,  1.02it/s][A
+  3%|▎         | 17/524 [00:18<08:46,  1.04s/it][A
+  3%|▎         | 18/524 [00:19<09:12,  1.09s/it][A
+  4%|▎         | 19/524 [00:20<09:29,  1.13s/it][A
+  4%|▍         | 20/524 [00:21<08:54,  1.06s/it][A
+  4%|▍         | 21/524 [00:22<08:24,  1.00s/it][A
+  4%|▍         | 22/524 [00:23<08:36,  1.03s/it][A
+  4%|▍         | 23/524 [00:24<08:30,  1.02s/it][A
+  5%|▍         | 24/524 [00:25<08:07,  1.03it/s][A
+  5%|▍         | 25/524 [00:26<08:04,  1.03it/s][A
+  5%|▍         | 26/524 [00:27<08:50,  1.06s/it][A
+  5%|▌         | 27/524 [00:28<08:55,  1.08s/it][A
+  5%|▌         | 28/524 [00:29<09:08,  1.11s/it][A
+  6%|▌         | 29/524 [00:31<09:17,  1.13s/it][A
+  6%|▌         | 30/524 [00:32<09:29,  1.15s/it][A
+  6%|▌         | 31/524 [00:33<09:04,  1.11s/it][A
+  6%|▌         | 32/524 [00:34<09:05,  1.11s/it][A
+  6%|▋         | 33/524 [00:35<08:36,  1.05s/it][A
+  6%|▋         | 34/524 [00:36<09:04,  1.11s/it][A
+  7%|▋         | 35/524 [00:37<08:48,  1.08s/it][A
+  7%|▋         | 36/524 [00:38<08:32,  1.05s/it][A
+  7%|▋         | 37/524 [00:39<08:31,  1.05s/it][A
+  7%|▋         | 38/524 [00:40<08:15,  1.02s/it][A
+  7%|▋         | 39/524 [00:41<08:11,  1.01s/it][A
+  8%|▊         | 40/524 [00:42<08:39,  1.07s/it][A
+  8%|▊         | 41/524 [00:43<08:46,  1.09s/it][A
+  8%|▊         | 42/524 [00:44<08:34,  1.07s/it][A
+  8%|▊         | 43/524 [00:45<08:10,  1.02s/it][A
+  8%|▊         | 44/524 [00:46<08:01,  1.00s/it][A
+  9%|▊         | 45/524 [00:47<08:13,  1.03s/it][A
+  9%|▉         | 46/524 [00:48<08:07,  1.02s/it][A
+  9%|▉         | 47/524 [00:49<07:54,  1.01it/s][A
+  9%|▉         | 48/524 [00:50<07:52,  1.01it/s][A
+  9%|▉         | 49/524 [00:51<07:37,  1.04it/s][A
+ 10%|▉         | 50/524 [00:52<08:06,  1.03s/it][A
+ 10%|▉         | 51/524 [00:53<08:23,  1.07s/it][A
+ 10%|▉         | 52/524 [00:54<08:09,  1.04s/it][A
+ 10%|█         | 53/524 [00:55<07:56,  1.01s/it][A
+ 10%|█         | 54/524 [00:57<08:48,  1.12s/it][A
+ 10%|█         | 55/524 [00:58<08:21,  1.07s/it][A
+ 11%|█         | 56/524 [00:59<07:52,  1.01s/it][A
+ 11%|█         | 57/524 [01:00<07:58,  1.02s/it][A
+ 11%|█         | 58/524 [01:01<08:12,  1.06s/it][A
+ 11%|█▏        | 59/524 [01:02<08:00,  1.03s/it][A
+ 11%|█▏        | 60/524 [01:03<09:36,  1.24s/it][A
+ 12%|█▏        | 61/524 [01:04<08:52,  1.15s/it][A
+ 12%|█▏        | 62/524 [01:05<08:27,  1.10s/it][A
+ 12%|█▏        | 63/524 [01:06<07:31,  1.02it/s][A
+ 12%|█▏        | 64/524 [01:07<07:18,  1.05it/s][A
+ 12%|█▏        | 65/524 [01:08<07:29,  1.02it/s][A
+ 13%|█▎        | 66/524 [01:09<07:30,  1.02it/s][A
+ 13%|█▎        | 67/524 [01:10<08:11,  1.08s/it][A
+ 13%|█▎        | 68/524 [01:11<07:52,  1.04s/it][A
+ 13%|█▎        | 69/524 [01:12<07:39,  1.01s/it][A
+ 13%|█▎        | 70/524 [01:13<07:38,  1.01s/it][A
+ 14%|█▎        | 71/524 [01:14<07:02,  1.07it/s][A
+ 14%|█▎        | 72/524 [01:15<07:13,  1.04it/s][A
+ 14%|█▍        | 73/524 [01:16<07:36,  1.01s/it][A
+ 14%|█▍        | 74/524 [01:17<07:16,  1.03it/s][A
+ 14%|█▍        | 75/524 [01:18<07:03,  1.06it/s][A
+ 15%|█▍        | 76/524 [01:19<07:25,  1.01it/s][A
+ 15%|█▍        | 77/524 [01:20<07:36,  1.02s/it][A
+ 15%|█▍        | 78/524 [01:21<08:30,  1.14s/it][A
+ 15%|█▌        | 79/524 [01:23<08:11,  1.10s/it][A
+ 15%|█▌        | 80/524 [01:23<07:26,  1.01s/it][A
+ 15%|█▌        | 81/524 [01:24<07:24,  1.00s/it][A
+ 16%|█▌        | 82/524 [01:25<07:16,  1.01it/s][A
+ 16%|█▌        | 83/524 [01:26<07:00,  1.05it/s][A
+ 16%|█▌        | 84/524 [01:27<07:31,  1.03s/it][A
+ 16%|█▌        | 85/524 [01:28<07:39,  1.05s/it][A
+ 16%|█▋        | 86/524 [01:29<07:04,  1.03it/s][A
+ 17%|█▋        | 87/524 [01:30<07:46,  1.07s/it][A
+ 17%|█▋        | 88/524 [01:31<07:36,  1.05s/it][A
+ 17%|█▋        | 89/524 [01:32<07:19,  1.01s/it][A
+ 17%|█▋        | 90/524 [01:34<07:55,  1.10s/it][A
+ 17%|█▋        | 91/524 [01:35<09:07,  1.26s/it][A
+ 18%|█▊        | 92/524 [01:36<08:33,  1.19s/it][A
+ 18%|█▊        | 93/524 [01:39<11:04,  1.54s/it][A
+ 18%|█▊        | 94/524 [01:40<09:42,  1.36s/it][A
+ 18%|█▊        | 95/524 [01:41<09:11,  1.29s/it][A
+ 18%|█▊        | 96/524 [01:42<09:12,  1.29s/it][A
+ 19%|█▊        | 97/524 [01:43<08:39,  1.22s/it][A
+ 19%|█▊        | 98/524 [01:44<08:06,  1.14s/it][A
+ 19%|█▉        | 99/524 [01:45<07:35,  1.07s/it][A
+ 19%|█▉        | 100/524 [01:47<08:39,  1.22s/it][A
+ 19%|█▉        | 101/524 [01:48<08:16,  1.17s/it][A
+ 19%|█▉        | 102/524 [01:49<08:07,  1.16s/it][A
+ 20%|█▉        | 103/524 [01:50<07:44,  1.10s/it][A
+ 20%|█▉        | 104/524 [01:51<07:13,  1.03s/it][A
+ 20%|██        | 105/524 [01:51<06:49,  1.02it/s][A
+ 20%|██        | 106/524 [01:52<06:34,  1.06it/s][A
+ 20%|██        | 107/524 [01:53<06:37,  1.05it/s][A
+ 21%|██        | 108/524 [01:54<06:47,  1.02it/s][A
+ 21%|██        | 109/524 [01:55<07:02,  1.02s/it][A
+ 21%|██        | 110/524 [01:56<06:55,  1.00s/it][A
+ 21%|██        | 111/524 [01:57<06:21,  1.08it/s][A
+ 21%|██▏       | 112/524 [01:58<06:24,  1.07it/s][A
+ 22%|██▏       | 113/524 [01:59<06:29,  1.06it/s][A
+ 22%|██▏       | 114/524 [02:00<06:29,  1.05it/s][A
+ 22%|██▏       | 115/524 [02:02<07:52,  1.16s/it][A
+ 22%|██▏       | 116/524 [02:03<08:25,  1.24s/it][A
+ 22%|██▏       | 117/524 [02:04<08:27,  1.25s/it][A
+ 23%|██▎       | 118/524 [02:06<08:41,  1.29s/it][A
+ 23%|██▎       | 119/524 [02:07<08:00,  1.19s/it][A
+ 23%|██▎       | 120/524 [02:08<07:36,  1.13s/it][A
+ 23%|██▎       | 121/524 [02:09<07:52,  1.17s/it][A
+ 23%|██▎       | 122/524 [02:10<07:28,  1.12s/it][A
+ 23%|██▎       | 123/524 [02:11<07:14,  1.08s/it][A
+ 24%|██▎       | 124/524 [02:12<06:56,  1.04s/it][A
+ 24%|██▍       | 125/524 [02:13<06:52,  1.03s/it][A
+ 24%|██▍       | 126/524 [02:14<06:55,  1.04s/it][A
+ 24%|██▍       | 127/524 [02:15<07:10,  1.09s/it][A
+ 24%|██▍       | 128/524 [02:16<07:12,  1.09s/it][A
+ 25%|██▍       | 129/524 [02:17<06:51,  1.04s/it][A
+ 25%|██▍       | 130/524 [02:18<06:57,  1.06s/it][A
+ 25%|██▌       | 131/524 [02:19<07:03,  1.08s/it][A
+ 25%|██▌       | 132/524 [02:21<08:05,  1.24s/it][A
+ 25%|██▌       | 133/524 [02:22<07:18,  1.12s/it][A
+ 26%|██▌       | 134/524 [02:23<06:55,  1.07s/it][A
+ 26%|██▌       | 135/524 [02:24<07:02,  1.09s/it][A
+ 26%|██▌       | 136/524 [02:25<07:05,  1.10s/it][A
+ 26%|██▌       | 137/524 [02:26<06:38,  1.03s/it][A
+ 26%|██▋       | 138/524 [02:27<06:39,  1.03s/it][A
+ 27%|██▋       | 139/524 [02:28<06:57,  1.08s/it][A
+ 27%|██▋       | 140/524 [02:29<06:31,  1.02s/it][A
+ 27%|██▋       | 141/524 [02:30<06:17,  1.02it/s][A
+ 27%|██▋       | 142/524 [02:31<06:12,  1.02it/s][A
+ 27%|██▋       | 143/524 [02:32<06:27,  1.02s/it][A
+ 27%|██▋       | 144/524 [02:33<06:11,  1.02it/s][A
+ 28%|██▊       | 145/524 [02:34<06:08,  1.03it/s][A
+ 28%|██▊       | 146/524 [02:35<06:05,  1.03it/s][A
+ 28%|██▊       | 147/524 [02:36<06:19,  1.01s/it][A
+ 28%|██▊       | 148/524 [02:37<06:57,  1.11s/it][A
+ 28%|██▊       | 149/524 [02:39<08:22,  1.34s/it][A
+ 29%|██▊       | 150/524 [02:40<07:17,  1.17s/it][A
+ 29%|██▉       | 151/524 [02:41<06:55,  1.11s/it][A
+ 29%|██▉       | 152/524 [02:42<06:39,  1.07s/it][A
+ 29%|██▉       | 153/524 [02:43<06:28,  1.05s/it][A
+ 29%|██▉       | 154/524 [02:44<06:42,  1.09s/it][A
+ 30%|██▉       | 155/524 [02:45<06:33,  1.07s/it][A
+ 30%|██▉       | 156/524 [02:46<07:02,  1.15s/it][A
+ 30%|██▉       | 157/524 [02:48<07:05,  1.16s/it][A
+ 30%|███       | 158/524 [02:48<06:30,  1.07s/it][A
+ 30%|███       | 159/524 [02:50<06:48,  1.12s/it][A
+ 31%|███       | 160/524 [02:51<07:14,  1.19s/it][A
+ 31%|███       | 161/524 [02:52<06:53,  1.14s/it][A
+ 31%|███       | 162/524 [02:53<06:32,  1.08s/it][A
+ 31%|███       | 163/524 [02:54<06:28,  1.08s/it][A
+ 31%|███▏      | 164/524 [02:56<07:05,  1.18s/it][A
+ 31%|███▏      | 165/524 [02:57<07:22,  1.23s/it][A
+ 32%|███▏      | 166/524 [02:58<07:13,  1.21s/it][A
+ 32%|███▏      | 167/524 [02:59<06:48,  1.15s/it][A
+ 32%|███▏      | 168/524 [03:05<15:30,  2.62s/it][A
+ 32%|███▏      | 169/524 [03:06<12:32,  2.12s/it][A
+ 32%|███▏      | 170/524 [03:07<10:36,  1.80s/it][A
+ 33%|███▎      | 171/524 [03:08<09:14,  1.57s/it][A
+ 33%|███▎      | 172/524 [03:09<08:29,  1.45s/it][A
+ 33%|███▎      | 173/524 [03:10<07:46,  1.33s/it][A
+ 33%|███▎      | 174/524 [03:12<07:32,  1.29s/it][A
+ 33%|███▎      | 175/524 [03:12<06:55,  1.19s/it][A
+ 34%|███▎      | 176/524 [03:14<06:51,  1.18s/it][A
+ 34%|███▍      | 177/524 [03:15<06:25,  1.11s/it][A
+ 34%|███▍      | 178/524 [03:16<06:33,  1.14s/it][A
+ 34%|███▍      | 179/524 [03:17<07:18,  1.27s/it][A
+ 34%|███▍      | 180/524 [03:18<06:41,  1.17s/it][A
+ 35%|███▍      | 181/524 [03:20<07:07,  1.25s/it][A
+ 35%|███▍      | 182/524 [03:21<06:33,  1.15s/it][A
+ 35%|███▍      | 183/524 [03:22<06:04,  1.07s/it][A
+ 35%|███▌      | 184/524 [03:23<06:10,  1.09s/it][A
+ 35%|███▌      | 185/524 [03:24<05:54,  1.05s/it][A
+ 35%|███▌      | 186/524 [03:25<05:44,  1.02s/it][A
+ 36%|███▌      | 187/524 [03:26<05:56,  1.06s/it][A
+ 36%|███▌      | 188/524 [03:27<05:50,  1.04s/it][A
+ 36%|███▌      | 189/524 [03:28<06:08,  1.10s/it][A
+ 36%|███▋      | 190/524 [03:29<06:06,  1.10s/it][A
+ 36%|███▋      | 191/524 [03:30<05:54,  1.07s/it][A
+ 37%|███▋      | 192/524 [03:31<05:45,  1.04s/it][A
+ 37%|███▋      | 193/524 [03:32<05:20,  1.03it/s][A
+ 37%|███▋      | 194/524 [03:33<05:37,  1.02s/it][A
+ 37%|███▋      | 195/524 [03:34<06:06,  1.11s/it][A
+ 37%|███▋      | 196/524 [03:35<06:12,  1.13s/it][A
+ 38%|███▊      | 197/524 [03:37<06:35,  1.21s/it][A
+ 38%|███▊      | 198/524 [03:38<06:22,  1.17s/it][A
+ 38%|███▊      | 199/524 [03:39<05:57,  1.10s/it][A
+ 38%|███▊      | 200/524 [03:40<06:01,  1.12s/it][A
+ 38%|███▊      | 201/524 [03:41<05:43,  1.06s/it][A
+ 39%|███▊      | 202/524 [03:42<05:41,  1.06s/it][A
+ 39%|███▊      | 203/524 [03:43<05:51,  1.09s/it][A
+ 39%|███▉      | 204/524 [03:44<05:29,  1.03s/it][A
+ 39%|███▉      | 205/524 [03:45<05:16,  1.01it/s][A
+ 39%|███▉      | 206/524 [03:46<05:35,  1.05s/it][A
+ 40%|███▉      | 207/524 [03:47<05:22,  1.02s/it][A
+ 40%|███▉      | 208/524 [03:48<05:13,  1.01it/s][A
+ 40%|███▉      | 209/524 [03:49<05:39,  1.08s/it][A
+ 40%|████      | 210/524 [03:50<05:05,  1.03it/s][A
+ 40%|████      | 211/524 [03:51<05:23,  1.03s/it][A
+ 40%|████      | 212/524 [03:52<05:21,  1.03s/it][A
+ 41%|████      | 213/524 [03:53<05:16,  1.02s/it][A
+ 41%|████      | 214/524 [03:54<05:33,  1.08s/it][A
+ 41%|████      | 215/524 [03:56<05:53,  1.15s/it][A
+ 41%|████      | 216/524 [03:57<05:38,  1.10s/it][A
+ 41%|████▏     | 217/524 [03:58<05:22,  1.05s/it][A
+ 42%|████▏     | 218/524 [03:59<05:25,  1.06s/it][A
+ 42%|████▏     | 219/524 [04:00<06:04,  1.19s/it][A
+ 42%|████▏     | 220/524 [04:01<05:33,  1.10s/it][A
+ 42%|████▏     | 221/524 [04:02<05:04,  1.01s/it][A
+ 42%|████▏     | 222/524 [04:03<05:00,  1.01it/s][A
+ 43%|████▎     | 223/524 [04:04<05:05,  1.01s/it][A
+ 43%|████▎     | 224/524 [04:05<04:38,  1.08it/s][A
+ 43%|████▎     | 225/524 [04:06<04:32,  1.10it/s][A
+ 43%|████▎     | 226/524 [04:07<04:44,  1.05it/s][A
+ 43%|████▎     | 227/524 [04:08<04:49,  1.02it/s][A
+ 44%|████▎     | 228/524 [04:08<04:32,  1.09it/s][A
+ 44%|████▎     | 229/524 [04:10<04:53,  1.01it/s][A
+ 44%|████▍     | 230/524 [04:11<05:24,  1.10s/it][A
+ 44%|████▍     | 231/524 [04:12<05:27,  1.12s/it][A
+ 44%|████▍     | 232/524 [04:13<05:05,  1.05s/it][A
+ 44%|████▍     | 233/524 [04:15<05:58,  1.23s/it][A
+ 45%|████▍     | 234/524 [04:16<05:39,  1.17s/it][A
+ 45%|████▍     | 235/524 [04:17<06:14,  1.30s/it][A
+ 45%|████▌     | 236/524 [04:19<06:24,  1.33s/it][A
+ 45%|████▌     | 237/524 [04:20<05:53,  1.23s/it][A
+ 45%|████▌     | 238/524 [04:21<05:30,  1.16s/it][A
+ 46%|████▌     | 239/524 [04:22<05:50,  1.23s/it][A
+ 46%|████▌     | 240/524 [04:23<05:27,  1.15s/it][A
+ 46%|████▌     | 241/524 [04:24<05:09,  1.10s/it][A
+ 46%|████▌     | 242/524 [04:25<05:01,  1.07s/it][A
+ 46%|████▋     | 243/524 [04:26<05:32,  1.18s/it][A
+ 47%|████▋     | 244/524 [04:27<05:09,  1.11s/it][A
+ 47%|████▋     | 245/524 [04:29<05:16,  1.13s/it][A
+ 47%|████▋     | 246/524 [04:29<04:47,  1.03s/it][A
+ 47%|████▋     | 247/524 [04:30<04:38,  1.01s/it][A
+ 47%|████▋     | 248/524 [04:31<04:37,  1.00s/it][A
+ 48%|████▊     | 249/524 [04:33<05:10,  1.13s/it][A
+ 48%|████▊     | 250/524 [04:34<05:47,  1.27s/it][A
+ 48%|████▊     | 251/524 [04:35<05:20,  1.18s/it][A
+ 48%|████▊     | 252/524 [04:36<05:16,  1.16s/it][A
+ 48%|████▊     | 253/524 [04:37<05:00,  1.11s/it][A
+ 48%|████▊     | 254/524 [04:39<05:02,  1.12s/it][A
+ 49%|████▊     | 255/524 [04:40<04:51,  1.09s/it][A
+ 49%|████▉     | 256/524 [04:40<04:34,  1.02s/it][A
+ 49%|████▉     | 257/524 [04:42<04:41,  1.05s/it][A
+ 49%|████▉     | 258/524 [04:43<04:47,  1.08s/it][A
+ 49%|████▉     | 259/524 [04:44<04:31,  1.02s/it][A
+ 50%|████▉     | 260/524 [04:45<04:29,  1.02s/it][A
+ 50%|████▉     | 261/524 [04:46<04:51,  1.11s/it][A
+ 50%|█████     | 262/524 [04:47<04:27,  1.02s/it][A
+ 50%|█████     | 263/524 [04:48<04:26,  1.02s/it][A
+ 50%|█████     | 264/524 [04:49<04:22,  1.01s/it][A
+ 51%|█████     | 265/524 [04:50<04:27,  1.03s/it][A
+ 51%|█████     | 266/524 [04:51<04:37,  1.08s/it][A
+ 51%|█████     | 267/524 [04:52<04:26,  1.04s/it][A
+ 51%|█████     | 268/524 [04:53<04:03,  1.05it/s][A
+ 51%|█████▏    | 269/524 [04:54<03:58,  1.07it/s][A
+ 52%|█████▏    | 270/524 [04:55<04:48,  1.13s/it][A
+ 52%|█████▏    | 271/524 [04:56<04:19,  1.03s/it][A
+ 52%|█████▏    | 272/524 [04:57<04:09,  1.01it/s][A
+ 52%|█████▏    | 273/524 [04:58<04:40,  1.12s/it][A
+ 52%|█████▏    | 274/524 [04:59<04:40,  1.12s/it][A
+ 52%|█████▏    | 275/524 [05:05<10:40,  2.57s/it][A
+ 53%|█████▎    | 276/524 [05:07<08:51,  2.14s/it][A
+ 53%|█████▎    | 277/524 [05:08<07:33,  1.84s/it][A
+ 53%|█████▎    | 278/524 [05:09<06:49,  1.67s/it][A
+ 53%|█████▎    | 279/524 [05:10<06:27,  1.58s/it][A
+ 53%|█████▎    | 280/524 [05:11<05:53,  1.45s/it][A
+ 54%|█████▎    | 281/524 [05:12<05:11,  1.28s/it][A
+ 54%|█████▍    | 282/524 [05:13<04:45,  1.18s/it][A
+ 54%|█████▍    | 283/524 [05:15<04:58,  1.24s/it][A
+ 54%|█████▍    | 284/524 [05:16<04:37,  1.16s/it][A
+ 54%|█████▍    | 285/524 [05:17<04:17,  1.08s/it][A
+ 55%|█████▍    | 286/524 [05:18<04:08,  1.05s/it][A
+ 55%|█████▍    | 287/524 [05:19<04:12,  1.06s/it][A
+ 55%|█████▍    | 288/524 [05:20<04:18,  1.10s/it][A
+ 55%|█████▌    | 289/524 [05:21<04:06,  1.05s/it][A
+ 55%|█████▌    | 290/524 [05:22<04:01,  1.03s/it][A
+ 56%|█████▌    | 291/524 [05:23<04:33,  1.17s/it][A
+ 56%|█████▌    | 292/524 [05:25<05:10,  1.34s/it][A
+ 56%|█████▌    | 293/524 [05:26<04:47,  1.24s/it][A
+ 56%|█████▌    | 294/524 [05:27<04:44,  1.23s/it][A
+ 56%|█████▋    | 295/524 [05:29<05:03,  1.33s/it][A
+ 56%|█████▋    | 296/524 [05:30<04:39,  1.23s/it][A
+ 57%|█████▋    | 297/524 [05:31<04:19,  1.14s/it][A
+ 57%|█████▋    | 298/524 [05:32<03:59,  1.06s/it][A
+ 57%|█████▋    | 299/524 [05:33<03:54,  1.04s/it][A
+ 57%|█████▋    | 300/524 [05:34<04:03,  1.09s/it][A
+ 57%|█████▋    | 301/524 [05:35<04:01,  1.08s/it][A
+ 58%|█████▊    | 302/524 [05:36<03:52,  1.05s/it][A
+ 58%|█████▊    | 303/524 [05:37<04:01,  1.09s/it][A
+ 58%|█████▊    | 304/524 [05:38<03:33,  1.03it/s][A
+ 58%|█████▊    | 305/524 [05:39<03:32,  1.03it/s][A
+ 58%|█████▊    | 306/524 [05:40<03:25,  1.06it/s][A
+ 59%|█████▊    | 307/524 [05:40<03:26,  1.05it/s][A
+ 59%|█████▉    | 308/524 [05:42<03:32,  1.02it/s][A
+ 59%|█████▉    | 309/524 [05:43<03:44,  1.05s/it][A
+ 59%|█████▉    | 310/524 [05:44<03:38,  1.02s/it][A
+ 59%|█████▉    | 311/524 [05:45<03:47,  1.07s/it][A
+ 60%|█████▉    | 312/524 [05:47<04:27,  1.26s/it][A
+ 60%|█████▉    | 313/524 [05:48<04:20,  1.23s/it][A
+ 60%|█████▉    | 314/524 [05:49<04:02,  1.16s/it][A
+ 60%|██████    | 315/524 [05:50<03:47,  1.09s/it][A
+ 60%|██████    | 316/524 [05:51<03:42,  1.07s/it][A
+ 60%|██████    | 317/524 [05:52<03:59,  1.16s/it][A
+ 61%|██████    | 318/524 [05:53<03:59,  1.16s/it][A
+ 61%|██████    | 319/524 [05:54<03:34,  1.04s/it][A
+ 61%|██████    | 320/524 [05:55<03:28,  1.02s/it][A
+ 61%|██████▏   | 321/524 [05:56<03:22,  1.00it/s][A
+ 61%|██████▏   | 322/524 [05:57<03:19,  1.01it/s][A
+ 62%|██████▏   | 323/524 [05:58<03:14,  1.03it/s][A
+ 62%|██████▏   | 324/524 [05:59<03:10,  1.05it/s][A
+ 62%|██████▏   | 325/524 [06:00<03:13,  1.03it/s][A
+ 62%|██████▏   | 326/524 [06:06<08:17,  2.51s/it][A
+ 62%|██████▏   | 327/524 [06:07<06:55,  2.11s/it][A
+ 63%|██████▎   | 328/524 [06:08<05:58,  1.83s/it][A
+ 63%|██████▎   | 329/524 [06:09<05:07,  1.58s/it][A
+ 63%|██████▎   | 330/524 [06:10<04:19,  1.34s/it][A
+ 63%|██████▎   | 331/524 [06:11<04:09,  1.29s/it][A
+ 63%|██████▎   | 332/524 [06:12<03:37,  1.13s/it][A
+ 64%|██████▎   | 333/524 [06:13<03:59,  1.25s/it][A
+ 64%|██████▎   | 334/524 [06:15<04:04,  1.29s/it][A
+ 64%|██████▍   | 335/524 [06:16<03:47,  1.20s/it][A
+ 64%|██████▍   | 336/524 [06:17<03:47,  1.21s/it][A
+ 64%|██████▍   | 337/524 [06:18<03:41,  1.19s/it][A
+ 65%|██████▍   | 338/524 [06:19<03:42,  1.20s/it][A
+ 65%|██████▍   | 339/524 [06:20<03:17,  1.07s/it][A
+ 65%|██████▍   | 340/524 [06:21<03:10,  1.03s/it][A
+ 65%|██████▌   | 341/524 [06:22<03:25,  1.12s/it][A
+ 65%|██████▌   | 342/524 [06:23<03:15,  1.08s/it][A
+ 65%|██████▌   | 343/524 [06:25<03:34,  1.18s/it][A
+ 66%|██████▌   | 344/524 [06:26<03:21,  1.12s/it][A
+ 66%|██████▌   | 345/524 [06:27<03:16,  1.10s/it][A
+ 66%|██████▌   | 346/524 [06:28<03:06,  1.05s/it][A
+ 66%|██████▌   | 347/524 [06:29<03:15,  1.10s/it][A
+ 66%|██████▋   | 348/524 [06:30<03:03,  1.04s/it][A
+ 67%|██████▋   | 349/524 [06:31<03:02,  1.04s/it][A
+ 67%|██████▋   | 350/524 [06:32<03:24,  1.18s/it][A
+ 67%|██████▋   | 351/524 [06:34<03:23,  1.18s/it][A
+ 67%|██████▋   | 352/524 [06:35<03:20,  1.16s/it][A
+ 67%|██████▋   | 353/524 [06:36<03:08,  1.10s/it][A
+ 68%|██████▊   | 354/524 [06:37<03:01,  1.07s/it][A
+ 68%|██████▊   | 355/524 [06:38<02:57,  1.05s/it][A
+ 68%|██████▊   | 356/524 [06:39<02:58,  1.06s/it][A
+ 68%|██████▊   | 357/524 [06:40<02:51,  1.03s/it][A
+ 68%|██████▊   | 358/524 [06:41<02:48,  1.02s/it][A
+ 69%|██████▊   | 359/524 [06:42<02:42,  1.02it/s][A
+ 69%|██████▊   | 360/524 [06:43<02:38,  1.03it/s][A
+ 69%|██████▉   | 361/524 [06:44<02:42,  1.00it/s][A
+ 69%|██████▉   | 362/524 [06:45<02:41,  1.00it/s][A
+ 69%|██████▉   | 363/524 [06:46<02:40,  1.00it/s][A
+ 69%|██████▉   | 364/524 [06:47<02:37,  1.02it/s][A
+ 70%|██████▉   | 365/524 [06:48<02:36,  1.02it/s][A
+ 70%|██████▉   | 366/524 [06:49<02:47,  1.06s/it][A
+ 70%|███████   | 367/524 [06:50<02:30,  1.04it/s][A
+ 70%|███████   | 368/524 [06:51<02:48,  1.08s/it][A
+ 70%|███████   | 369/524 [06:52<02:42,  1.05s/it][A
+ 71%|███████   | 370/524 [06:53<02:34,  1.00s/it][A
+ 71%|███████   | 371/524 [06:54<02:35,  1.02s/it][A
+ 71%|███████   | 372/524 [06:55<02:37,  1.04s/it][A
+ 71%|███████   | 373/524 [06:56<02:37,  1.04s/it][A
+ 71%|███████▏  | 374/524 [06:57<02:32,  1.02s/it][A
+ 72%|███████▏  | 375/524 [06:58<02:35,  1.04s/it][A
+ 72%|███████▏  | 376/524 [06:59<02:48,  1.14s/it][A
+ 72%|███████▏  | 377/524 [07:05<06:12,  2.53s/it][A
+ 72%|███████▏  | 378/524 [07:06<05:05,  2.09s/it][A
+ 72%|███████▏  | 379/524 [07:07<04:05,  1.69s/it][A
+ 73%|███████▎  | 380/524 [07:08<03:33,  1.48s/it][A
+ 73%|███████▎  | 381/524 [07:09<03:13,  1.35s/it][A
+ 73%|███████▎  | 382/524 [07:10<03:10,  1.34s/it][A
+ 73%|███████▎  | 383/524 [07:11<02:57,  1.26s/it][A
+ 73%|███████▎  | 384/524 [07:12<02:47,  1.20s/it][A
+ 73%|███████▎  | 385/524 [07:13<02:38,  1.14s/it][A
+ 74%|███████▎  | 386/524 [07:14<02:22,  1.03s/it][A
+ 74%|███████▍  | 387/524 [07:15<02:20,  1.02s/it][A
+ 74%|███████▍  | 388/524 [07:16<02:16,  1.00s/it][A
+ 74%|███████▍  | 389/524 [07:17<02:11,  1.03it/s][A
+ 74%|███████▍  | 390/524 [07:19<02:28,  1.11s/it][A
+ 75%|███████▍  | 391/524 [07:20<02:32,  1.15s/it][A
+ 75%|███████▍  | 392/524 [07:21<02:27,  1.12s/it][A
+ 75%|███████▌  | 393/524 [07:22<02:45,  1.27s/it][A
+ 75%|███████▌  | 394/524 [07:24<02:48,  1.30s/it][A
+ 75%|███████▌  | 395/524 [07:25<02:46,  1.29s/it][A
+ 76%|███████▌  | 396/524 [07:26<02:36,  1.22s/it][A
+ 76%|███████▌  | 397/524 [07:27<02:26,  1.16s/it][A
+ 76%|███████▌  | 398/524 [07:28<02:11,  1.05s/it][A
+ 76%|███████▌  | 399/524 [07:30<02:31,  1.21s/it][A
+ 76%|███████▋  | 400/524 [07:31<02:26,  1.18s/it][A
+ 77%|███████▋  | 401/524 [07:32<02:17,  1.12s/it][A
+ 77%|███████▋  | 402/524 [07:33<02:41,  1.33s/it][A
+ 77%|███████▋  | 403/524 [07:35<02:33,  1.27s/it][A
+ 77%|███████▋  | 404/524 [07:36<02:47,  1.40s/it][A
+ 77%|███████▋  | 405/524 [07:37<02:28,  1.25s/it][A
+ 77%|███████▋  | 406/524 [07:38<02:18,  1.17s/it][A
+ 78%|███████▊  | 407/524 [07:39<02:17,  1.17s/it][A
+ 78%|███████▊  | 408/524 [07:40<02:13,  1.15s/it][A
+ 78%|███████▊  | 409/524 [07:42<02:16,  1.18s/it][A
+ 78%|███████▊  | 410/524 [07:43<02:23,  1.26s/it][A
+ 78%|███████▊  | 411/524 [07:44<02:13,  1.18s/it][A
+ 79%|███████▊  | 412/524 [07:45<02:03,  1.10s/it][A
+ 79%|███████▉  | 413/524 [07:46<02:08,  1.16s/it][A
+ 79%|███████▉  | 414/524 [07:48<02:10,  1.18s/it][A
+ 79%|███████▉  | 415/524 [07:49<02:03,  1.13s/it][A
+ 79%|███████▉  | 416/524 [07:50<02:16,  1.26s/it][A
+ 80%|███████▉  | 417/524 [07:51<02:11,  1.23s/it][A
+ 80%|███████▉  | 418/524 [07:52<02:01,  1.14s/it][A
+ 80%|███████▉  | 419/524 [07:53<02:00,  1.14s/it][A
+ 80%|████████  | 420/524 [07:54<01:57,  1.13s/it][A
+ 80%|████████  | 421/524 [07:56<01:54,  1.11s/it][A
+ 81%|████████  | 422/524 [07:56<01:45,  1.03s/it][A
+ 81%|████████  | 423/524 [07:57<01:42,  1.01s/it][A
+ 81%|████████  | 424/524 [07:58<01:33,  1.07it/s][A
+ 81%|████████  | 425/524 [07:59<01:33,  1.05it/s][A
+ 81%|████████▏ | 426/524 [08:00<01:38,  1.01s/it][A
+ 81%|████████▏ | 427/524 [08:01<01:35,  1.01it/s][A
+ 82%|████████▏ | 428/524 [08:03<01:44,  1.09s/it][A
+ 82%|████████▏ | 429/524 [08:04<01:53,  1.19s/it][A
+ 82%|████████▏ | 430/524 [08:05<01:57,  1.25s/it][A
+ 82%|████████▏ | 431/524 [08:06<01:51,  1.20s/it][A
+ 82%|████████▏ | 432/524 [08:08<01:51,  1.21s/it][A
+ 83%|████████▎ | 433/524 [08:09<01:50,  1.22s/it][A
+ 83%|████████▎ | 434/524 [08:10<01:48,  1.21s/it][A
+ 83%|████████▎ | 435/524 [08:11<01:52,  1.26s/it][A
+ 83%|████████▎ | 436/524 [08:12<01:41,  1.15s/it][A
+ 83%|████████▎ | 437/524 [08:13<01:34,  1.09s/it][A
+ 84%|████████▎ | 438/524 [08:15<01:38,  1.15s/it][A
+ 84%|████████▍ | 439/524 [08:16<01:51,  1.31s/it][A
+ 84%|████████▍ | 440/524 [08:17<01:41,  1.21s/it][A
+ 84%|████████▍ | 441/524 [08:19<01:47,  1.29s/it][A
+ 84%|████████▍ | 442/524 [08:20<01:37,  1.19s/it][A
+ 85%|████████▍ | 443/524 [08:21<01:37,  1.21s/it][A
+ 85%|████████▍ | 444/524 [08:22<01:30,  1.13s/it][A
+ 85%|████████▍ | 445/524 [08:23<01:24,  1.07s/it][A
+ 85%|████████▌ | 446/524 [08:25<01:38,  1.26s/it][A
+ 85%|████████▌ | 447/524 [08:26<01:39,  1.29s/it][A
+ 85%|████████▌ | 448/524 [08:27<01:32,  1.21s/it][A
+ 86%|████████▌ | 449/524 [08:28<01:25,  1.14s/it][A
+ 86%|████████▌ | 450/524 [08:29<01:21,  1.10s/it][A
+ 86%|████████▌ | 451/524 [08:30<01:20,  1.10s/it][A
+ 86%|████████▋ | 452/524 [08:31<01:25,  1.19s/it][A
+ 86%|████████▋ | 453/524 [08:32<01:20,  1.13s/it][A
+ 87%|████████▋ | 454/524 [08:33<01:17,  1.11s/it][A
+ 87%|████████▋ | 455/524 [08:34<01:13,  1.06s/it][A
+ 87%|████████▋ | 456/524 [08:35<01:10,  1.04s/it][A
+ 87%|████████▋ | 457/524 [08:37<01:12,  1.08s/it][A
+ 87%|████████▋ | 458/524 [08:38<01:16,  1.15s/it][A
+ 88%|████████▊ | 459/524 [08:39<01:10,  1.08s/it][A
+ 88%|████████▊ | 460/524 [08:40<01:06,  1.03s/it][A
+ 88%|████████▊ | 461/524 [08:41<01:02,  1.01it/s][A
+ 88%|████████▊ | 462/524 [08:42<01:10,  1.14s/it][A
+ 88%|████████▊ | 463/524 [08:43<01:05,  1.08s/it][A
+ 89%|████████▊ | 464/524 [08:44<01:03,  1.05s/it][A
+ 89%|████████▊ | 465/524 [08:45<01:02,  1.05s/it][A
+ 89%|████████▉ | 466/524 [08:46<00:59,  1.02s/it][A
+ 89%|████████▉ | 467/524 [08:47<00:58,  1.02s/it][A
+ 89%|████████▉ | 468/524 [08:48<00:56,  1.00s/it][A
+ 90%|████████▉ | 469/524 [08:49<00:57,  1.05s/it][A
+ 90%|████████▉ | 470/524 [08:50<00:55,  1.04s/it][A
+ 90%|████████▉ | 471/524 [08:51<00:55,  1.05s/it][A
+ 90%|█████████ | 472/524 [08:52<00:53,  1.03s/it][A
+ 90%|█████████ | 473/524 [08:53<00:51,  1.01s/it][A
+ 90%|█████████ | 474/524 [08:54<00:51,  1.03s/it][A
+ 91%|█████████ | 475/524 [08:55<00:50,  1.02s/it][A
+ 91%|█████████ | 476/524 [08:56<00:51,  1.07s/it][A
+ 91%|█████████ | 477/524 [08:57<00:47,  1.02s/it][A
+ 91%|█████████ | 478/524 [08:58<00:47,  1.03s/it][A
+ 91%|█████████▏| 479/524 [09:00<00:49,  1.10s/it][A
+ 92%|█████████▏| 480/524 [09:06<01:54,  2.61s/it][A
+ 92%|█████████▏| 481/524 [09:07<01:30,  2.11s/it][A
+ 92%|█████████▏| 482/524 [09:08<01:13,  1.75s/it][A
+ 92%|█████████▏| 483/524 [09:09<01:01,  1.51s/it][A
+ 92%|█████████▏| 484/524 [09:10<00:54,  1.37s/it][A
+ 93%|█████████▎| 485/524 [09:11<00:49,  1.26s/it][A
+ 93%|█████████▎| 486/524 [09:12<00:45,  1.19s/it][A
+ 93%|█████████▎| 487/524 [09:13<00:42,  1.16s/it][A
+ 93%|█████████▎| 488/524 [09:14<00:40,  1.13s/it][A
+ 93%|█████████▎| 489/524 [09:15<00:37,  1.08s/it][A
+ 94%|█████████▎| 490/524 [09:16<00:35,  1.04s/it][A
+ 94%|█████████▎| 491/524 [09:17<00:33,  1.01s/it][A
+ 94%|█████████▍| 492/524 [09:18<00:32,  1.01s/it][A
+ 94%|█████████▍| 493/524 [09:19<00:30,  1.01it/s][A
+ 94%|█████████▍| 494/524 [09:20<00:29,  1.01it/s][A
+ 94%|█████████▍| 495/524 [09:21<00:30,  1.07s/it][A
+ 95%|█████████▍| 496/524 [09:22<00:30,  1.08s/it][A
+ 95%|█████████▍| 497/524 [09:23<00:27,  1.01s/it][A
+ 95%|█████████▌| 498/524 [09:24<00:25,  1.01it/s][A
+ 95%|█████████▌| 499/524 [09:25<00:24,  1.03it/s][A
+ 95%|█████████▌| 500/524 [09:26<00:23,  1.00it/s][A
+ 96%|█████████▌| 501/524 [09:27<00:23,  1.01s/it][A
+ 96%|█████████▌| 502/524 [09:28<00:22,  1.01s/it][A
+ 96%|█████████▌| 503/524 [09:29<00:21,  1.00s/it][A
+ 96%|█████████▌| 504/524 [09:31<00:25,  1.28s/it][A
+ 96%|█████████▋| 505/524 [09:32<00:23,  1.26s/it][A
+ 97%|█████████▋| 506/524 [09:33<00:22,  1.22s/it][A
+ 97%|█████████▋| 507/524 [09:34<00:19,  1.17s/it][A
+ 97%|█████████▋| 508/524 [09:35<00:18,  1.17s/it][A
+ 97%|█████████▋| 509/524 [09:36<00:16,  1.09s/it][A
+ 97%|█████████▋| 510/524 [09:38<00:16,  1.18s/it][A
+ 98%|█████████▊| 511/524 [09:39<00:17,  1.33s/it][A
+ 98%|█████████▊| 512/524 [09:41<00:15,  1.30s/it][A
+ 98%|█████████▊| 513/524 [09:42<00:13,  1.24s/it][A
+ 98%|█████████▊| 514/524 [09:43<00:11,  1.15s/it][A
+ 98%|█████████▊| 515/524 [09:44<00:10,  1.15s/it][A
+ 98%|█████████▊| 516/524 [09:45<00:09,  1.21s/it][A
+ 99%|█████████▊| 517/524 [09:46<00:07,  1.13s/it][A
+ 99%|█████████▉| 518/524 [09:47<00:06,  1.07s/it][A
+ 99%|█████████▉| 519/524 [09:48<00:05,  1.06s/it][A
+ 99%|█████████▉| 520/524 [09:49<00:04,  1.03s/it][A
+ 99%|█████████▉| 521/524 [09:50<00:03,  1.00s/it][A
+100%|█████████▉| 522/524 [09:51<00:01,  1.01it/s][A
+100%|█████████▉| 523/524 [09:52<00:01,  1.17s/it][A
+100%|██████████| 524/524 [09:53<00:00,  1.14s/it][A100%|██████████| 524/524 [09:53<00:00,  1.13s/it]
+ done, processing db
+DB updated with data from https://www.cars.co.za at 2020-01-04
+https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=27: 100%|██████████| 27/27 [10:31<00:00, 23.37s/it]
