@@ -5,6 +5,8 @@ echo "=====================$dt====================="
 cd ~/git_repos/PurchaseAnalysis
 source venv/bin/activate
 echo "-----------PULLING FROM REPO-----------"
+git add .
+git commit -m "Beep Boop: Pre-commit before rebase"
 git pull --rebase
 echo "-----------UPDATING REQUIREMENTS-----------"
 pip install -r requirements.txt
