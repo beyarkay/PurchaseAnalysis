@@ -2,6 +2,7 @@
 
 dt=$(date '+%d/%m/%Y %H:%M:%S');
 echo "=====================$dt====================="
+ip route
 cd ~/git_repos/PurchaseAnalysis
 source venv/bin/activate
 echo "-----------PULLING FROM REPO-----------"
