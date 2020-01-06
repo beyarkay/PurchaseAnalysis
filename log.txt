@@ -1691,3 +1691,5 @@ DB updated with data from https://www.cars.co.za at 2020-01-05
 To github.com:beyarkay/PurchaseAnalysis.git
    8568b5b..8fd67f7  master -> master
 Branch 'master' set up to track remote branch 'master' from 'origin'.
+=====================06/01/2020 02:00:02=====================
+-----------PULLING FROM REPO-----------
