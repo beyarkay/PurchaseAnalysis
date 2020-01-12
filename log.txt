@@ -5740,3 +5740,55 @@ hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 =====================12/01/2020 22:41:23=====================
 -----------PULLING FROM REPO-----------
+[master a533728] Beep Boop: Pre-commit before rebase
+ 1 file changed, 13 insertions(+)
+error: cannot pull with rebase: You have unstaged changes.
+error: please commit or stash them.
+-----------UPDATING REQUIREMENTS-----------
+Traceback (most recent call last):
+  File "/home/pi/git_repos/PurchaseAnalysis/venv/lib/python3.7/site-packages/pip/_vendor/__init__.py", line 33, in vendored
+    __import__(vendored_name, globals(), locals(), level=0)
+ModuleNotFoundError: No module named 'pip._vendor.html5lib'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pi/git_repos/PurchaseAnalysis/venv/bin/pip", line 6, in <module>
+    from pip._internal import main
+  File "/home/pi/git_repos/PurchaseAnalysis/venv/lib/python3.7/site-packages/pip/_internal/__init__.py", line 19, in <module>
+    from pip._vendor.urllib3.exceptions import DependencyWarning
+  File "/home/pi/git_repos/PurchaseAnalysis/venv/lib/python3.7/site-packages/pip/_vendor/__init__.py", line 68, in <module>
+    vendored("html5lib")
+  File "/home/pi/git_repos/PurchaseAnalysis/venv/lib/python3.7/site-packages/pip/_vendor/__init__.py", line 36, in vendored
+    __import__(modulename, globals(), locals(), level=0)
+  File "<frozen importlib._bootstrap>", line 983, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 967, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 668, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 638, in _load_backward_compatible
+  File "/home/pi/git_repos/PurchaseAnalysis/venv/share/python-wheels/html5lib-1.0.1-py2.py3-none-any.whl/html5lib/__init__.py", line 25, in <module>
+  File "<frozen importlib._bootstrap>", line 983, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 963, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 906, in _find_spec
+  File "<frozen importlib._bootstrap_external>", line 1280, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 1254, in _get_spec
+  File "<frozen importlib._bootstrap_external>", line 1235, in _legacy_get_spec
+  File "<frozen importlib._bootstrap>", line 441, in spec_from_loader
+  File "<frozen importlib._bootstrap_external>", line 594, in spec_from_file_location
+KeyboardInterrupt
+-----------EXECUTING SCRIPT------------
+Traceback (most recent call last):
+  File "/home/pi/git_repos/PurchaseAnalysis/project_files/cars/scrape_cars.py", line 9, in <module>
+    import pandas as pd
+  File "/home/pi/git_repos/PurchaseAnalysis/venv/lib/python3.7/site-packages/pandas/__init__.py", line 11, in <module>
+    __import__(dependency)
+  File "/home/pi/git_repos/PurchaseAnalysis/venv/lib/python3.7/site-packages/numpy/__init__.py", line 150, in <module>
+    from . import random
+  File "/home/pi/git_repos/PurchaseAnalysis/venv/lib/python3.7/site-packages/numpy/random/__init__.py", line 181, in <module>
+    from . import _pickle
+  File "/home/pi/git_repos/PurchaseAnalysis/venv/lib/python3.7/site-packages/numpy/random/_pickle.py", line 1, in <module>
+    from .mtrand import RandomState
+  File "mtrand.pyx", line 1, in init numpy.random.mtrand
+  File "common.pyx", line 20, in init numpy.random.common
+  File "/home/pi/git_repos/PurchaseAnalysis/venv/lib/python3.7/site-packages/numpy/core/getlimits.py", line 497, in __init__
+    def __init__(self, int_type):
+KeyboardInterrupt
