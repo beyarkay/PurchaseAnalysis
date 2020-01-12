@@ -5792,3 +5792,14 @@ Traceback (most recent call last):
   File "/home/pi/git_repos/PurchaseAnalysis/venv/lib/python3.7/site-packages/numpy/core/getlimits.py", line 497, in __init__
     def __init__(self, int_type):
 KeyboardInterrupt
+[master 1012a1f] Beep Boop: Automatic update from raspberry pi
+ 1 file changed, 52 insertions(+)
+-----------PUSHING TO REPO-------------
+To github.com:beyarkay/PurchaseAnalysis.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'git@github.com:beyarkay/PurchaseAnalysis.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
