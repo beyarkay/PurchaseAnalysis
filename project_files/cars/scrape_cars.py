@@ -20,17 +20,7 @@ NOW = datetime.datetime.now().strftime('%Y-%m-%d')
 
 def main():
     carscoza_links = get_cars_links()
-    # autotrader_links = get_autotrader_links()
-    # print(len(autotrader_links))
-    # with open("project_files/cars/cars_links.txt", "r") as cars_file:
-    #     carscoza_links = [line.strip() for line in cars_file.readlines()]
-    # with open("project_files/cars/autotrader_links.txt", "w+") as cars_file:
-    #     cars_file.writelines("\n".join(autotrader_links))
-    #     # autotrader_links = [line.strip() for line in cars_file.readlines()]
     populate_db_from_carscoza(carscoza_links)
-    # populate_db_from_autotradercoza(autotrader_links[:10])
-    # with open("log.txt", "a") as write_file:
-    #     write_file.write(f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')},carscoza: {len(carscoza_links)}\n")
 
 
 
@@ -337,7 +327,6 @@ def populate_db_from_carscoza(carscoza_links):
             "Central locking") else None
         car_dicts.append(car)
         date_dicts.append(date)
-    print(" done, processing db")
 
     cars = pd.DataFrame(car_dicts)
     dates = pd.DataFrame(date_dicts)
@@ -350,9 +339,12 @@ def populate_db_from_carscoza(carscoza_links):
     dates = pd.concat([db_dates, dates])
     dates.drop_duplicates(subset=['date', 'price', 'website_id', 'website'], inplace=True, keep='last')
 
-    # cars.to_sql('cars', con=engine, if_exists='replace', index=False)
-    # dates.to_sql('dates_cars', con=engine, if_exists='replace', index=False)
-    print(f"DB updated with data from {domain} at {NOW}")
+    dates = engine.execute("SELECT COUNT(*), date_accessed FROM cars GROUP BY date_accessed;")
+    print(f"COUNT(*)\tdate_accessed")
+    for row in dates:
+        print(f"{row['COUNT(*)']}\t\t\t{row['date_accessed']}")
+
+    print(f"DB updated with data from {domain} at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
 
 def populate_db_from_autotradercoza(autotrader_links):
