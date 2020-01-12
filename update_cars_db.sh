@@ -9,8 +9,8 @@ echo "-----------PULLING FROM REPO-----------"
 # git add .
 # git commit -m "Beep Boop: Pre-commit before rebase"
 git pull --rebase
-echo "-----------UPDATING REQUIREMENTS-----------"
-pip install -r requirements.txt
+#echo "-----------UPDATING REQUIREMENTS-----------"
+#pip install -r requirements.txt
 echo "-----------EXECUTING SCRIPT------------"
 python3 -u ~/git_repos/PurchaseAnalysis/project_files/cars/scrape_cars.py
 git add .
