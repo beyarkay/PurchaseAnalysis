@@ -339,6 +339,10 @@ def populate_db_from_carscoza(carscoza_links):
     dates = pd.concat([db_dates, dates])
     dates.drop_duplicates(subset=['date', 'price', 'website_id', 'website'], inplace=True, keep='last')
 
+
+    cars.to_sql('cars', con=engine, if_exists='replace', index=False)
+    dates.to_sql('dates_cars', con=engine, if_exists='replace', index=False)
+
     dates = engine.execute("SELECT COUNT(*), date_accessed FROM cars GROUP BY date_accessed;")
     print(f"COUNT(*)\tdate_accessed")
     for row in dates:
