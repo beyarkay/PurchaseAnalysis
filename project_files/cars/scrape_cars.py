@@ -328,6 +328,7 @@ def populate_db_from_carscoza(carscoza_links):
         car_dicts.append(car)
         date_dicts.append(date)
 
+    tqdm.close()
     cars = pd.DataFrame(car_dicts)
     dates = pd.DataFrame(date_dicts)
     if engine.dialect.has_table(engine, "cars"):
@@ -343,7 +344,7 @@ def populate_db_from_carscoza(carscoza_links):
     cars.to_sql('cars', con=engine, if_exists='append', index=False)
     dates.to_sql('dates_cars', con=engine, if_exists='append', index=False)
 
-    dates = engine.execute("SELECT COUNT(*), date_accessed FROM cars GROUP BY date_accessed;")
+    dates = engine.execute("SELECT COUNT(*), date_accessed FROM cars GROUP BY date_accessed ORDER BY date_accessed;")
     print(f"COUNT(*)\tdate_accessed")
     for row in dates:
         print(f"{row['COUNT(*)']}\t\t\t{row['date_accessed']}")
