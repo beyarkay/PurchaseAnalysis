@@ -5156,3 +5156,16 @@ Requirement already satisfied: setuptools in ./venv/lib/python3.7/site-packages 
  done, processing db
 DB updated with data from https://www.cars.co.za at 2020-01-11
 https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=27: 100%|██████████| 27/27 [09:50<00:00, 21.85s/it]
+[master 58a6861] Beep Boop: Automatic update from raspberry pi
+ 1 file changed, 569 insertions(+)
+-----------PUSHING TO REPO-------------
+To github.com:beyarkay/PurchaseAnalysis.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'git@github.com:beyarkay/PurchaseAnalysis.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+=====================12/01/2020 02:00:02=====================
+-----------PULLING FROM REPO-----------
