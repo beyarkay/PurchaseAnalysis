@@ -23,7 +23,6 @@ def main():
     populate_db_from_carscoza(carscoza_links)
 
 
-
 def get_website_links(url, domain, get_total_pages, get_links_on_page, get_next_page_link):
     """
 
@@ -112,7 +111,7 @@ def get_autotrader_links():
     def get_next_page_link(page):
         next_page_links = page.select("a.gm-float-right.e-pagination-link")
         if next_page_links and next_page_links[0].has_attr("href"):
-            min_sleep = 5   # autotrader has bot-protection, so sleep for a random amount between page loads
+            min_sleep = 5  # autotrader has bot-protection, so sleep for a random amount between page loads
             max_sleep = 9
             time.sleep(round(random() * max_sleep + min_sleep, 2))
             return domain + next_page_links[0].get("href")
@@ -302,12 +301,9 @@ def populate_db_from_carscoza(carscoza_links):
         car["performace_0_to_100_s"] = float(
             data_dict.get("0-100Kph").replace("s", "").strip()) if data_dict.get("0-100Kph") and data_dict.get(
             "0-100Kph").replace("s", "").strip().replace(".", "", 1).isdigit() else None
-        car["performace_speed_max_kmph"] = float(
-            data_dict.get("Top speed").replace("Km/h", "").strip()) if data_dict.get("Top speed") else None
-        car["economy_fuel_range_km"] = float(
-            data_dict.get("Fuel range").replace("Km", "").replace(" ", "").strip()) if data_dict.get(
-            "Fuel range") else None
-        car["economy_CO2_gpkm"] = float(data_dict.get("Co2").replace("g/km", "").strip()) if data_dict.get(
+        car["performace_speed_max_kmph"] = float(re.sub(r"\D", "", data_dict.get("Top speed"))) if data_dict.get("Top speed") else None
+        car["economy_fuel_range_km"] = float(re.sub(r"\D", "", data_dict.get("Fuel range"))) if data_dict.get("Fuel range") else None
+        car["economy_CO2_gpkm"] = float(re.sub(r"\D", "", data_dict.get("Co2"))) if data_dict.get(
             "Co2") else None
         car["safety_ABS"] = True if data_dict.get("ABS") else False
         car["safety_EBD"] = True if data_dict.get("EBD") else False
@@ -340,7 +336,6 @@ def populate_db_from_carscoza(carscoza_links):
     db_dates = pd.read_sql_table("dates_cars", con=engine)
     dates = pd.concat([db_dates, dates])
     dates.drop_duplicates(subset=['date', 'price', 'website_id', 'website'], inplace=True, keep='last')
-
 
     cars.to_sql('cars', con=engine, if_exists='append', index=False)
     dates.to_sql('dates_cars', con=engine, if_exists='append', index=False)
