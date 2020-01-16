@@ -159,7 +159,8 @@ def populate_db_from_carscoza(carscoza_links):
     car_dicts = []
     date_dicts = []
     print(f"Fetching data from {len(carscoza_links)} links")
-    for i, link in enumerate(tqdm(carscoza_links)):
+    progress_bar = tqdm(carscoza_links)
+    for i, link in enumerate(progress_bar):
         page = ""
         while not page:
             try:
@@ -333,10 +334,10 @@ def populate_db_from_carscoza(carscoza_links):
                 "Central locking") else None
             car_dicts.append(car)
         except Exception as e:
-            print(e)
+            progress_bar.write(e)
         date_dicts.append(date)
 
-    tqdm.close()
+    progress_bar.close()
     cars = pd.DataFrame(car_dicts)
     dates = pd.DataFrame(date_dicts)
     if engine.dialect.has_table(engine, "cars"):
