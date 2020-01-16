@@ -19,6 +19,8 @@ NOW = datetime.datetime.now().strftime('%Y-%m-%d')
 
 
 def main():
+
+    # TODO if the car's details already exist in the DB, don't bother scraping through it again, just move on
     carscoza_links = get_cars_links()
     populate_db_from_carscoza(carscoza_links)
 
@@ -134,6 +136,11 @@ def process_autotrader_page(autotrader_link):
     html = driver.page_source
     driver.close()
     return html
+
+def coerceToFloat(text):
+    if not text:
+        return None
+    return float(re.sub(r"\D", "", text))
 
 
 def populate_db_from_carscoza(carscoza_links):
@@ -294,6 +301,7 @@ def populate_db_from_carscoza(carscoza_links):
                 data_dict.get("Average").replace("l/100km", "").strip()) if data_dict.get("Average") else None
             car["engine_power_max_kW"] = float(
                 data_dict.get("Power Max").replace("Kw", "").strip()) if data_dict.get("Power Max") else None
+            # TODO this also coerces Electric => Eectric
             car["engine_size_l"] = float(data_dict.get("Engine Size").replace("l", "").strip()) if data_dict.get(
                 "Power Max") else None
             car["engine_fuel_tank_l"] = float(
