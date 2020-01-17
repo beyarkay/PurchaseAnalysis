@@ -2,13 +2,12 @@
 
 dt=$(date '+%d/%m/%Y %H:%M:%S');
 echo "=====================$dt====================="
-# ip route
 cd ~/git_repos/PurchaseAnalysis
 source venv/bin/activate
 echo "-----------PULLING FROM REPO-----------"
-git add .
-git commit -m "Beep Boop: Pre-commit before rebase"
-git pull --rebase
+git add . > /dev/null
+git commit -m "Beep Boop: Pre-commit before rebase" > /dev/null
+git pull --rebase > /dev/null
 #echo "-----------UPDATING REQUIREMENTS-----------"
 #pip install -r requirements.txt
 echo "-----------EXECUTING SCRIPT------------"
