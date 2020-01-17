@@ -334,7 +334,7 @@ def populate_db_from_carscoza(carscoza_links):
                 "Central locking") else None
             car_dicts.append(car)
         except Exception as e:
-            progress_bar.write(e)
+            progress_bar.write(str(e))
         date_dicts.append(date)
 
     progress_bar.close()
