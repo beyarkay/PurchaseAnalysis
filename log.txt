@@ -17705,3 +17705,10 @@ Traceback (most recent call last):
 TypeError: write() argument must be str, not ValueError
   0%|          | 48/10614 [00:57<3:29:11,  1.19s/it]
 https://www.cars.co.za/usedcars/Western-Cape/?P=531: 100%|██████████| 531/531 [13:54<00:00,  1.57s/it]
+[master cf9c941] Beep Boop: Automatic update from raspberry pi
+ 1 file changed, 75 insertions(+)
+-----------PUSHING TO REPO-------------
+error: cannot pull with rebase: You have unstaged changes.
+error: please commit or stash them.
+To github.com:beyarkay/PurchaseAnalysis.git
+   1f05803..cf9c941  master -> master
