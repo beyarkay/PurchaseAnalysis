@@ -17628,3 +17628,5 @@ error: please commit or stash them.
 To github.com:beyarkay/PurchaseAnalysis.git
    58d900d..76062b1  master -> master
 Branch 'master' set up to track remote branch 'master' from 'origin'.
+=====================17/01/2020 02:00:01=====================
+-----------PULLING FROM REPO-----------
