@@ -17712,3 +17712,5 @@ error: cannot pull with rebase: You have unstaged changes.
 error: please commit or stash them.
 To github.com:beyarkay/PurchaseAnalysis.git
    1f05803..cf9c941  master -> master
+=====================18/01/2020 02:00:01=====================
+-----------PULLING FROM REPO-----------
