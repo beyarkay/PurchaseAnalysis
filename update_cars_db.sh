@@ -12,9 +12,9 @@ git pull --rebase > /dev/null
 #pip install -r requirements.txt
 echo "-----------EXECUTING SCRIPT------------"
 python3 -u ~/git_repos/PurchaseAnalysis/project_files/cars/scrape_cars.py
-git add .
-git commit -m "Beep Boop: Automatic update from raspberry pi"
-echo "-----------PUSHING TO REPO-------------"
+git add . > /dev/null
+git commit -m "Beep Boop: Automatic update from raspberry pi" > /dev/null
+echo "-----------PUSHING TO REPO-------------" > /dev/null
 git pull --rebase > /dev/null
 git push -u origin master > /dev/null
 deactivate
