@@ -144,7 +144,7 @@ def coerceToFloat(text):
 
 
 def populate_db_from_carscoza(carscoza_links):
-    engine = create_engine('sqlite:///project_files/cars/items.db', echo=False)
+    engine = create_engine('sqlite:///items.db', echo=False)
     if not engine.dialect.has_table(engine, "dates_cars"):
         engine.execute("""
                     create table dates_cars
@@ -377,7 +377,7 @@ def populate_db_from_carscoza(carscoza_links):
 
 
 def populate_db_from_autotradercoza(autotrader_links):
-    engine = create_engine('sqlite:///project_files/cars/items.db', echo=False)
+    engine = create_engine('sqlite:///items.db', echo=False)
     if not engine.dialect.has_table(engine, "dates_cars"):
         engine.execute("""
                     create table dates_cars
