@@ -19,7 +19,6 @@ NOW = datetime.datetime.now().strftime('%Y-%m-%d')
 
 
 def main():
-
     # TODO if the car's details already exist in the DB, don't bother scraping through it again, just move on
     carscoza_links = get_cars_links()
     populate_db_from_carscoza(carscoza_links)
@@ -137,6 +136,7 @@ def process_autotrader_page(autotrader_link):
     driver.close()
     return html
 
+
 def coerceToFloat(text):
     if not text:
         return None
@@ -159,7 +159,7 @@ def populate_db_from_carscoza(carscoza_links):
     car_dicts = []
     date_dicts = []
     print(f"Fetching data from {len(carscoza_links)} links")
-    progress_bar = tqdm(carscoza_links)
+    progress_bar = tqdm(carscoza_links, disable=True)
     for i, link in enumerate(progress_bar):
         page = ""
         while not page:
@@ -178,6 +178,20 @@ def populate_db_from_carscoza(carscoza_links):
             "website_id": re.search("\(ID:(\d+)\)", soup.title.text).groups()[0],
             "price": float(re.sub(r"\D", "", soup.find("div", class_="price").text))
         }
+
+        # If there exists a record of the found price, website, website_id combo, then just log the price
+        result = engine.execute(f"""
+                SELECT COUNT(*)
+                FROM dates_cars
+                WHERE website='{date.website}' AND website_id={date.website_id} AND price={date.price};
+            """).fetchall()
+        if result[0][0] > 0:
+            engine.execute(f"""
+            INSERT INTO dates_cars (date, website, website_id, price) 
+            VALUES ({date.date}, {date.website}, {date.website_id}, {date.price});
+            """)
+            continue
+
         try:
             # predefine the dictionary because it's the easiest way to ensure the dataframe is in a decent order
             car = {
@@ -311,8 +325,10 @@ def populate_db_from_carscoza(carscoza_links):
             car["performace_0_to_100_s"] = float(
                 data_dict.get("0-100Kph").replace("s", "").strip()) if data_dict.get("0-100Kph") and data_dict.get(
                 "0-100Kph").replace("s", "").strip().replace(".", "", 1).isdigit() else None
-            car["performace_speed_max_kmph"] = float(re.sub(r"\D", "", data_dict.get("Top speed"))) if data_dict.get("Top speed") else None
-            car["economy_fuel_range_km"] = float(re.sub(r"\D", "", data_dict.get("Fuel range"))) if data_dict.get("Fuel range") else None
+            car["performace_speed_max_kmph"] = float(re.sub(r"\D", "", data_dict.get("Top speed"))) if data_dict.get(
+                "Top speed") else None
+            car["economy_fuel_range_km"] = float(re.sub(r"\D", "", data_dict.get("Fuel range"))) if data_dict.get(
+                "Fuel range") else None
             car["economy_CO2_gpkm"] = float(re.sub(r"\D", "", data_dict.get("Co2"))) if data_dict.get(
                 "Co2") else None
             car["safety_ABS"] = True if data_dict.get("ABS") else False
