@@ -1,3 +1,4 @@
 .idea/
 venv/*
 items.db
+project_files/cars/items.db
