@@ -147,7 +147,7 @@ def coerceToFloat(text):
     return float(re.sub(r"\D", "", text))
 
 
-def populate_db_from_carscoza(carscoza_links, quiet, limit):
+def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
     engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.1.38/items', echo=False)
     if not engine.dialect.has_table(engine, "dates_cars"):
         engine.execute("""
