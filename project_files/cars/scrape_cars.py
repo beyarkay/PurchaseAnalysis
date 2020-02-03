@@ -19,11 +19,16 @@ NOW = datetime.datetime.now().strftime('%Y-%m-%d')
 
 
 def main():
-    carscoza_links = get_cars_links()
-    populate_db_from_carscoza(carscoza_links[:100])
+    if len(sys.argv) == 3:
+        quiet = True if sys.argv[1] else False
+        limit = int(sys.argv[2]) if sys.argv[2].isnumeric() else -1
+        carscoza_links = get_cars_links(quiet=quiet, limit=limit)
+    else:
+        carscoza_links = get_cars_links()
+    populate_db_from_carscoza(carscoza_links)
 
 
-def get_website_links(url, domain, get_total_pages, get_links_on_page, get_next_page_link):
+def get_website_links(url, get_total_pages, get_links_on_page, get_next_page_link, quiet, limit):
     """
 
     Parameters
@@ -55,7 +60,7 @@ def get_website_links(url, domain, get_total_pages, get_links_on_page, get_next_
 
         # Print out how many pages there are
         if len(item_links) == 0:
-            pbar = tqdm(total=get_total_pages(page))
+            pbar = tqdm(total=get_total_pages(page), disable=quiet)
         pbar.update(1)
         pbar.set_description(url)
         # Store all the links to cars from the current page
@@ -63,13 +68,13 @@ def get_website_links(url, domain, get_total_pages, get_links_on_page, get_next_
 
         # Find the link to the next page
         next_page_link = get_next_page_link(page)
-        if next_page_link:  # Check to see if we're at the last page or not
+        if next_page_link and ((not limit) or len(item_links) <= limit):  # Check to see if we're at the last page or not
             url = next_page_link
         else:
             return list(set(item_links))  # remove any duplicate links
 
 
-def get_cars_links():
+def get_cars_links(quiet=False, limit=0):
     # url = "https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=1"
     url = "https://www.cars.co.za/usedcars/Western-Cape/"
     domain = "https://www.cars.co.za"
@@ -92,7 +97,7 @@ def get_cars_links():
         else:
             return None
 
-    return get_website_links(url, domain, get_total_pages, get_links_on_page, get_next_page_link)
+    return get_website_links(url, get_total_pages, get_links_on_page, get_next_page_link, quiet, limit)
 
 
 def get_autotrader_links():
@@ -142,7 +147,7 @@ def coerceToFloat(text):
     return float(re.sub(r"\D", "", text))
 
 
-def populate_db_from_carscoza(carscoza_links):
+def populate_db_from_carscoza(carscoza_links, quiet, limit):
     engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.1.38/items', echo=False)
     if not engine.dialect.has_table(engine, "dates_cars"):
         engine.execute("""
@@ -155,10 +160,12 @@ def populate_db_from_carscoza(carscoza_links):
                     );
                     """)
     domain = "https://www.cars.co.za"
+    if limit:
+        carscoza_links = carscoza_links[:limit]
     car_dicts = []
     date_dicts = []
     print(f"Fetching data from {len(carscoza_links)} links")
-    progress_bar = tqdm(carscoza_links, disable=True)
+    progress_bar = tqdm(carscoza_links, disable=quiet)
     for i, link in enumerate(progress_bar):
         page = ""
         while not page:
@@ -595,4 +602,3 @@ def populate_db_from_autotradercoza(autotrader_links):
 
 if __name__ == '__main__':
     main()
-    # links = get_autotrader_links()
