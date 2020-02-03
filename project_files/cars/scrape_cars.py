@@ -19,9 +19,8 @@ NOW = datetime.datetime.now().strftime('%Y-%m-%d')
 
 
 def main():
-    # TODO if the car's details already exist in the DB, don't bother scraping through it again, just move on
     carscoza_links = get_cars_links()
-    populate_db_from_carscoza(carscoza_links)
+    populate_db_from_carscoza(carscoza_links[:100])
 
 
 def get_website_links(url, domain, get_total_pages, get_links_on_page, get_next_page_link):
@@ -144,7 +143,7 @@ def coerceToFloat(text):
 
 
 def populate_db_from_carscoza(carscoza_links):
-    engine = create_engine('sqlite:///items.db', echo=False)
+    engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.1.38/items', echo=False)
     if not engine.dialect.has_table(engine, "dates_cars"):
         engine.execute("""
                     create table dates_cars
@@ -371,13 +370,13 @@ def populate_db_from_carscoza(carscoza_links):
     dates = engine.execute("SELECT COUNT(*), date_accessed FROM cars GROUP BY date_accessed ORDER BY date_accessed;")
     print(f"COUNT(*)\tdate_accessed")
     for row in dates:
-        print(f"{row['COUNT(*)']}\t\t\t{row['date_accessed']}")
+        print(f"{row[0]}\t\t\t{row[1]}")
 
     print(f"DB updated with data from {domain} at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
 
 def populate_db_from_autotradercoza(autotrader_links):
-    engine = create_engine('sqlite:///items.db', echo=False)
+    engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.1.38/items', echo=False)
     if not engine.dialect.has_table(engine, "dates_cars"):
         engine.execute("""
                     create table dates_cars
