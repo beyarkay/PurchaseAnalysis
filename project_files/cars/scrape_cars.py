@@ -76,6 +76,7 @@ def get_website_links(url, get_total_pages, get_links_on_page, get_next_page_lin
                 (not limit) or len(item_links) <= limit):  # Check to see if we're at the last page or not
             url = next_page_link
         else:
+            pbar.close()
             return list(item_links)
 
 
@@ -92,12 +93,12 @@ def get_cars_links(quiet=False, limit=0):
         return total_pages
 
     def get_links_on_page(page):
-        # TODO for some reason, this doesn't work. Running the script will just keep adding the same cars to the DB
         links = [domain + link.get("href") for link in page.find_all("a", class_="vehicle-list__vehicle-name")]
 
         prices = [re.sub(r"\D", "",link.text) for link in page.find_all("span", class_="vehicle-list__vehicle-price")]
         returner = set()
         for link, price in zip(links, prices):
+            # TODO adjust this to execute in batches, instead of all together
             result = engine.execute(f"""
                     SELECT COUNT(*)
                     FROM dates_cars
@@ -204,10 +205,10 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
     car_dicts = []
     date_dicts = []
     if not quiet: print(f"Fetching data from {len(carscoza_links)} links")
-    progress_bar = tqdm(carscoza_links, disable=quiet)
+    pbar = tqdm(carscoza_links, disable=quiet)
 
     # Go through every link in carscoza_links and get the data
-    for i, link in enumerate(progress_bar):
+    for i, link in enumerate(pbar):
         page = ""
         while not page:
             try:
@@ -414,10 +415,10 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
 
             # car_dicts.append(car)
         except Exception as e:
-            progress_bar.write(str(e) +": "+ car["link"])
+            pbar.write(str(e) +": "+ car["link"])
         # date_dicts.append(date)
 
-    progress_bar.close()
+    pbar.close()
     # cars = pd.DataFrame(car_dicts)
     # dates = pd.DataFrame(date_dicts)
     # if engine.dialect.has_table(engine, "cars"):
