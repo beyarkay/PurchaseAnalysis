@@ -1,7 +1,7 @@
 #!/bin/bash
 dt=$(date '+%d-%m-%Y %H:%M:%S');
 
-if [ "$1" != "" ]; then
+if [ "$1" == "0" ]; then
   echo "=====================$dt====================="
   cd ~/git_repos/PurchaseAnalysis
   source venv/bin/activate

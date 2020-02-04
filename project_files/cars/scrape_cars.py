@@ -49,6 +49,7 @@ def get_website_links(url, get_total_pages, get_links_on_page, get_next_page_lin
     """
     global pbar
     item_links = set()
+    print(f"Fetching {'all' if limit > 0 else str(limit)} links from {url}")
     while True:
         request = ""
         while not request:
@@ -95,7 +96,7 @@ def get_cars_links(quiet=False, limit=0):
     def get_links_on_page(page):
         links = [domain + link.get("href") for link in page.find_all("a", class_="vehicle-list__vehicle-name")]
 
-        prices = [re.sub(r"\D", "",link.text) for link in page.find_all("span", class_="vehicle-list__vehicle-price")]
+        prices = [re.sub(r"\D", "", link.text) for link in page.find_all("span", class_="vehicle-list__vehicle-price")]
         returner = set()
         for link, price in zip(links, prices):
             # TODO adjust this to execute in batches, instead of all together
@@ -415,7 +416,7 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
 
             # car_dicts.append(car)
         except Exception as e:
-            pbar.write(str(e) +": "+ car["link"])
+            pbar.write(str(e) + ": " + car["link"])
         # date_dicts.append(date)
 
     pbar.close()
@@ -434,11 +435,11 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
     # dates.to_sql('dates_cars', con=engine, if_exists='append', index=False)
 
     if not quiet:
-        dates = engine.execute("SELECT COUNT(*), date_accessed FROM cars GROUP BY date_accessed ORDER BY date_accessed;")
+        dates = engine.execute(
+            "SELECT COUNT(*), date_accessed FROM cars GROUP BY date_accessed ORDER BY date_accessed;")
         print(f"{'COUNT(*)': <20}{'date_accessed': <20}")
         for row in dates:
             print(f"{row[0]: <20}{row[1]: <20}")
-
 
         print(f"DB updated with data from {domain} at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
