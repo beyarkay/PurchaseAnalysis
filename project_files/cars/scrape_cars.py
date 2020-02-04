@@ -16,7 +16,7 @@ from selenium.webdriver.chrome.options import Options
 
 DEBUG = False
 NOW = datetime.datetime.now().strftime('%Y-%m-%d')
-
+engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.1.38/items', echo=False)
 
 def main():
     if len(sys.argv) == 3:
@@ -30,11 +30,14 @@ def main():
 
 def get_website_links(url, get_total_pages, get_links_on_page, get_next_page_link, quiet, limit):
     """
+    Go through every link at this URL (and subsequently every page given by get_next_page_link)
+    Log the id, date, price combo in the DB
+    If the id, price combo isn't in the DB at all, add the link to returner[]
+    returner gets passed on to be parsed in detail
 
     Parameters
     ----------
     url: string
-    domain: string
     get_total_pages: function(): int: Used once on the first page, returns the total number of pages to traverse
     get_links_on_page: function(page): Returns a list of full links for every relevant item on that page
     get_next_page_link: function(page): Returns a full link to the next page if it exists, None otherwise
@@ -44,7 +47,7 @@ def get_website_links(url, get_total_pages, get_links_on_page, get_next_page_lin
     A list of the all the full item links
     """
     global pbar
-    item_links = []
+    item_links = set()
     while True:
         request = ""
         while not request:
@@ -64,18 +67,18 @@ def get_website_links(url, get_total_pages, get_links_on_page, get_next_page_lin
         pbar.update(1)
         pbar.set_description(url)
         # Store all the links to cars from the current page
-        item_links.extend(get_links_on_page(page))
+        item_links.update(get_links_on_page(page))
 
         # Find the link to the next page
         next_page_link = get_next_page_link(page)
-        if next_page_link and ((not limit) or len(item_links) <= limit):  # Check to see if we're at the last page or not
+        if next_page_link and (
+                (not limit) or len(item_links) <= limit):  # Check to see if we're at the last page or not
             url = next_page_link
         else:
-            return list(set(item_links))  # remove any duplicate links
+            return list(item_links)
 
 
 def get_cars_links(quiet=False, limit=0):
-    # url = "https://www.cars.co.za/searchVehicle.php?new_or_used=Used&make_model=&vfs_area=Western+Cape&agent_locality=&price_range=50000+-+74999%7C75000+-+99999%7C100000+-+124999%7C125000+-+149999&os=&locality=&body_type_exact=Hatchback&transmission=&fuel_type=&login_type=&mapped_colour=black%7Cgrey%7Csilver&vfs_year=&vfs_mileage=&vehicle_axle_config=&keyword=&sort=vfs_price&P=1"
     url = "https://www.cars.co.za/usedcars/Western-Cape/"
     domain = "https://www.cars.co.za"
 
@@ -88,7 +91,23 @@ def get_cars_links(quiet=False, limit=0):
         return total_pages
 
     def get_links_on_page(page):
-        return [domain + link.get("href") for link in page.find_all("a", class_="vehicle-list__vehicle-name")]
+        links = [domain + link.get("href") for link in page.find_all("a", class_="vehicle-list__vehicle-name")]
+        prices = [link.text.strip() for link in page.find_all("span", class_="vehicle-list__vehicle-price")]
+        returner = set()
+        for link, price in zip(links, prices):
+            result = engine.execute(f"""
+                    SELECT COUNT(*)
+                    FROM dates_cars
+                    WHERE website='{domain}' AND website_id='{link.split("/")[-2]}';
+                """).fetchall()
+            if result[0][0] > 0:
+                engine.execute(f"""
+                    INSERT INTO dates_cars (date, website, website_id, price) 
+                    VALUES ({NOW}, {link}, {link.split("/")[-2]}, {price});
+                    """)
+            else:
+                returner.add(link)
+        return returner
 
     def get_next_page_link(page):
         next_page_links = page.select(".pagination__nav.fa-right-open-big")
@@ -148,7 +167,23 @@ def coerceToFloat(text):
 
 
 def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
-    engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.1.38/items', echo=False)
+    """
+    Add the full details from every link in carscoza_links
+    carscoza_links is assumed to have only unique items
+
+    Parameters
+    ----------
+    carscoza_links
+    quiet
+    limit
+
+    Returns
+    -------
+
+    """
+
+
+    # Ensure the DB is setup with a dates_cars table
     if not engine.dialect.has_table(engine, "dates_cars"):
         engine.execute("""
                     create table dates_cars
@@ -159,13 +194,16 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
                         price      FLOAT
                     );
                     """)
+    # Initialise some variables
     domain = "https://www.cars.co.za"
     if limit:
         carscoza_links = carscoza_links[:limit]
     car_dicts = []
     date_dicts = []
-    print(f"Fetching data from {len(carscoza_links)} links")
+    if not quiet: print(f"Fetching data from {len(carscoza_links)} links")
     progress_bar = tqdm(carscoza_links, disable=quiet)
+
+    # Go through every link in carscoza_links and get the data
     for i, link in enumerate(progress_bar):
         page = ""
         while not page:
@@ -178,25 +216,25 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
                 continue
 
         soup = BeautifulSoup(page.text, features="html.parser")
-        date = {
-            "date": NOW,
-            "website": "/".join(link.split(r"/")[:3]),
-            "website_id": re.search("\(ID:(\d+)\)", soup.title.text).groups()[0],
-            "price": float(re.sub(r"\D", "", soup.find("div", class_="price").text))
-        }
-
-        # If there exists a record of the found price, website, website_id combo, then just log the price
-        result = engine.execute(f"""
-                SELECT COUNT(*)
-                FROM dates_cars
-                WHERE website='{date.website}' AND website_id={date.website_id} AND price={date.price};
-            """).fetchall()
-        if result[0][0] > 0:
-            engine.execute(f"""
-            INSERT INTO dates_cars (date, website, website_id, price) 
-            VALUES ({date.date}, {date.website}, {date.website_id}, {date.price});
-            """)
-            continue
+        # date = {
+        #     "date": NOW,
+        #     "website": "/".join(link.split(r"/")[:3]),
+        #     "website_id": re.search("\(ID:(\d+)\)", soup.title.text).groups()[0],
+        #     "price": float(re.sub(r"\D", "", soup.find("div", class_="price").text))
+        # }
+        #
+        # # If there exists a record of the found price, website, website_id combo, then just log the price
+        # result = engine.execute(f"""
+        #         SELECT COUNT(*)
+        #         FROM dates_cars
+        #         WHERE website='{date["website"]}' AND website_id='{date["website_id"]}' AND price={date["price"]};
+        #     """).fetchall()
+        # if result[0][0] > 0:
+        #     engine.execute(f"""
+        #     INSERT INTO dates_cars (date, website, website_id, price)
+        #     VALUES ({date["date"]}, {date["website"]}, {date["website_id"]}, {date["price"]});
+        #     """)
+        #     continue
 
         try:
             # predefine the dictionary because it's the easiest way to ensure the dataframe is in a decent order
@@ -357,22 +395,22 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
             car_dicts.append(car)
         except Exception as e:
             progress_bar.write(str(e))
-        date_dicts.append(date)
+        # date_dicts.append(date)
 
     progress_bar.close()
     cars = pd.DataFrame(car_dicts)
-    dates = pd.DataFrame(date_dicts)
+    # dates = pd.DataFrame(date_dicts)
     if engine.dialect.has_table(engine, "cars"):
         db_cars = pd.read_sql_table("cars", con=engine)
         cars = pd.concat([db_cars, cars])
         cars.drop_duplicates(subset=['website_id', 'website'], inplace=True, keep='last')
 
-    db_dates = pd.read_sql_table("dates_cars", con=engine)
-    dates = pd.concat([db_dates, dates])
-    dates.drop_duplicates(subset=['date', 'price', 'website_id', 'website'], inplace=True, keep='last')
+    # db_dates = pd.read_sql_table("dates_cars", con=engine)
+    # dates = pd.concat([db_dates, dates])
+    # dates.drop_duplicates(subset=['date', 'price', 'website_id', 'website'], inplace=True, keep='last')
 
     cars.to_sql('cars', con=engine, if_exists='append', index=False)
-    dates.to_sql('dates_cars', con=engine, if_exists='append', index=False)
+    # dates.to_sql('dates_cars', con=engine, if_exists='append', index=False)
 
     dates = engine.execute("SELECT COUNT(*), date_accessed FROM cars GROUP BY date_accessed ORDER BY date_accessed;")
     print(f"COUNT(*)\tdate_accessed")
@@ -383,7 +421,7 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
 
 
 def populate_db_from_autotradercoza(autotrader_links):
-    engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.1.38/items', echo=False)
+    # engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.1.38/items', echo=False)
     if not engine.dialect.has_table(engine, "dates_cars"):
         engine.execute("""
                     create table dates_cars
