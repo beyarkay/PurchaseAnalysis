@@ -18,6 +18,7 @@ DEBUG = False
 NOW = datetime.datetime.now().strftime('%Y-%m-%d')
 engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.1.38/items', echo=False)
 
+
 def main():
     if len(sys.argv) == 3:
         quiet = True if sys.argv[1] else False
@@ -181,7 +182,6 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
     -------
 
     """
-
 
     # Ensure the DB is setup with a dates_cars table
     if not engine.dialect.has_table(engine, "dates_cars"):
@@ -392,32 +392,53 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
                 "Kerb weight") else None
             car["specs_central_locking"] = data_dict.get("Central locking").strip().lower() if data_dict.get(
                 "Central locking") else None
-            car_dicts.append(car)
+
+            vals = []
+            for val in car.values():
+                if type(val) is int or type(val) is float or type(val) is bool:
+                    vals.append(str(val))
+                # elif :
+                #     vals.append('True' if val else '0')
+                elif type(val) is str:
+                    vals.append(f"'{val}'")
+                elif val is None:
+                    vals.append("NULL")
+                else:
+                    print(val)
+                    print(type(val))
+            # noinspection SqlResolve
+            engine.execute(f"""
+            INSERT INTO cars ("{'","'.join(list(car.keys()))}")
+                   VALUES ({','.join(vals)});
+            """)
+
+            # car_dicts.append(car)
         except Exception as e:
-            progress_bar.write(str(e))
+            progress_bar.write(str(e) +": "+ car["link"])
         # date_dicts.append(date)
 
     progress_bar.close()
-    cars = pd.DataFrame(car_dicts)
+    # cars = pd.DataFrame(car_dicts)
     # dates = pd.DataFrame(date_dicts)
-    if engine.dialect.has_table(engine, "cars"):
-        db_cars = pd.read_sql_table("cars", con=engine)
-        cars = pd.concat([db_cars, cars])
-        cars.drop_duplicates(subset=['website_id', 'website'], inplace=True, keep='last')
+    # if engine.dialect.has_table(engine, "cars"):
+    #     db_cars = pd.read_sql_table("cars", con=engine)
+    #     cars = pd.concat([db_cars, cars])
+    #     cars.drop_duplicates(subset=['website_id', 'website'], inplace=True, keep='last')
 
     # db_dates = pd.read_sql_table("dates_cars", con=engine)
     # dates = pd.concat([db_dates, dates])
     # dates.drop_duplicates(subset=['date', 'price', 'website_id', 'website'], inplace=True, keep='last')
 
-    cars.to_sql('cars', con=engine, if_exists='append', index=False)
+    # cars.to_sql('cars', con=engine, if_exists='append', index=False)
     # dates.to_sql('dates_cars', con=engine, if_exists='append', index=False)
 
-    dates = engine.execute("SELECT COUNT(*), date_accessed FROM cars GROUP BY date_accessed ORDER BY date_accessed;")
-    print(f"COUNT(*)\tdate_accessed")
-    for row in dates:
-        print(f"{row[0]}\t\t\t{row[1]}")
+    if not quiet:
+        dates = engine.execute("SELECT COUNT(*), date_accessed FROM cars GROUP BY date_accessed ORDER BY date_accessed;")
+        print(f"COUNT(*)\tdate_accessed")
+        for row in dates:
+            print(f"{row[0]}\t\t\t{row[1]}")
 
-    print(f"DB updated with data from {domain} at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"DB updated with data from {domain} at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
 
 def populate_db_from_autotradercoza(autotrader_links):
