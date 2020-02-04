@@ -21,7 +21,7 @@ engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.1.38/items', 
 
 def main():
     if len(sys.argv) == 3:
-        quiet = True if sys.argv[1] else False
+        quiet = True if int(sys.argv[1]) else False
         limit = int(sys.argv[2]) if sys.argv[2].isnumeric() else -1
         carscoza_links = get_cars_links(quiet=quiet, limit=limit)
     else:
@@ -406,9 +406,6 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
                     vals.append(f"'{val}'")
                 elif val is None:
                     vals.append("NULL")
-                else:
-                    print(val)
-                    print(type(val))
             # noinspection SqlResolve
             engine.execute(text(f"""
             INSERT INTO cars ("{'","'.join(list(car.keys()))}")
