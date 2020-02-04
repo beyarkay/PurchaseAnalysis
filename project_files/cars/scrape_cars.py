@@ -9,7 +9,7 @@ from random import random
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from tqdm import tqdm
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
@@ -92,8 +92,10 @@ def get_cars_links(quiet=False, limit=0):
         return total_pages
 
     def get_links_on_page(page):
+        # TODO for some reason, this doesn't work. Running the script will just keep adding the same cars to the DB
         links = [domain + link.get("href") for link in page.find_all("a", class_="vehicle-list__vehicle-name")]
-        prices = [link.text.strip() for link in page.find_all("span", class_="vehicle-list__vehicle-price")]
+
+        prices = [re.sub(r"\D", "",link.text) for link in page.find_all("span", class_="vehicle-list__vehicle-price")]
         returner = set()
         for link, price in zip(links, prices):
             result = engine.execute(f"""
@@ -101,13 +103,14 @@ def get_cars_links(quiet=False, limit=0):
                     FROM dates_cars
                     WHERE website='{domain}' AND website_id='{link.split("/")[-2]}';
                 """).fetchall()
-            if result[0][0] > 0:
-                engine.execute(f"""
-                    INSERT INTO dates_cars (date, website, website_id, price) 
-                    VALUES ({NOW}, {link}, {link.split("/")[-2]}, {price});
-                    """)
-            else:
+
+            if result[0][0] == 0:
                 returner.add(link)
+            engine.execute(f"""
+                INSERT INTO dates_cars (date, website, website_id, price) 
+                VALUES ('{NOW}', '{domain}', '{link.split("/")[-2]}', {price});
+                """)
+
         return returner
 
     def get_next_page_link(page):
@@ -407,10 +410,10 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
                     print(val)
                     print(type(val))
             # noinspection SqlResolve
-            engine.execute(f"""
+            engine.execute(text(f"""
             INSERT INTO cars ("{'","'.join(list(car.keys()))}")
-                   VALUES ({','.join(vals)});
-            """)
+                   VALUES ({', '.join([":" + key for key in list(car.keys())])});
+            """), **car)
 
             # car_dicts.append(car)
         except Exception as e:
@@ -434,9 +437,10 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
 
     if not quiet:
         dates = engine.execute("SELECT COUNT(*), date_accessed FROM cars GROUP BY date_accessed ORDER BY date_accessed;")
-        print(f"COUNT(*)\tdate_accessed")
+        print(f"{'COUNT(*)': <20}{'date_accessed': <20}")
         for row in dates:
-            print(f"{row[0]}\t\t\t{row[1]}")
+            print(f"{row[0]: <20}{row[1]: <20}")
+
 
         print(f"DB updated with data from {domain} at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
