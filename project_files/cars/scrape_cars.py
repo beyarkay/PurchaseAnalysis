@@ -66,7 +66,7 @@ def get_website_links(url, get_total_pages, get_links_on_page, get_next_page_lin
         if len(item_links) == 0:
             pbar = tqdm(total=get_total_pages(page), disable=quiet)
         pbar.update(1)
-        # pbar.set_description(url)
+        pbar.set_description(url)
         # Store all the links to cars from the current page
         item_links.update(get_links_on_page(page))
 
