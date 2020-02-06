@@ -13,13 +13,14 @@ git pull --rebase
 echo "-----------EXECUTING SCRIPT------------"
 python3 -u ~/git_repos/PurchaseAnalysis/project_files/cars/scrape_cars.py "$1" "$2"
 
+psql items -c "SELECT date, COUNT(*) FROM dates_cars GROUP BY date ORDER BY date;" > log.txt
 
-#git add .
-#git commit -m "Beep Boop: Automatic update from raspberry pi"
-#
-#echo "-----------PUSHING TO REPO-------------"
-#git pull --rebase
-#git push -u origin master
+git add .
+git commit -m "Beep Boop: Automatic update from raspberry pi"
+
+echo "-----------PUSHING TO REPO-------------"
+git pull --rebase
+git push -u origin master
 echo "-----------DONE------------"
 
 deactivate
