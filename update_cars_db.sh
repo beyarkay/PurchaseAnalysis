@@ -12,6 +12,8 @@ git pull --rebase
 
 echo "-----------EXECUTING SCRIPT------------"
 python3 -u ~/git_repos/PurchaseAnalysis/project_files/cars/scrape_cars.py "$1" "$2"
+
+
 #git add .
 #git commit -m "Beep Boop: Automatic update from raspberry pi"
 #
