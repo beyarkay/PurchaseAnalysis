@@ -21,7 +21,7 @@ engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.1.38/items', 
 
 def main():
     if len(sys.argv) == 3:
-        quiet = True if int(sys.argv[1]) else False
+        quiet = True if sys.argv[1] and int(sys.argv[1]) else False
         limit = int(sys.argv[2]) if sys.argv[2].isnumeric() else -1
         carscoza_links = get_cars_links(quiet=quiet, limit=limit)
     else:
@@ -81,7 +81,7 @@ def get_website_links(url, get_total_pages, get_links_on_page, get_next_page_lin
             return list(item_links)
 
 
-def get_cars_links(quiet=False, limit=0):
+def get_cars_links(quiet=False, limit=-1):
     url = "https://www.cars.co.za/usedcars/Western-Cape/"
     domain = "https://www.cars.co.za"
 
