@@ -22,7 +22,7 @@ engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.1.38/items', 
 def main():
     if len(sys.argv) == 3:
         quiet = True if sys.argv[1] and int(sys.argv[1]) else False
-        limit = int(sys.argv[2]) if sys.argv[2].isnumeric() else -1
+        limit = int(sys.argv[2]) if sys.argv[2].isnumeric() else None
         carscoza_links = get_cars_links(quiet=quiet, limit=limit)
     else:
         carscoza_links = get_cars_links()
@@ -38,6 +38,8 @@ def get_website_links(url, get_total_pages, get_links_on_page, get_next_page_lin
 
     Parameters
     ----------
+    quiet
+    limit
     url: string
     get_total_pages: function(): int: Used once on the first page, returns the total number of pages to traverse
     get_links_on_page: function(page): Returns a list of full links for every relevant item on that page
@@ -49,7 +51,7 @@ def get_website_links(url, get_total_pages, get_links_on_page, get_next_page_lin
     """
     global pbar
     item_links = set()
-    print(f"Fetching {'all' if limit > 0 else str(limit)} links from {url}")
+    print(f"Fetching {'all' if limit is None else limit} links from {url}")
     while True:
         request = ""
         while not request:
@@ -74,14 +76,14 @@ def get_website_links(url, get_total_pages, get_links_on_page, get_next_page_lin
         # Find the link to the next page
         next_page_link = get_next_page_link(page)
         if next_page_link and (
-                (not limit) or len(item_links) <= limit):  # Check to see if we're at the last page or not
+                (limit is None) or len(item_links) <= limit):  # Check to see if we're at the last page or not
             url = next_page_link
         else:
             pbar.close()
             return list(item_links)
 
 
-def get_cars_links(quiet=False, limit=-1):
+def get_cars_links(quiet=False, limit=None):
     url = "https://www.cars.co.za/usedcars/Western-Cape/"
     domain = "https://www.cars.co.za"
 
@@ -172,7 +174,7 @@ def coerceToFloat(text):
     return float(re.sub(r"\D", "", text))
 
 
-def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
+def populate_db_from_carscoza(carscoza_links, quiet=False, limit=None):
     """
     Add the full details from every link in carscoza_links
     carscoza_links is assumed to have only unique items
@@ -201,7 +203,7 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=0):
                     """)
     # Initialise some variables
     domain = "https://www.cars.co.za"
-    if limit:
+    if limit is not None:
         carscoza_links = carscoza_links[:limit]
     car_dicts = []
     date_dicts = []
