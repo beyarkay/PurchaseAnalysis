@@ -43,62 +43,54 @@ from cars.co.za
 ![](readme_resources/rondebosch.png)
 
 
-## File Structure
-```
-PurchaseAnalysis % tree
-.
-|-- README.md
-|-- Scratchpad.ipynb
-|-- Untitled.ipynb
-|-- graphs
-|   |-- 2019_11_19
-|   |   |-- www.property24.com_for-sale_camps-bay_cape-town_western-cape_11014.png
-|   |   |-- www.property24.com_for-sale_cape-town-city-centre_cape-town_western-cape_9138.png
-|   |   |-- www.property24.com_for-sale_claremont-upper_cape-town_western-cape_14225.png
-|   |   |-- www.property24.com_for-sale_claremont_cape-town_western-cape_11741.png
-|   |   |-- www.property24.com_for-sale_constantia_cape-town_western-cape_11742.png
-|   |   |-- www.property24.com_for-sale_fresnaye_cape-town_western-cape_11016.png
-|   |   |-- www.property24.com_for-sale_gardens_cape-town_western-cape_9145.png
-|   |   |-- www.property24.com_for-sale_green-point_cape-town_western-cape_11017.png
-|   |   |-- www.property24.com_for-sale_muizenberg_cape-town_western-cape_9025.png
-|   |   |-- www.property24.com_for-sale_newlands_cape-town_western-cape_8679.png
-|   |   |-- www.property24.com_for-sale_observatory_cape-town_western-cape_10157.png
-|   |   |-- www.property24.com_for-sale_plumstead_cape-town_western-cape_10094.png
-|   |   |-- www.property24.com_for-sale_rondebosch_cape-town_western-cape_8682.png
-|   |   |-- www.property24.com_for-sale_sea-point_cape-town_western-cape_11021.png
-|   |   `-- www.property24.com_for-sale_woodstock_cape-town_western-cape_10164.png
-|   `-- 2019_11_21
-|       |-- www.cars.co.za.png
-|       `-- www.cars.co.za_best_deals.png
-|-- main.py
-|-- project_files
-|   |-- apartments
-|   |   `-- details.md
-|   |-- cars
-|   |   |-- car_links.txt
-|   |   |-- details.md
-|   |   |-- graphs
-|   |   |-- items.db
-|   |   |-- scrape_cars.py
-|   |   `-- sql.sql
-|   |-- houses
-|   |   |-- details.md
-|   |   `-- scrape_houses.py
-|   `-- template
-|       |-- details.md
-|       `-- template.csv
-|-- readme_resources
-|   |-- bt_hist.png
-|   |-- cars_co_za.png
-|   |-- green_point.png
-|   |-- models_vs_price.png
-|   |-- models_vs_price_full.png
-|   |-- models_vs_price_pruned.png
-|   |-- models_vs_price_pruned_cropped.png
-|   |-- rondebosch.png
-|   |-- sea_point.png
-|   `-- woodstock.png
-|-- requirements.txt
-`-- update_cars_db.sh
+# TODO
+* Expand to Property24
+* remove the silly git update thing
+* Fix user-agent errors
+* remember to remove items from the db if they're out of date
 
-```
+## Property24 values:
+Note that no assumptions can be made wrt the type of input. Estate agents can put whatever they want into most of the fields
+
+* Method: for sale, to rent, (on auction?, for retirement?)
+* type: house, flat, townhouse, vacant land, farm, commercial, industrial
+* Bedrooms
+* Bathrooms
+* Kitchens
+* Lounges
+* Dining Rooms
+* Office
+* Parking
+* Domestic Rooms
+* Garages
+* Gardens
+* Pools
+* Occupation date
+* lease period
+* street address
+* floor number
+* Nearby Public Transport
+* Internet Access
+* erf size
+* floor size
+* 'Outbuilding:' (Granny Flat)
+* 'Security': (1)
+* Flatlet: Yes
+* Furnished?
+* Pet friendly/Pets allowed
+* Rates and taxes
+* Other amenities
+* Description?
+* Listing date
+* POI_ID -> linked to a POI table, which describes all it's POIs:
+    * POI_ID
+    * point_name
+    * point_category
+    * point_distance
+* Province
+* Town
+* Suburb
+* ID
+* photo links
+* item link
+* Address (if given)
