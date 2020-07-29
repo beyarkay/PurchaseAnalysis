@@ -16,7 +16,7 @@ from selenium.webdriver.chrome.options import Options
 
 DEBUG = False
 NOW = datetime.datetime.now().strftime('%Y-%m-%d')
-engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.0.128/items', echo=False)
+engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.1.33/items', echo=False)
 
 
 def main():
@@ -447,7 +447,6 @@ def populate_db_from_carscoza(carscoza_links, quiet=False, limit=None):
 
 
 def populate_db_from_autotradercoza(autotrader_links):
-    # engine = create_engine('postgresql+psycopg2://pi:liberdade@192.168.0.128/items', echo=False)
     if not engine.dialect.has_table(engine, "dates_cars"):
         engine.execute("""
                     create table dates_cars
